@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+
 echo "Killing Node"
 pkill node
 echo "Finished Killing Node"
