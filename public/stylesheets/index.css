@@ -1,7 +1,6 @@
-body, html {
-    margin: 0;
-    padding: 0;
-	margin-left: 100px;
+body {
+    margin: 0px 0px 0px 100px;
+    padding: 0px 0px 0px 0px;
 }
 
 .top-menu {
@@ -13,7 +12,6 @@ body, html {
 	z-index: 1;
 	top: 0;
 	left: 0;
-	
 }
 
 .top-menu .hover-menu {
@@ -21,7 +19,8 @@ body, html {
     display: block;
     color: #bfbfbf;
     text-align: center;
-	padding: 25px 0px 40px 25px;
+	margin: 0;
+	padding: 25px 35px 40px 25px;
     text-decoration: none;
 }
 
@@ -34,9 +33,24 @@ body, html {
     display: block;
     color: white;
     text-align: center;
-	padding: 25px 0px 50px 10px;
+	padding: 25px 25% 50px 15px;
     text-decoration: none;
 }
 
 .top-menu .menu-name:hover {
+}
+
+.main {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	position: fixed;
+	background-color: blue;
+}
+
+.main .reg-button {
+	background-color: green;
+	
+	
 }
