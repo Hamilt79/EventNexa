@@ -1,9 +1,24 @@
 body {
-    margin: 0px 0px 0px 100px;
+    margin: 40px 0px 0px 100px;
     padding: 0px 0px 0px 0px;
 }
 
 .top-menu {
+	background-color: #111;
+	width: 100%;
+	height: 40px;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+}
+.top-menu h1{
+	text-align: center;
+	margin: 0;
+	padding: 0px 100px 0px 0px;
+	color: white;
+}
+
+.side-menu {
     background-color: #111;
     overflow: hidden;
     height: 100%;
@@ -14,7 +29,7 @@ body {
 	left: 0;
 }
 
-.top-menu .hover-menu {
+.side-menu .hover-menu {
     float: left;
     display: block;
     color: #bfbfbf;
@@ -24,11 +39,11 @@ body {
     text-decoration: none;
 }
 
-.top-menu .hover-menu:hover {
+.side-menu .hover-menu:hover {
     color: #fff;
 }
 
-.top-menu .menu-name {
+.side-menu .menu-name {
 	float: left;
     display: block;
     color: white;
@@ -37,7 +52,7 @@ body {
     text-decoration: none;
 }
 
-.top-menu .menu-name:hover {
+.side-menu .menu-name:hover {
 }
 
 .main {
@@ -46,11 +61,21 @@ body {
 	margin: 0;
 	padding: 0;
 	position: fixed;
-	background-color: blue;
+	background-color: #2f2f2f;
 }
 
 .main .reg-button {
 	background-color: green;
-	
-	
+	border-color: green;
+	color: white;
+	border-style: solid ;
+	border-radius: 20px;
+	font-size: 15px;
+	width: clamp(75px, 150px, 250px);
+	height: clamp(45px, 75px, 125px);
+	border-width:2px;
+}
+
+.main .reg-button:active {
+	background-color: #006513;
 }
