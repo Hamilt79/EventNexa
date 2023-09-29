@@ -58,11 +58,14 @@ body {
     display: block;
     color: #bfbfbf;
     text-align: center;
-	margin: 50% 25% 50% 25%;
+	margin: 0% 0% 0% 0%;
 	padding: 0;
     text-decoration: none;
 	left: 0;
 	top: 0;	
+	height: clamp(50px, 100px, 200px);
+	width: 100%;
+	
 }
 
 .side-menu .hover-menu:hover {
