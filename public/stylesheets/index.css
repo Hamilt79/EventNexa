@@ -34,6 +34,7 @@ body {
 	border-style: solid;
 	border-color: #00bb10;
 	border-radius: 20%;
+	cursor: grab;
 }
 .top-menu img {
 	width: 100%;
