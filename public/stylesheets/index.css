@@ -58,25 +58,15 @@ body {
     display: block;
     color: #bfbfbf;
     text-align: center;
-	margin: 0;
-	padding: 25px 35px 40px 25px;
+	margin: 50% 25% 50% 25%;
+	padding: 0;
     text-decoration: none;
+	left: 0;
+	top: 0;	
 }
 
 .side-menu .hover-menu:hover {
     color: #fff;
-}
-
-.side-menu .menu-name {
-	float: left;
-    display: block;
-    color: white;
-    text-align: center;
-	padding: 25px 0px 40px 10%;
-    text-decoration: none;
-}
-
-.side-menu .menu-name:hover {
 }
 
 .main {
