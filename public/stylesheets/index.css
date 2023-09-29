@@ -30,9 +30,9 @@ body {
 	width: 60px;
 	height: 60px;
 	float: right;
-	border-width: 1px;
+	border-width: 3px;
 	border-style: solid;
-	border-color: white;
+	border-color: #00bb10;
 	border-radius: 20%;
 }
 .top-menu img {
