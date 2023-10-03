@@ -4,12 +4,15 @@ body{
 .center-registration {
 	background-color: #2f2f2f;
 	position: absolute;
-	width: 100%;
+	width: 400px;
 	height: 100px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	margin: 100px 0 0 0;
 	flex-wrap: wrap;
+	left: 50%;
+	transform: translate(-50%, 0%);
 }
 
 .center-registration label {
@@ -18,12 +21,15 @@ body{
 .center-registration > * {
 	position: relative;
 	color: white;
-	transform: translate(-100px, 0);
+	transform: translate(0, 0);
 	float: right;
 	margin: 0;
 	padding: 0;
 	left: 0;
 	top: 0;
+	flex-basis: 100%;
+	margin: 3px;
+	
 }
 
 .center-registration input {
