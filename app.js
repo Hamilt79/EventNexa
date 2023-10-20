@@ -4,16 +4,19 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+// Pages to display
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var testRouter = require('./routes/testresponse');
 var profileRouter = require('./routes/profile');
 var registrationRouter = require('./routes/registration');
 
+// Starting express ap
 var app = express();
 
+// Need this to allow reading and sending requests from client-side js
 var cors = require('cors');
-
+// Making the express app use cors
 app.use(cors());
 
 // view engine setup
@@ -26,6 +29,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// making the app display the pages
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/test', testRouter);
