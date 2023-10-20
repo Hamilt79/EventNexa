@@ -11,9 +11,14 @@ function goProfile() {
 
 function onLoad() {
 	console.log("Loaded");
+	loginCheck();
+}
+
+function loginCheck() {
 	if (getCookie("token") == "") {
 		console.log("Token does not exist");
-		setCookie("token", "usertoken", 5);
+		window.location.href = 'https://eventnexa.tech/registration/registration.html';
+		//setCookie("token", "usertoken", 5);
 	} else {
 		console.log("Token is: " + getCookie("token"));
 	}
