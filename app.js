@@ -7,9 +7,9 @@ var logger = require('morgan');
 // Pages to display
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var testRouter = require('./routes/testresponse');
-var profileRouter = require('./routes/profile');
-var registrationRouter = require('./routes/registration');
+//var testRouter = require('./routes/testresponse');
+//var profileRouter = require('./routes/profile');
+//var registrationRouter = require('./routes/registration');
 
 // Starting express ap
 var app = express();
@@ -32,9 +32,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // making the app display the pages
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/test', testRouter);
-app.use('/profile', profileRouter);
-app.use('/registration', registrationRouter);
+//app.use('/test', testRouter);
+//app.use('/profile', profileRouter);
+//.use('/registration', registrationRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

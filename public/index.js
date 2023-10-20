@@ -6,5 +6,5 @@ function sendReq(button) {
 }
 
 function goProfile() {
-	window.location.href = 'https://eventnexa.tech/profile/';
+	window.location.href = 'https://eventnexa.tech/profile/profile.html';
 }
