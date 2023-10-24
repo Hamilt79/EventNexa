@@ -5,8 +5,17 @@ var path = require('path');
 
 /* GET home page. */
 router.post('/', function(req, res) {
-	console.log(JSON.stringify(req.headers));
-	res.send("Pass");
+	try{
+		const jsonReq = JSON.stringify(req.headers);
+		const username = jsonReq['username'];
+		const email = jsonReq['email'];
+		const password = jsonReq['password'];
+		const passHash = 
+
+		res.send("Pass");
+	} catch(ex) {
+		console.log(ex);
+	}
 });
 
 /*
