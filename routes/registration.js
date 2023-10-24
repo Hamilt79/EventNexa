@@ -6,10 +6,11 @@ var path = require('path');
 /* GET home page. */
 router.post('/', function(req, res) {
 	try{
-		const jsonReq = JSON.stringify(req.headers);
-		const username = jsonReq['username'];
-		const email = jsonReq['email'];
-		const password = jsonReq['password'];
+		//const jsonReq = JSON.stringify(req.headers);
+		const username = req.headers['username'];
+		const email = req.headers['email'];
+		//const password = jsonReq['password'];
+		const password = req.headers['password'];
 		const hash = crypto.createHash('sha512');
 		console.log(password);
 		hash.update(password);
