@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EventNexa</title>
+	<link rel="stylesheet" href="../stylesheets/menu.css">
+	<link rel="stylesheet" href="registration.css">
+	<link rel="icon" href="../Icon.png" type="image/png">
+</head>
+<body>
+
+	<div class="top-menu">
+		<h1>EventNexa</h1>
+		<button onclick="goProfile();"> 
+			<img src="../no-profile.png" type="images/png">
+		</button>
+	</div>
+	
+    <div class="side-menu">
+		<a class="hover-menu"></a>
+        <a class="hover-menu" href="https://eventnexa.tech/">Home</a>
+        <a class="hover-menu" href="https://eventnexa.tech/search/">Search</a>
+        <a class="hover-menu" href="https://eventnexa.tech/about/about.html">About</a>
+    </div>
+	
+
+
+	<div class="center-registration">
+		<p id="usermessagedisplay" style="color: red; text-align: center;"></p>
+		<label>Username: </label>
+		<input id="username" type="text">
+		<div class="break"></div>
+		<label>Email: </label>
+		<input id="email" type="text">
+		<div class="break"></div>
+		<label>Password: </label>
+		<input id="password" type="password">
+		<div class="break"></div>
+		<label>Enter your password again: </label>
+		<input id="passwordverify" type="password">
+		<button>Login</button>
+		<button onclick="registerRequest(this)">Submit</button>
+	</div>
+	
+
+
+    <script src="../profile/profile.js"></script>
+	<script src="registration.js"></script>
+</body>
+</html>

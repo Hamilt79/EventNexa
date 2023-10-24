@@ -25,6 +25,6 @@ function displayMessage(color, message) {
 	textEl.style = 'text-align: center; color: ' + color + ';';
 }
 
-function goToLogin() {
-	window.location.href = "https://eventnexa.tech/login/login.html";
+function goProfile() {
+	window.location.href = 'https://eventnexa.tech/profile/';
 }
