@@ -6,9 +6,6 @@ var logger = require('morgan');
 
 // Pages to display
 var indexRouter = require('./routes/index');
-//var usersRouter = require('./routes/users');
-//var testRouter = require('./routes/testresponse');
-//var profileRouter = require('./routes/profile');
 var registrationRouter = require('./routes/registration');
 var loginRouter = require('./routes/login');
 
@@ -32,9 +29,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // making the app display the pages
 app.use('/', indexRouter);
-//app.use('/users', usersRouter);
-//app.use('/test', testRouter);
-//app.use('/profile', profileRouter);
 app.use('/registration/createaccount', registrationRouter);
 app.use('/login/loginrequest', loginRouter);
 
