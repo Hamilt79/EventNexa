@@ -6,6 +6,7 @@ var path = require('path');
 /* GET home page. */
 router.post('/', function(req, res) {
 	console.log(JSON.stringify(req.headers));
+	res.send("Pass");
 });
 
 /*
