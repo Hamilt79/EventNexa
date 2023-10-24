@@ -43,6 +43,10 @@ body{
 	border-style: solid;
 }
 
+.center-registration input:focus {
+	outline-width: 0;
+}
+
 .center-registration button {
 	border-radius: 7% / 30%;
 	flex-basis: 40%;
