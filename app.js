@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // making the app display the pages
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+//app.use('/users', usersRouter);
 //app.use('/test', testRouter);
 //app.use('/profile', profileRouter);
 app.use('/registration/createaccount', registrationRouter);
