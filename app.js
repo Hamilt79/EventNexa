@@ -10,8 +10,9 @@ var indexRouter = require('./routes/index');
 //var testRouter = require('./routes/testresponse');
 //var profileRouter = require('./routes/profile');
 var registrationRouter = require('./routes/registration');
+var loginRouter = require('./routes/login');
 
-// Starting express ap
+// Starting express app
 var app = express();
 
 // Need this to allow reading and sending requests from client-side js
@@ -35,6 +36,7 @@ app.use('/', indexRouter);
 //app.use('/test', testRouter);
 //app.use('/profile', profileRouter);
 app.use('/registration/createaccount', registrationRouter);
+app.use('login/loginrequest', loginRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
