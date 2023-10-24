@@ -8,9 +8,15 @@ function registerRequest() {
 	const password = document.getElementById('password').value;
 	const passwordVerify = document.getElementById('passwordverify').value;
 
-	let returnVal = "";
-	fetch('https://www.eventnexa.tech/registration/createaccount', { method: 'POST', headers: { 'email': email, 'username': username, 'password': password } }).then(function(response) { return response.text(); }).then(function(data) { returnVal = data; });
-	displayMessage('red', returnVal);
+	fetch('https://www.eventnexa.tech/registration/createaccount', 
+		{ 	method: 'POST', 
+			headers: 
+				{ 	'email': email, 
+					'username': username, 
+					'password': password 
+				} 
+		}
+	).then(function(response) { return response.text(); }).then(function(data) { displayMessage('red', data) });
 }
 
 function displayMessage(color, message) {
