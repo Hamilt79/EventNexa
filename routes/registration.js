@@ -11,7 +11,7 @@ router.post('/', function(req, res) {
 		const email = jsonReq['email'];
 		const password = jsonReq['password'];
 		const hash = crypto.createHash('sha512');
-		hash.update(password);
+		hash.update(password.toString());
 		const passwordHash = hash.digest('hex');
 		console.log(passwordHash);
 		res.send("Pass");
