@@ -10,8 +10,10 @@ router.post('/', function(req, res) {
 		const username = jsonReq['username'];
 		const email = jsonReq['email'];
 		const password = jsonReq['password'];
-		const passHash = 
-
+		const hash = crypto.createHash('sha512');
+		hash.update(password);
+		const passwordHash = hash.digest('hex');
+		console.log(passwordHash);
 		res.send("Pass");
 	} catch(ex) {
 		console.log(ex);
