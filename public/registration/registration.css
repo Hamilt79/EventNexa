@@ -42,6 +42,19 @@ body{
 	border-width: 3px;
 	border-style: solid;
 }
+
+.center-registration button {
+	border-radius: 7% / 30%;
+	flex-basis: 40%;
+	width: 400px;
+	height: 40px;
+	padding: 0 10px 0 10px;
+	color: black;
+	border-color: green;
+	border-width: 3px;
+	border-style: solid;
+}
+
 .break {
 	flex-basis: 100%;
 	height: 0;
