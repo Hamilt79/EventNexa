@@ -33,9 +33,8 @@ Linux-based system
 
 ### Installation
 
-1. Clone the repository: `git clone https://github.com/yourusername/your-project.git`
-2. Navigate to the project directory: `cd your-project`
-3. Install dependencies: `npm install`
+1. Clone the repository: `git clone https://github.com/Hamilt79/ServerTest.git`
+2. Navigate to the project directory: `cd ServerTest`
 
 ### Configuration
 
