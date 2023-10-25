@@ -27,6 +27,7 @@ This project is our final project for CSE 201 at Miami University.
 ## Prerequisites
 
 NodeJS
+MongoDb -- npm install mongodb
 Linux-based system
 
 ## Getting Started

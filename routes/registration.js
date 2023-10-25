@@ -1,7 +1,7 @@
 const crypto = require('crypto');
 var express = require('express');
 var router = express.Router();
-var path = require('path');
+const fs = require('fs');
 
 /**
  * Gets post requests sent to registration/createaccount
@@ -26,5 +26,25 @@ router.post('/', function(req, res) {
 		console.log(ex);
 	}
 });
+
+/**
+ * Function for creating a user
+ * 
+ * @param {string} username username of the user
+ * @param {string} passHash hash of the user's password
+ * @returns a boolean value that is true if the user was
+ * 			created and false if the userame already existed
+ */
+function createUser(username, passHash) {
+
+
+
+	return 0;
+}
+
+function getUsersFile() {
+
+	return FILE;
+}
 
 module.exports = router;
