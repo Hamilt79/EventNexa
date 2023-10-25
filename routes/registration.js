@@ -42,9 +42,4 @@ function createUser(username, passHash) {
 	return 0;
 }
 
-function getUsersFile() {
-
-	return FILE;
-}
-
 module.exports = router;
