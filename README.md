@@ -40,7 +40,7 @@ Linux-based system
 
 Redirect traffic sent to port 443 and 80 to port 3000.
 This must be done due to many machines not being easily able to run NodeJs on those ports, and instead running on port 3000 by default.
-This redirection can either be done manually or by running the SetIpTables.sh script each restart
+This redirection can either be done manually or by running the setiptables.sh script each restart
 
 ## Usage
 
