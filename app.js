@@ -32,8 +32,6 @@ app.use('/', indexRouter);
 app.use('/registration/createaccount', registrationRouter);
 app.use('/login/loginrequest', loginRouter);
 
-const mongoTest = require('./routes/mongo-utils');
-//n[mongoTest.test();
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
