@@ -8,6 +8,11 @@ function registerRequest() {
 	const password = document.getElementById('password').value;
 	const passwordVerify = document.getElementById('passwordverify').value;
 
+	if (password !== passwordVerify) {
+		displayMessage("red", "Passwords do not match.");
+		return;
+	}
+
 	fetch('https://www.eventnexa.tech/registration/createaccount', 
 		{ 	method: 'POST', 
 			headers: 
@@ -16,7 +21,16 @@ function registerRequest() {
 					'password': password 
 				} 
 		}
-	).then(function(response) { return response.text(); }).then(function(data) { displayMessage('red', data) });
+	).then(function(response) { return response.text(); }).then(function(data) { onRecieveRequest(data); });
+}
+
+function onRecieveRequest(data) {
+	try {
+	const response = JSON.parse(data);
+	if (console.log(response['Error']));
+	} catch(ex) {
+		console.log(ex);
+	}
 }
 
 function displayMessage(color, message) {
@@ -28,3 +42,4 @@ function displayMessage(color, message) {
 function goToLogin() {
 	window.location.href = "https://eventnexa.tech/login/login.html";
 }
+
