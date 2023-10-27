@@ -27,7 +27,7 @@ function registerRequest() {
 function onRecieveRequest(data) {
 	try {
 	const response = JSON.parse(data);
-	if (console.log(response['Error']));
+	if (displayMessage(response['Error']));
 	} catch(ex) {
 		console.log(ex);
 	}
