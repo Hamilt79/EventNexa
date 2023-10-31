@@ -3,7 +3,7 @@ const crypto = require('crypto');
 var express = require('express');
 var router = express.Router();
 const fs = require('fs');
-var users = require('../storage/users.json');
+const usersPath = '../storage/users.json';
 
 /**
  * Gets post requests sent to registration/createaccount
@@ -36,7 +36,7 @@ router.post('/', function(req, res) {
 			'email' : email,
 			'password' : passwordHash
 		 };
-		users.writeFile(regObject);
+		fs.writeFile(usersPath, regObject);
 
 		res.send(createErrorResponse("Pass"));
 	} catch(ex) {
