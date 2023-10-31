@@ -35,7 +35,7 @@ router.post('/', function(req, res) {
 			'email' : email,
 			'password' : passwordHash
 		 };
-		fs.writeFileSync("../storage/users.json", regObject, (err) => {
+		fs.writeFile("../storage/users.json", JSON.stringify(regObject), (err) => {
 			if (err) {
 				console.log(err);
 			}
