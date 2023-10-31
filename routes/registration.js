@@ -3,6 +3,8 @@ const crypto = require('crypto');
 var express = require('express');
 var router = express.Router();
 const fs = require('fs');
+const path = require('path');
+const usersFile = path.join(__dirname + "/../storage/users.json");
 
 /**
  * Gets post requests sent to registration/createaccount
@@ -35,7 +37,8 @@ router.post('/', function(req, res) {
 			'email' : email,
 			'password' : passwordHash
 		 };
-		fs.writeFile("../storage/users.json", JSON.stringify(regObject), (err) => {
+		 console.log(__dirname);
+		fs.writeFile(usersFile, JSON.stringify(regObject), (err) => {
 			if (err) {
 				console.log(err);
 			}
