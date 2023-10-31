@@ -36,7 +36,8 @@ router.post('/', function(req, res) {
 			'email' : email,
 			'password' : passwordHash
 		 };
-		fs.writeFile(usersPath, regObject);
+		console.log(fs.exists(usersPath));
+		//fs/.writeFile(usersPath, regObject);
 
 		res.send(createErrorResponse("Pass"));
 	} catch(ex) {
