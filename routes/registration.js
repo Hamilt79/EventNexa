@@ -1,10 +1,12 @@
 const { error } = require('console');
+const User = require('./route-util/user');
 const crypto = require('crypto');
 var express = require('express');
 var router = express.Router();
 const fs = require('fs');
 const path = require('path');
-const usersFile = path.join(__dirname + "/../storage/users.json");
+
+const usersFilePath = path.join(__dirname + "/../storage/users.json");
 
 /**
  * Gets post requests sent to registration/createaccount
@@ -12,6 +14,18 @@ const usersFile = path.join(__dirname + "/../storage/users.json");
  * 
  */
 router.post('/', function(req, res) {
+	handlePostReq(req, res);
+});
+
+/**
+ * Function for handling the post request to create a user.
+ * 
+ * @param {*} req Request data
+ * @param {*} res Response Data
+ * @returns void
+ */
+function handlePostReq(req, res)
+ {
 	try{
 		//const jsonReq = JSON.stringify(req.headers);
 		const username = req.headers['username'];
@@ -38,7 +52,7 @@ router.post('/', function(req, res) {
 			'password' : passwordHash
 		 };
 		 console.log(__dirname);
-		fs.writeFile(usersFile, JSON.stringify(regObject), (err) => {
+		fs.writeFile(usersFilePath, JSON.stringify(regObject), (err) => {
 			if (err) {
 				console.log(err);
 			}
@@ -50,10 +64,7 @@ router.post('/', function(req, res) {
 	} catch(ex) {
 		console.log(ex);
 	}
-});
-
-
-
+ }
 /**
  * A method to create a response object
  * 
