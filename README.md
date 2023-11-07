@@ -35,7 +35,7 @@ Linux-based system
 ### Installation
 
 1. Clone the repository: `git clone https://github.com/Hamilt79/ServerTest.git`
-2. Ensure you have the mongodb installed and configured
+2. Ensure you have the mongodb installed and configured 'https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/#std-label-install-mdb-community-ubuntu'
 3. Navigate to the project directory: `cd ServerTest`
 
 ### Configuration
