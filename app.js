@@ -9,6 +9,9 @@ var indexRouter = require('./routes/index');
 var registrationRouter = require('./routes/registration');
 var loginRouter = require('./routes/login');
 
+// Mognodb setup
+var mongo = require('./routes/mongodb');
+
 // Starting express app
 var app = express();
 
@@ -31,6 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/registration/createaccount', registrationRouter);
 app.use('/login/loginrequest', loginRouter);
+
 
 
 // catch 404 and forward to error handler
