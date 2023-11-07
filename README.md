@@ -27,7 +27,7 @@ This project is our final project for CSE 201 at Miami University.
 ## Prerequisites
 
 NodeJS
-MongoDb -- npm install mongodb
+MongoDB
 Linux-based system
 
 ## Getting Started
@@ -35,7 +35,8 @@ Linux-based system
 ### Installation
 
 1. Clone the repository: `git clone https://github.com/Hamilt79/ServerTest.git`
-2. Navigate to the project directory: `cd ServerTest`
+2. Ensure you have the mongodb installed and configured
+3. Navigate to the project directory: `cd ServerTest`
 
 ### Configuration
 
@@ -45,7 +46,7 @@ This redirection can either be done manually or by running the setiptables.sh sc
 
 ## Usage
 
-Run 'npm start' in the base folder of the project to start the application. This will by default block further commands from running and output NodeJS logging information until you stop the command.
+Snure mongodb is running at the appropriate address. Run 'npm start' in the base folder of the project to start the application. This will by default block further commands from running and output NodeJS logging information until you stop the command.
 If start the server with 'npm start >> /dev/null &' it will run the program in the background. To stop it from running, run the killbackground.sh script. Note: Running this script will kill all active NodeJs applications, so if there is an
 application that should be stopped please consider manually killing the correct process.
 
