@@ -1,7 +1,8 @@
 class Event {
-    constructor(title, description) {
+    constructor(title, description, publisher) {
         this.title = title;
         this.description = description;
+        this.publisher = publisher;
     }
 
     get title() {
@@ -10,6 +11,10 @@ class Event {
 
     get description() {
         return this.description;
+    }
+
+    get publisher() {
+        return this.publisher;
     }
 }
 

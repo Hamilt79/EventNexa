@@ -6,10 +6,14 @@ const client = new MongoClient(uri);
 
 async function run() {
   try {
-    const database = client.db('sample_mflix');
-    const movies = database.collection('movies');
-    // Query for a movie that has the title 'Back to the Future'
-    const query = { title: 'Back to the Future' };
+
+    const database = client.db('eventnexa');
+    const users = database.collection('users');
+
+    let myUser = { username : 'John', password: 'Password!' };
+
+    users.insertOne(myUser).then(function() {});
+
     const movie = await movies.findOne(query);
     console.log(movie);
     //console.log("Got here");
