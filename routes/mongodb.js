@@ -17,7 +17,7 @@ async function run() {
 
     const userTest = { username: 'John', password: 'Passwordddd!' };
 
-    
+    await users.insertOne(userTest);
 
     let query = { username: 'John' };
     await users.findOne(query).then(value => { console.log(value); });
