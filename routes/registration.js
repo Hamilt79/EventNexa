@@ -6,8 +6,6 @@ var router = express.Router();
 const fs = require('fs');
 const path = require('path');
 
-const usersFilePath = path.join(__dirname + "/../storage/users.json");
-
 /**
  * Gets post requests sent to registration/createaccount
  * and checks if the registration request is valid. 
