@@ -1,7 +1,13 @@
-function sendReq(button) {
-	fetch('https://www.eventnexa.tech/test').then(function(response) { return response.text(); }).then(function(data) { button.value = data; });
+/**
+* Redirects the user to registration page.
+*/
+function goToRegistration() {
+	Network.redirectLocal('registration/registration.html');
 }
 
+/**
+ * Sends the request to register a user.
+ */
 function registerRequest() {
 	const username = document.getElementById('username').value;
 	const email = document.getElementById('email').value;
@@ -13,7 +19,7 @@ function registerRequest() {
 		return;
 	}
 
-	fetch('https://www.eventnexa.tech/registration/createaccount', 
+	fetch(Network.domainName + 'registration/createaccount', 
 		{ 	method: 'POST', 
 			headers: 
 				{ 	'email': email, 
@@ -24,22 +30,16 @@ function registerRequest() {
 	).then(function(response) { return response.text(); }).then(function(data) { onRecieveRequest(data); });
 }
 
+/**
+ * Method called when the registration request is sent back to the local
+ * machine.
+ * @param {*} data JSON formatted information from server
+ */
 function onRecieveRequest(data) {
 	try {
 	const response = JSON.parse(data);
-	if (displayMessage("Red", response['Error']));
+	displayMessage("Red", response['Error']);
 	} catch(ex) {
 		console.log(ex);
 	}
 }
-
-function displayMessage(color, message) {
-	const textEl = document.getElementById('usermessagedisplay');
-	textEl.innerHTML = message;
-	textEl.style = 'text-align: center; color: ' + color + ';';
-}
-
-function goToLogin() {
-	window.location.href = "https://eventnexa.tech/login/login.html";
-}
-

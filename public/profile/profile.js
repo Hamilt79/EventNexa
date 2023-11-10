@@ -1,3 +1,6 @@
+/**
+ * Redirects the user to profile page
+ */
 function goProfile() {
-	window.location.href = "https://eventnexa.tech/profile/profile.html";
+	Network.redirectLocal('profile/profile.html');
 }

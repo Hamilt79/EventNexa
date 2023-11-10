@@ -1,8 +1,11 @@
+/**
+ * Sends a login request to server
+ */
 function loginRequest() {
 	const username = document.getElementById('username').value;
 	const password = document.getElementById('password').value;
 
-	fetch('https://www.eventnexa.tech/login/loginrequest', 
+	fetch(Network.domainName + 'login/loginrequest', 
 		{ 	method: 'POST', 
 			headers: 
 				{	
@@ -13,16 +16,17 @@ function loginRequest() {
 	).then(function(response) { return response.text(); }).then(function(data) { loginResponse(data) });
 }
 
+/**
+ * Handles the response to the login request
+ * @param {*} response JSON formatted response from server
+ */
 function loginResponse(response) {
 	
 }
 
-function displayMessage(color, message) {
-	const textEl = document.getElementById('usermessagedisplay');
-	textEl.innerHTML = message;
-	textEl.style = 'text-align: center; color: ' + color + ';';
-}
-
-function goToRegistration() {
-	window.location.href = 'https://eventnexa.tech/registration/registration.html';
+/**
+ * Redirects user to login page
+ */
+function goToLogin() {
+	Network.redirectLocal('login/login.html');
 }
