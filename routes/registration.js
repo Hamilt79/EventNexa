@@ -33,7 +33,7 @@ async function handlePostReq(req, res)
 
 		let errorMessage = verifyPassword(password);
 		if (errorMessage != "") {
-			res.send(createErrorResponse(errorMessage));
+			res.send(createResponse(errorMessage));
 			return;
 		}
 
@@ -117,7 +117,7 @@ function containsDigit(str) {
  */
 async function createUser(userObject) {
 	let mongo = new MongoConnection();
-	if (await mongo.queryExists({ 'username': userObject.getUsername() }, MongoConnection.COLLECTION_E.Users)) {
+	if (await mongo.queryExists({ 'username': userObject.getUsername }, MongoConnection.COLLECTION_E.Users)) {
 		mongo.close();
 		return false;
 	} else {
