@@ -4,43 +4,31 @@ class User {
      * 
      * @param {*} username username of user
      * @param {*} passwordHash password hash of user
-     * @param {*} hostedEvents events the user hosts
-     * @param {*} joinedEvents events the user has joined
+     * @param {*} email email of user
      */
-    constructor(username, passwordHash, hostedEvents, joinedEvents) {
+    constructor(username, passwordHash, email) {
         this.username = username;
         this.passwordHash = passwordHash;
-        this.hostedEvents = hostedEvents;
-        this.joinedEvents = joinedEvents;
+        this.email = email;
     }
 
     /**
      * Gets username
      */
-    get username() {
+    get getUsername() {
         return this.username;
     }
     
     /**
      * Gets password hash
      */
-    get passwordHash() {
+    get getPasswordHash() {
         return this.passwordHash;
     }
 
-    /**
-     * Gets events the user is hosting
-     */
-    get hostedEvents() {
-        return this.hostedEvents;
+    get getEmail() {
+        return this.email;
     }
-
-    /**
-     * Gets events th euser has joined
-     */
-    get joinedEvents() {
-        return this.joinedEvents;
-    }  
 }
 
 exports.User = User;

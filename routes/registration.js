@@ -1,5 +1,6 @@
 const { error } = require('console');
-const User = require('./route-util/user');
+const { User } = require('./route-util/user');
+const { MongoConnection } = require('./mongodb/mongodb');
 const crypto = require('crypto');
 var express = require('express');
 var router = express.Router();
@@ -22,7 +23,7 @@ router.post('/', function(req, res) {
  * @param {*} res Response Data
  * @returns void
  */
-function handlePostReq(req, res)
+async function handlePostReq(req, res)
  {
 	try{
 		//const jsonReq = JSON.stringify(req.headers);
@@ -43,35 +44,30 @@ function handlePostReq(req, res)
 		// Getting the hash from the object as a string
 		const passwordHash = hash.digest('hex');
 
+		let user = new User(username, email, passwordHash);
 
-		const regObject = { 
-			'Username': username,
-			'email' : email,
-			'password' : passwordHash
-		 };
-		 console.log(__dirname);
-		fs.writeFile(usersFilePath, JSON.stringify(regObject), (err) => {
-			if (err) {
-				console.log(err);
-			}
-
-		});
-		//fs/.writeFile(usersPath, regObject);
-
-		res.send(createErrorResponse("Pass"));
+		let exists = await createUser(user);
+		if (exists) {
+			res.send(createResponse("Created"));
+		} else {
+			res.send(createResponse("Username already in use"));
+		}
 	} catch(ex) {
 		console.log(ex);
 	}
  }
+
+
+
 /**
  * A method to create a response object
  * 
  * @param {string} message an error message to send to the user
- * @returns a response object containing the error message
+ * @returns a response object containing the message
  */
-function createErrorResponse(message) {
+function createResponse(message) {
 	const response = {
-		'Error': message
+		'Response': message
 	}
 	return response;
 }
@@ -115,16 +111,20 @@ function containsDigit(str) {
 /**
  * Function for creating a user
  * 
- * @param {string} username username of the user
- * @param {string} passHash hash of the user's password
+ * @param {User} userObject User object
  * @returns a boolean value that is true if the user was
  * 			created and false if the userame already existed
  */
-function createUser(username, passHash) {
-
-
-
-	return 0;
+async function createUser(userObject) {
+	let mongo = new MongoConnection();
+	if (await mongo.queryExists({ 'username': userObject.getUsername() }, MongoConnection.COLLECTION_E.Users)) {
+		mongo.close();
+		return false;
+	} else {
+		await mongo.insertData(userObject, MongoConnection.COLLECTION_E.Users);
+		mongo.close();
+		return true;
+	}
 }
 
 module.exports = router;

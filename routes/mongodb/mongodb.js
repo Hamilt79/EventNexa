@@ -120,7 +120,7 @@ async function run() {
   await col.close();
 } 
 
-run();
+//run();
 
 module.exports = {
   MongoConnection
