@@ -19,7 +19,6 @@ router.post('/', function(req, res) {
 
 function handleLoginReq(req, res) {
 	try{
-		const jsonReq = JSON.stringify(req.headers);
 		const username = jsonReq['username'];
 		const password = jsonReq['password'];
 		

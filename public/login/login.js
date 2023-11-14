@@ -23,10 +23,3 @@ function loginRequest() {
 function loginResponse(response) {
 	
 }
-
-/**
- * Redirects user to login page
- */
-function goToLogin() {
-	Network.redirectLocal('login/login.html');
-}

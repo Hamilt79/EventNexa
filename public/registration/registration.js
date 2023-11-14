@@ -1,11 +1,4 @@
 /**
-* Redirects the user to registration page.
-*/
-function goToRegistration() {
-	Network.redirectLocal('registration/registration.html');
-}
-
-/**
  * Sends the request to register a user.
  */
 function registerRequest() {

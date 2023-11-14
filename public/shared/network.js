@@ -18,4 +18,25 @@ class Network {
     static redirectLocal(url) {
         this.redirect(this.domainName + url);
     }
+
+    /**
+    * Redirects the user to registration page.
+    */
+    static goToRegistration() {
+        Network.redirectLocal('registration/registration.html');
+    }
+
+    /**
+     * Redirects user to login page
+    */
+    static goToLogin() {
+        Network.redirectLocal('login/login.html');
+    }
+
+    /**
+     * Redirects the user to profile page
+     */
+    static goProfile() {
+        Network.redirectLocal('profile/profile.html');
+    }
 }
