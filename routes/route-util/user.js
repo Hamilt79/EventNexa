@@ -11,24 +11,6 @@ class User {
         this.passwordHash = passwordHash;
         this.email = email;
     }
-
-    /**
-     * Gets username
-     */
-    get username() {
-        return this.username;
-    }
-    
-    /**
-     * Gets password hash
-     */
-    get passwordHash() {
-        return this.passwordHash;
-    }
-
-    get email() {
-        return this.email;
-    }
 }
 
 exports.User = User;
