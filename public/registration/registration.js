@@ -38,7 +38,7 @@ function registerRequest() {
 function onRecieveRequest(data) {
 	try {
 	const response = JSON.parse(data);
-	displayMessage("Red", response['Error']);
+	displayMessage("Red", response['Response']);
 	} catch(ex) {
 		console.log(ex);
 	}

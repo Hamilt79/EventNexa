@@ -3,10 +3,10 @@ class User {
      * Constructor for User
      * 
      * @param {*} username username of user
-     * @param {*} passwordHash password hash of user
      * @param {*} email email of user
+     * @param {*} passwordHash password hash of user
      */
-    constructor(username, passwordHash, email) {
+    constructor(username, email, passwordHash) {
         this.username = username;
         this.passwordHash = passwordHash;
         this.email = email;
@@ -15,18 +15,18 @@ class User {
     /**
      * Gets username
      */
-    get getUsername() {
+    get username() {
         return this.username;
     }
     
     /**
      * Gets password hash
      */
-    get getPasswordHash() {
+    get passwordHash() {
         return this.passwordHash;
     }
 
-    get getEmail() {
+    get email() {
         return this.email;
     }
 }

@@ -26,7 +26,6 @@ router.post('/', function(req, res) {
 async function handlePostReq(req, res)
  {
 	try{
-		//const jsonReq = JSON.stringify(req.headers);
 		const username = req.headers['username'];
 		const email = req.headers['email'];
 		const password = req.headers['password'];
@@ -37,12 +36,7 @@ async function handlePostReq(req, res)
 			return;
 		}
 
-		// Creates a hash object
-		const hash = crypto.createHash('sha512');
-		// Updates the hash object with the text to turn into sha512 hash
-		hash.update(password);
-		// Getting the hash from the object as a string
-		const passwordHash = hash.digest('hex');
+		let passwordHash = createPasswordHash(password);
 
 		let user = new User(username, email, passwordHash);
 
@@ -57,7 +51,20 @@ async function handlePostReq(req, res)
 	}
  }
 
-
+ /**
+  * Creates the password hash from password
+  * @param {*} password password to make hash from
+  * @returns hashed password
+  */
+function createPasswordHash(password) {
+	// Creates a hash object
+	const hash = crypto.createHash('sha512');
+	// Updates the hash object with the text to turn into sha512 hash
+	hash.update(password);
+	// Getting the hash from the object as a string
+	const passwordHash = hash.digest('hex');
+	return passwordHash;
+}
 
 /**
  * A method to create a response object
@@ -117,7 +124,7 @@ function containsDigit(str) {
  */
 async function createUser(userObject) {
 	let mongo = new MongoConnection();
-	if (await mongo.queryExists({ 'username': userObject.getUsername }, MongoConnection.COLLECTION_E.Users)) {
+	if (await mongo.queryExists({ 'username': userObject.username }, MongoConnection.COLLECTION_E.Users)) {
 		mongo.close();
 		return false;
 	} else {
