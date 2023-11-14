@@ -1,6 +1,7 @@
 const { User } = require('./route-util/User');
 const { MongoConnection } = require('./mongodb/mongodb');
 const { PasswordUtils } = require('./route-util/PasswordUtils');
+const { Network } = require('./route-util/Network');
 var express = require('express');
 var router = express.Router();
 
@@ -29,7 +30,7 @@ async function handleRegisterReq(req, res)
 
 		let errorMessage = PasswordUtils.verifyPassword(password);
 		if (errorMessage != "") {
-			res.send(createResponse(errorMessage));
+			res.send(Network.createResponse(errorMessage));
 			return;
 		}
 
@@ -39,27 +40,14 @@ async function handleRegisterReq(req, res)
 
 		let exists = await createUser(user);
 		if (exists) {
-			res.send(createResponse("User Registered! Please Log In!"));
+			res.send(Network.createResponse("User Registered! Please Log In!"));
 		} else {
-			res.send(createResponse("Username already in use"));
+			res.send(Network.createResponse("Username already in use"));
 		}
 	} catch(ex) {
 		console.log(ex);
 	}
  }
-
-/**
- * A method to create a response object
- * 
- * @param {string} message an error message to send to the user
- * @returns a response object containing the message
- */
-function createResponse(message) {
-	const response = {
-		'Response': message
-	}
-	return response;
-}
 
 /**
  * Function for creating a user
@@ -75,7 +63,7 @@ async function createUser(userObject) {
 		return false;
 	} else {
 		await mongo.insertData(userObject, MongoConnection.COLLECTION_E.Users);
-		mongo.close();
+		await mongo.close();
 		return true;
 	}
 }

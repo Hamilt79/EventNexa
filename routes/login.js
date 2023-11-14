@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 const { PasswordUtils } = require('./route-util/PasswordUtils');
+const { MongoConnection } = require('./mongodb/mongodb');
+const { Network } = require('./route-util/Network');
 
 /**
  * Gets posts requests directed at /login/loginrequest
@@ -17,17 +19,35 @@ router.post('/', function(req, res) {
 	handleLoginReq(req, res);
 });
 
-function handleLoginReq(req, res) {
+async function handleLoginReq(req, res) {
 	try{
 		const username = req.headers['username'];
 		const password = req.headers['password'];
 		
 		const passwordHash = PasswordUtils.createPasswordHash(password);
 
-		res.send("Pass");
+		let correctLogin = await verifyLogin(username, passwordHash);
+
+		if (correctLogin) {
+			res.send(Network.createResponse("Logged You In!"));
+		} else {
+			res.send(Network.createResponse("Incorrect Username Or Password!"));
+		}
 	} catch(ex) {
 		console.log(ex);
 	}
+}
+
+/**
+ * Checks if the login is valid
+ * @param {*} username username of user
+ * @param {*} passwordHash password hash of user
+ */
+async function verifyLogin(username, passwordHash) {
+	let mongo = new MongoConnection();
+	let loginValid = await mongo.queryExists( { 'username': username, 'passwordHash': passwordHash } );
+	await mongo.close();
+	return loginValid;
 }
 
 module.exports = router;
