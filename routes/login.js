@@ -1,7 +1,6 @@
-const cyrpto = require('crypto')
 var express = require('express');
 var router = express.Router();
-var path = require('path');
+const { PasswordUtils } = require('./route-util/PasswordUtils');
 
 /**
  * Gets posts requests directed at /login/loginrequest
@@ -15,20 +14,21 @@ var path = require('path');
  * 
  */
 router.post('/', function(req, res) {
+	handleLoginReq(req, res);
+});
+
+function handleLoginReq(req, res) {
 	try{
 		const jsonReq = JSON.stringify(req.headers);
 		const username = jsonReq['username'];
 		const password = jsonReq['password'];
-        // Creates a hash object
-		const hash = crypto.createHash('sha512');
-		// Updates the hash object with the text to turn into sha512 hash
-		hash.update(password);
-		// Getting the hash from the object as a string
-		const passwordHash = hash.digest('hex');
+		
+		const passwordHash = PasswordUtils.createPasswordHash(password);
+
 		res.send("Pass");
 	} catch(ex) {
 		console.log(ex);
 	}
-});
+}
 
 module.exports = router;
