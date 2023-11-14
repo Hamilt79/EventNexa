@@ -9,9 +9,6 @@ var indexRouter = require('./routes/index');
 var registrationRouter = require('./routes/registration');
 var loginRouter = require('./routes/login');
 
-// Mognodb setup
-var mongo = require('./routes/mongodb');
-
 // Starting express app
 var app = express();
 
