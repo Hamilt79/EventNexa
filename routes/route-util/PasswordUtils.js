@@ -31,7 +31,7 @@ class PasswordUtils {
         let errorMessage = "";
         if (password.length > MAX_LEN || password.length < MIN_LEN) {
             errorMessage = "Password must be between " + MAX_LEN + " and " + MIN_LEN + " characters long.";
-        } else if (containsDigit(password) === false) {
+        } else if (PasswordUtils.containsDigit(password) === false) {
             errorMessage = "Password must contain at least one digit.";
         }
 
