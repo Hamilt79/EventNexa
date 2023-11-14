@@ -19,8 +19,8 @@ router.post('/', function(req, res) {
 
 function handleLoginReq(req, res) {
 	try{
-		const username = jsonReq['username'];
-		const password = jsonReq['password'];
+		const username = req.headers['username'];
+		const password = req.headers['password'];
 		
 		const passwordHash = PasswordUtils.createPasswordHash(password);
 
