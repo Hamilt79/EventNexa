@@ -45,7 +45,7 @@ async function handleLoginReq(req, res) {
  */
 async function verifyLogin(username, passwordHash) {
 	let mongo = new MongoConnection();
-	let loginValid = await mongo.queryExists( { 'username': username, 'passwordHash': passwordHash } );
+	let loginValid = await mongo.queryExists( { 'username': username, 'passwordHash': passwordHash }, MongoConnection.COLLECTION_E.Users);
 	await mongo.close();
 	return loginValid;
 }
