@@ -13,7 +13,7 @@ function loginRequest() {
 					'password': password 
 				} 
 		}
-	).then(function(response) { return response.text(); }).then(function(data) { loginResponse(data) });
+	).then(function(response) { return response.text(); }).then(function(data) { loginResponse(JSON.parse(data)) });
 }
 
 /**
@@ -21,6 +21,7 @@ function loginRequest() {
  * @param {*} response JSON formatted response from server
  */
 function loginResponse(response) {
+	console.log(response);
 	if (response['Response'] == 'True') {
 		const username = document.getElementById('username').value;
 		const password = document.getElementById('password').value;
