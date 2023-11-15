@@ -34,4 +34,9 @@ class Cookies {
         document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
     }
 
+    static COOKIE_NAME_E = {
+        username: 'username',
+        password: 'password'
+    }
+
 }

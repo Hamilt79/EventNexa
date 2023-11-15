@@ -29,9 +29,9 @@ async function handleLoginReq(req, res) {
 		let correctLogin = await verifyLogin(username, passwordHash);
 
 		if (correctLogin) {
-			res.send(Network.createResponse("Logged You In!"));
+			res.send(Network.createResponse("True"));
 		} else {
-			res.send(Network.createResponse("Incorrect Username Or Password!"));
+			res.send(Network.createResponse("False"));
 		}
 	} catch(ex) {
 		console.log(ex);
