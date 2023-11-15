@@ -21,7 +21,6 @@ function loginRequest() {
  * @param {*} response JSON formatted response from server
  */
 function loginResponse(response) {
-	console.log(response);
 	if (response['Response'] == 'True') {
 		const username = document.getElementById('username').value;
 		const password = document.getElementById('password').value;
