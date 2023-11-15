@@ -1,5 +1,6 @@
 class Network {
-    static domainName = 'https://eventnexa.tech/';
+    //static domainName = 'https://eventnexa.tech/';
+    static domainName = 'https://192.168.65.26:3000/';
 
     /**
      * Redirects the user to a url
