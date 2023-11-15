@@ -7,13 +7,10 @@
 	<link rel="stylesheet" href="stylesheets/menu.css">
 	<link rel="icon" href="Icon.png" type="image/png">
 </head>
-<body>
+<body style="background-color: #2f2f2f;">
 
 	<div class="top-menu">
 		<h1>EventNexa</h1>
-		<button onclick="goProfile();"> 
-			<img src="no-profile.png" type="images/png">
-		</button>
 	</div>
 	
     <div class="side-menu">
@@ -27,8 +24,32 @@
 		
 	</div>
 	
-	<div class="main">
-		<input class="reg-button" type="button" value="Send Req" onclick="sendReq(this)">
+	
+
+	<div class="events-div">
+		<div class="event">
+			<h1 id="Title">Title</h1>
+			<h2 style="display: inline-block;">Author: </h2>
+			<h2 id="author" style="display: inline-block;">Name Here</h2>
+			<h3>Description:</h2>
+			<div class="event-description">
+				<p id="description">Lorem ipsum dolor sit amet, 
+					consectetur adipiscing elit, sed do eiusmod tempor 
+					incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, 
+					quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+					Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat 
+					nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
+					officia deserunt mollit anim id est laborum.
+				</p>
+			</div>
+			<h3 style="display: inline-block; margin: 0;">Event Time: </h3>
+			<h3 id="event-time" style="display: inline-block; margin: 0;">11/2/2023 20:30</h3>
+			<br>
+			<h3 style="display: inline-block; margin: 0;">Event Cap: </h3>
+			<h3 id="event-cap" style="display: inline-block; margin: 0;">10/20</h3>
+			<br>
+			<button id="join-event">Join Event</button>
+		</div>
 	</div>
 	
 	

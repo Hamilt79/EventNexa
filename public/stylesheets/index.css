@@ -21,3 +21,55 @@
 .main .reg-button:active {
 	background-color: #006513;
 }
+
+.events-div {
+	background-color: #474747;
+	position: fixed;
+	width: clamp(50%, 1200px, 80%);
+	height: 100%;
+	left: 50%;
+	transform: translate(-50%, 0);
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	justify-content: center;
+	overflow: scroll;
+}
+
+.event {
+	background-color: #b1b1b1;
+	position: relative;
+	transform: translate(-50%, 0);
+	left: 50%;
+	width: 80%;
+	height: 400px;
+	margin: 10px 0 10px 0;
+	padding: 5px;
+	border-color: black;
+	border-style: solid;
+	border-width: 5px;
+	border-radius: 25px/25px;
+}
+
+.event h1 {
+	text-align: center;
+	padding: 0;
+	margin: 0;
+}
+
+.event h2 {
+	padding: 0;
+	margin: 0;
+}
+
+.event-description {
+	height: 40%;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+.event button {
+	margin: 0 0 0 50%;
+	transform: translate(-50%, 0);
+	width: 20%;
+	height: 10%;
+}
