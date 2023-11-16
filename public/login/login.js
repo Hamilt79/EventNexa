@@ -27,6 +27,7 @@ function loginResponse(response) {
 		Cookies.setCookie(Cookies.COOKIE_NAME_E.username, username, 5);
 		Cookies.setCookie(Cookies.COOKIE_NAME_E.password, password, 5);
 		displayMessage("Green", "Logged In!");
+		Network.goHome();
 	} else if (response['Response'] == 'False') {
 		displayMessage("Red", "Wrong password or username");
 	} else {
