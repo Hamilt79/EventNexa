@@ -41,14 +41,14 @@
 	transform: translate(-50%, 0);
 	left: 50%;
 	width: 80%;
-	height: 400px;
+	height: 450px;
 	margin: 10px 0 10px 0;
 	padding: 5px;
 	border-color: black;
 	border-style: solid;
 	border-width: 5px;
 	border-radius: 25px/25px;
-	overflow: hidden;
+	overflow: auto;
 }
 
 .event h1 {
