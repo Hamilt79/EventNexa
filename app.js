@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const { MongoConnection } = require('./routes/mongodb/mongodb');
 
 // Pages to display
 var indexRouter = require('./routes/index');
@@ -34,6 +35,8 @@ app.use('/registration/createaccount', registrationRouter);
 app.use('/login/loginrequest', loginRouter);
 app.use('/event', eventRouter);
 
+// Starting MongoDB connection
+MongoConnection.init();
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -49,6 +52,13 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+// Runs when process is killed/shut down
+process.on('SIGINT', function() {
+  console.log("\nGracefully shutting down from SIGINT (Ctrl+C)");
+  MongoConnection.mongoConnection.close();
+  process.exit();
 });
 
 module.exports = app;

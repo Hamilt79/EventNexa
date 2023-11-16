@@ -2,6 +2,14 @@ const { MongoClient } = require("mongodb");
 
 class MongoConnection {
 
+  static mongoConnection = null;
+
+  static init() {
+    if(MongoConnection.mongoConnection == null) {
+      MongoConnection.mongoConnection = new MongoConnection();
+    }
+  }
+
   constructor() {
     this.client = this.#createClient();
   }
@@ -100,6 +108,33 @@ class MongoConnection {
     } 
     await this.insertData();  
     return true;
+  }
+
+  /**
+   * Updates one object in the collection
+   * 
+   * @param {*} data data to update
+   * @param {*} collection collection to update data in
+   */
+  async updateData(filter, updateFilter, collection) {
+    const collectionData = this.#getCollection(collection);
+    await collectionData.updateOne(filter, updateFilter);
+    // Example of update
+    /*
+    await collectionData.update(
+      { _id: 1 },
+      {
+        $inc: { stock: 5 },
+        $set: {
+          item: "ABC123",
+          "info.publisher": "2222",
+          tags: [ "software" ],
+          "ratings.1": { by: "xyz", rating: 3 }
+        }
+      }
+      
+   )*/
+
   }
 
   /**
