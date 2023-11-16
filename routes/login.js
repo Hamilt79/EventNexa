@@ -44,9 +44,6 @@ class Login {
 	 */
 	static async verifyLogin(username, password) {
 		const passwordHash = PasswordUtils.createPasswordHash(password);
-		// let mongo = new MongoConnection();
-		// let loginValid = await mongo.queryExists( { 'username': username, 'passwordHash': passwordHash }, MongoConnection.COLLECTION_E.Users);
-		// await mongo.close();
 		let loginValid = await MongoConnection.mongoConnection.queryExists( { 'username': username, 'passwordHash': passwordHash }, MongoConnection.COLLECTION_E.Users);
 		return loginValid;
 	}

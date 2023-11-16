@@ -57,13 +57,10 @@ async function handleRegisterReq(req, res)
  * 			created and false if the userame already existed
  */
 async function createUser(userObject) {
-	let mongo = new MongoConnection();
-	if (await mongo.queryExists({ 'username': userObject.username }, MongoConnection.COLLECTION_E.Users)) {
-		mongo.close();
+	if (await MongoConnection.mongoConnection.queryExists({ 'username': userObject.username }, MongoConnection.COLLECTION_E.Users)) {
 		return false;
 	} else {
-		await mongo.insertData(userObject, MongoConnection.COLLECTION_E.Users);
-		await mongo.close();
+		await MongoConnection.mongoConnection.insertData(userObject, MongoConnection.COLLECTION_E.Users);
 		return true;
 	}
 }
