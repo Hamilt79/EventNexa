@@ -40,4 +40,8 @@ class Network {
     static goProfile() {
         Network.redirectLocal('profile/profile.html');
     }
+
+    static goHome() {
+        Network.redirectLocal('');
+    }
 }
