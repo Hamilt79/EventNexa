@@ -9,8 +9,9 @@ class MongoConnection {
   /**
    * Enum containing the names of collections
    */
-  static COLLECTION_E = { 
-    Users: "users"
+  static COLLECTION_E = {
+    Users: "users",
+    Events: "events"
   };
 
   // Link to local eventnexa database

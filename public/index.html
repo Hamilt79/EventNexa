@@ -29,7 +29,7 @@
 	
 
 	<div class="events-div">
-		<div class="event">
+		<div id="event-clone" class="event" style="display: none;">
 			<h1 id="Title">Title</h1>
 			<h2 style="display: inline-block;">Author: </h2>
 			<h2 id="author" style="display: inline-block;">Name Here</h2>
@@ -53,7 +53,7 @@
 			<h3 style="display: inline-block; margin: 0;">Location: </h3>
 			<h3 id="event-address" style="display: inline-block; margin: 0;">5562 Scary Street, Columbus, Ohio 45616</h3>
 			<br>
-			<button id="join-event">Join Event</button>
+			<button id="join-event" onclick="EventCloner.makeEvent()">Join Event</button>
 		</div>
 	</div>
 	
@@ -62,5 +62,6 @@
     <script src="index.js"></script>
 	<script src="shared/network.js"></script>
 	<script src="shared/cookies.js"></script>
+	<script src="shared/event-cloner.js"></script>
 </body>
 </html>
