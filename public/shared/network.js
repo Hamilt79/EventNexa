@@ -1,6 +1,6 @@
 class Network {
     static domainName = 'https://eventnexa.tech/';
-    //static domainName = 'localhost:3000/';
+    //static domainName = 'http://192.168.65.26:3000/';
 
     /**
      * Redirects the user to a url
@@ -9,6 +9,7 @@ class Network {
      */
     static redirect(url) {
         window.location.href = url;
+        //console.log(url);
     }
 
     /**
