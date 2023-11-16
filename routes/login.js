@@ -23,10 +23,8 @@ async function handleLoginReq(req, res) {
 	try{
 		const username = req.headers['username'];
 		const password = req.headers['password'];
-		
-		const passwordHash = PasswordUtils.createPasswordHash(password);
 
-		let correctLogin = await verifyLogin(username, passwordHash);
+		let correctLogin = await Login.verifyLogin(username, password);
 
 		if (correctLogin) {
 			res.send(Network.createResponse("True"));
@@ -38,16 +36,19 @@ async function handleLoginReq(req, res) {
 	}
 }
 
-/**
- * Checks if the login is valid
- * @param {*} username username of user
- * @param {*} passwordHash password hash of user
- */
-async function verifyLogin(username, passwordHash) {
-	let mongo = new MongoConnection();
-	let loginValid = await mongo.queryExists( { 'username': username, 'passwordHash': passwordHash }, MongoConnection.COLLECTION_E.Users);
-	await mongo.close();
-	return loginValid;
+class Login {
+	/**
+	 * Checks if the login is valid
+	 * @param {*} username username of user
+	 * @param {*} password password of user
+	 */
+	static async verifyLogin(username, password) {
+		const passwordHash = PasswordUtils.createPasswordHash(password);
+		let mongo = new MongoConnection();
+		let loginValid = await mongo.queryExists( { 'username': username, 'passwordHash': passwordHash }, MongoConnection.COLLECTION_E.Users);
+		await mongo.close();
+		return loginValid;
+	}
 }
 
 module.exports = router;

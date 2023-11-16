@@ -2,35 +2,18 @@ class Event {
     /**
      * Constructor for Event.
      * 
-     * @param {*} title title of event
-     * @param {*} description description of event
-     * @param {*} publisher username of event
+     * @param {String} title title of event
+     * @param {String} description description of event
+     * @param {String} publisher username of event creator
+     * @param {EventCap} eventCap event cap
+     * @param {Date} eventDate date event starts
      */
-    constructor(title, description, publisher) {
+    constructor(title, description, publisher, eventCap, eventDate) {
         this.title = title;
         this.description = description;
         this.publisher = publisher;
-    }
-
-    /**
-     * Gets the title of the event
-     */
-    get title() {
-        return this.title;
-    }
-    
-    /**
-     * Gets the description of the event
-     */
-    get description() {
-        return this.description;
-    }
-
-    /**
-     * Gets the username of the publisher
-     */
-    get publisher() {
-        return this.publisher;
+        this.eventCap = eventCap;
+        this.eventDate = eventDate;
     }
 }
 
