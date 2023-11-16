@@ -145,19 +145,6 @@ class MongoConnection {
   }
 }
 
-/**
- * Test function. Will be deleted
- */
-async function run() {
-  let col = new MongoConnection();
-  //await col.insertData({ name: "John" }, MongoConnection.COLLECTION_E.Users);
-  let exists = await col.queryExists({ name: 'John' }, MongoConnection.COLLECTION_E.Users);
-  console.log(exists);
-  await col.close();
-} 
-
-//run();
-
 module.exports = {
   MongoConnection
 };
