@@ -7,7 +7,7 @@ class NexaEvent {
      * @param {String} publisher username of event creator
      * @param {EventCap} eventCap event cap
      * @param {Date} eventDate date event starts
-     * @param {*} id eventId
+     * @param {*} id id event is stored as
      */
     constructor(title, description, publisher, eventCap, eventDate, id) {
         this.title = title;
