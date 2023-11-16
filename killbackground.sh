@@ -9,4 +9,3 @@ echo "Finished Killing Npm"
 echo "Restoring Text"
 stty sane
 echo "Finished Restoring Text"
-echo "test"
