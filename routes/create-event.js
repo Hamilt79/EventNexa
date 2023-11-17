@@ -10,7 +10,7 @@ const { Network } = require('./route-util/Network');
 /**
  * Called when post request is sent to /event/create
  */
-router.post('/create', function(req, res) {
+router.post('/', function(req, res) {
     let goodLogin = Login.verifyLoginReq(req);
     if (goodLogin === true) {
         let Event = reqToEvent(req);

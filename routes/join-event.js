@@ -10,7 +10,7 @@ const { Network } = require('./route-util/Network');
 /**
  * Called when post request is sent to /event/join
  */
-router.post('/join', function(req, res) {
+router.post('/', function(req, res) {
     
 });
 
