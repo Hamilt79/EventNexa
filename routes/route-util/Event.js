@@ -6,7 +6,8 @@ class Event {
      * @param {String} description description of event
      * @param {String} publisher username of event creator
      * @param {EventCap} eventCap event cap
-     * @param {Date} eventDate date event starts
+     * @param {DateTime} eventDate date event starts
+     * @param {String} address address of event
      */
     constructor(title, description, publisher, eventCap, eventDate) {
         this.title = title;
