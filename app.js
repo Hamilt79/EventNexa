@@ -56,8 +56,8 @@ app.use(function(err, req, res, next) {
 
 // Runs when process is killed/shut down
 process.on('SIGINT', function() {
-  console.log("\nGracefully shutting down from SIGINT (Ctrl+C)");
-  MongoConnection.mongoConnection.close();
+  console.log("\nGracefully shutting down from SIGINT");
+  MongoConnection.get().close();
   process.exit();
 });
 
