@@ -9,7 +9,9 @@ const { MongoConnection } = require('./routes/mongodb/mongodb');
 var indexRouter = require('./routes/index');
 var registrationRouter = require('./routes/registration');
 var loginRouter = require('./routes/login');
-var eventRouter = require('./routes/event');
+var createEventRouter = require('./routes/create-event');
+var joinEventRouter = require('./routes/join-event');
+var getEventRouter = require('./routes/get-events');
 
 // Starting express app
 var app = express();
@@ -33,7 +35,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/registration/createaccount', registrationRouter);
 app.use('/login/loginrequest', loginRouter);
-app.use('/event', eventRouter);
+app.use('/createevent', createEventRouter);
+app.use('/joinevent', joinEventRouter);
+app.use('/getevents', getEventRouter);
+
 
 // Starting MongoDB connection
 MongoConnection.init();
