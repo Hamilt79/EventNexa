@@ -4,6 +4,17 @@ class MongoConnection {
 
   static mongoConnection = null;
 
+  /**
+   * 
+   * @returns mongoConnection
+   */
+  static get() {
+    return MongoConnection.mongoConnection;
+  }
+
+  /**
+   * Initializes the static MongoCollection
+   */
   static init() {
     if(MongoConnection.mongoConnection == null) {
       MongoConnection.mongoConnection = new MongoConnection();

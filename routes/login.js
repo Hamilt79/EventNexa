@@ -62,3 +62,4 @@ class Login {
 }
 
 module.exports = router;
+exports.Login = Login;
