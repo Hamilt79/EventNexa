@@ -14,3 +14,5 @@ class Address {
         this.streetAddress = streetAddress;
     }
 }
+
+exports.Address = Address;
