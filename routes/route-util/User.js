@@ -6,14 +6,12 @@ class User {
      * @param {*} email email of user
      * @param {*} passwordHash password hash of user
      * @param {*} joinedEvents ids of joinedEvents
-     * @param {*} createdEvents ids of createdEvents
      */
-    constructor(username, email, passwordHash, joinedEvents, createdEvents) {
+    constructor(username, email, passwordHash, joinedEvents) {
         this.username = username;
         this.passwordHash = passwordHash;
         this.email = email;
         this.joinedEvents = joinedEvents;
-        this.createdEvents = createdEvents;
     }
 }
 
