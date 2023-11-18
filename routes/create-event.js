@@ -33,7 +33,7 @@ router.post('/', async function(req, res) {
  * @returns Event object
  */
 function reqToEvent(req) {
-    const eventHeader = req.headers['event'];
+    let eventHeader = req.headers['event'];
     // const title = eventHeader['title'];
     // const desc = eventHeader['description'];
     // const author = eventHeader['event-author'];
