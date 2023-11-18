@@ -1,7 +1,5 @@
 var express = require('express');
 var router = express.Router();
-const { PasswordUtils } = require('./route-util/PasswordUtils');
-const { MongoConnection } = require('./mongodb/mongodb');
 const { Network } = require('./route-util/Network');
 const { LoginUtils } = require('./route-util/LoginUtils');
 
