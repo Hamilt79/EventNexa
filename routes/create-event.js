@@ -22,7 +22,7 @@ router.post('/', async function(req, res) {
         }
     } catch(ex) {
         console.log(ex);
-        res.send("Server Error");
+        res.send(Network.createResponse("Server Error"));
     }
 });
 
@@ -34,18 +34,18 @@ router.post('/', async function(req, res) {
  */
 function reqToEvent(req) {
     const eventHeader = req.headers['event'];
-    const title = eventHeader['event-title'];
-    const desc = eventHeader['event-description'];
-    const author = eventHeader['event-author'];
-    const capJoined = eventHeader['event-cap']['joined'];
-    const capMax = eventHeader['event-cap']['max'];
-    // All time will be stored in UTC on the server and in the user's local time on the client
-    const time = eventHeader['event-time'];
-    const address = eventHeader['event-address'];
+    // const title = eventHeader['title'];
+    // const desc = eventHeader['description'];
+    // const author = eventHeader['event-author'];
+    // const capJoined = eventHeader['event-cap']['joined'];
+    // const capMax = eventHeader['event-cap']['max'];
+    // // All time will be stored in UTC on the server and in the user's local time on the client
+    // const time = eventHeader['event-time'];
+    // const address = eventHeader['event-address'];
     // ToDo: Need to fill out Address.
-    let eventAddress = new Address();
-    let eventCap = new EventCap(capJoined, capMax);
-    let event = new Event(title, desc, author, eventCap, time, eventAddress);
+    //let eventAddress = new Address();
+    //let eventCap = new EventCap(capJoined, capMax);
+    let event = new Event(eventHeader.title, eventHeader.description, eventHeader.author, eventHeader.eventCap, eventHeader.eventDate, eventHeader.address);
     return event;
 }
 
