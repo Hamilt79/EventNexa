@@ -42,7 +42,31 @@ class Network {
         Network.redirectLocal('profile/profile.html');
     }
 
+    /**
+     * Redirects user to home page
+     */
     static goHome() {
         Network.redirectLocal('');
     }
+
+    /**
+     * 
+     * @param {*} event event to send
+     * @param {*} username username
+     * @param {*} password pass
+     * @param {*} callback callback to a function with one data paremeter
+     */
+    static createEvent(event, username, password, callback) {
+        fetch(Network.domainName + 'createevent', 
+		{ 	method: 'POST', 
+			headers: 
+				{	
+					'username': username, 
+					'password': password,
+                    'event' : event
+				} 
+		}
+	).then(function(response) { return response.text(); }).then(function(data) { callback(JSON.parse(data)) });
+    }
+
 }

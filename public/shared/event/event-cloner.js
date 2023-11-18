@@ -1,3 +1,5 @@
+const { Address } = require("../../../routes/route-util/Address");
+
 class EventCloner {
 
     
@@ -20,6 +22,13 @@ class EventCloner {
         console.log(eventTime);
         console.log(address);
 
+        const cap = new EventCap(5, 10);
+        const nexaAddress = new Address("TestCity", "Ohio", 45121, "5568 Shleer Road");
+        const date = new Date.UTC(Date.now());
+
+        const nexaEvent = new NexaEvent(title.textContent, description.textContent, author.textContent, cap, date, nexaAddress)
+
+        Network.createEvent(nexaEvent, UserUtils.getUsername(), UserUtils.getPassword());
     }
 }
 
