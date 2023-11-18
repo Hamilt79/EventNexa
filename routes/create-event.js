@@ -16,12 +16,13 @@ router.post('/', async function(req, res) {
         if (goodLogin === true) {
             let Event = reqToEvent(req);
             MongoConnection.get().insertData(event, MongoConnection.COLLECTION_E.Events);
-            Network.createResponse("True");
+            res.send(Network.createResponse("True"));
         } else {
-            Network.createResponse("False");
+            res.send(Network.createResponse("False"));
         }
     } catch(ex) {
         console.log(ex);
+        res.send("Server Error");
     }
 });
 
