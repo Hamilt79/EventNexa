@@ -23,12 +23,15 @@ class EventCloner {
 
         const cap = new EventCap(5, 10);
         const nexaAddress = new NexaAddress("TestCity", "Ohio", 45121, "5568 Shleer Road");
-        const date = new Date.UTC(Date.now());
+        const localDate = new Date();
 
-        const nexaEvent = new NexaEvent(title.textContent, description.textContent, author.textContent, cap, date, nexaAddress)
+        const nexaEvent = new NexaEvent(title.textContent, description.textContent, author.textContent, cap, localDate, nexaAddress)
 
         Network.createEvent(nexaEvent, UserUtils.getUsername(), UserUtils.getPassword());
     }
 }
 
-EventCloner.makeEvent();
+
+window.onload = function() {
+    EventCloner.makeEvent();
+};
