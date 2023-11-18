@@ -2,8 +2,6 @@ var express = require('express');
 var router = express.Router();
 const { MongoConnection } = require('./mongodb/mongodb');
 const { Event } = require('./route-util/Event');
-const { EventCap } = require('./route-util/EventCap');
-const { Address } = require('./route-util/Address');
 const { LoginUtils } = require('./route-util/LoginUtils');
 const { Network } = require('./route-util/Network');
 
@@ -34,17 +32,6 @@ router.post('/', async function(req, res) {
  */
 function reqToEvent(req) {
     let eventHeader = req.headers['event'];
-    // const title = eventHeader['title'];
-    // const desc = eventHeader['description'];
-    // const author = eventHeader['event-author'];
-    // const capJoined = eventHeader['event-cap']['joined'];
-    // const capMax = eventHeader['event-cap']['max'];
-    // // All time will be stored in UTC on the server and in the user's local time on the client
-    // const time = eventHeader['event-time'];
-    // const address = eventHeader['event-address'];
-    // ToDo: Need to fill out Address.
-    //let eventAddress = new Address();
-    //let eventCap = new EventCap(capJoined, capMax);
     eventHeader = JSON.parse(eventHeader);
     let event = new Event(eventHeader.title, eventHeader.description, eventHeader.author, eventHeader.eventCap, eventHeader.eventDate, eventHeader.address);
     return event;

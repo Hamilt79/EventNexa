@@ -14,20 +14,7 @@ class EventCloner {
         const eventTime = event.querySelector('#event-time')
         const address = event.querySelector('#event-address')
 
-        console.log(title);
-        console.log(description);
-        console.log(author);
-        console.log(eventCap);
-        console.log(eventTime);
-        console.log(address);
-
-        const cap = new EventCap(5, 10);
-        const nexaAddress = new NexaAddress("TestCity", "Ohio", 45121, "5568 Shleer Road");
-        const localDate = new Date();
-
-        const nexaEvent = new NexaEvent(title.textContent, description.textContent, author.textContent, cap, localDate, nexaAddress)
-
-        Network.createEvent(nexaEvent, UserUtils.getUsername(), UserUtils.getPassword());
+        
     }
 }
 

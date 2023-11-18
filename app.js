@@ -12,6 +12,8 @@ var loginRouter = require('./routes/login');
 var createEventRouter = require('./routes/create-event');
 var joinEventRouter = require('./routes/join-event');
 var getEventRouter = require('./routes/get-events');
+var leaveEventRouter = require('./routes/leave-event');
+
 
 // Starting express app
 var app = express();
@@ -38,7 +40,7 @@ app.use('/login/loginrequest', loginRouter);
 app.use('/createevent', createEventRouter);
 app.use('/joinevent', joinEventRouter);
 app.use('/getevents', getEventRouter);
-
+app.use('/leaveevent', leaveEventRouter);
 
 // Starting MongoDB connection
 MongoConnection.init();

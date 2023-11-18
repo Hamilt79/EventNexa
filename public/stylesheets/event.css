@@ -52,9 +52,30 @@
 	overflow-x: hidden;
 }
 
-.event button {
-	margin: 0 0 0 50%;
-	transform: translate(-50%, 0);
-	width: 20%;
+.event-buttons {
+	display: flex;
+	justify-content: center;
 	height: 10%;
+	gap: 10px;
+}
+
+.event button {
+	width: 20%;
+	border-style: solid;
+}
+
+.disabled {
+	background-color: rgb(161, 161, 161);
+}
+
+.enabled {
+	background-color: white;
+}
+
+.enabled:hover {
+	background-color: rgb(201, 201, 201);
+}
+
+.enabled:active {
+	background-color: rgb(148, 148, 148);
 }
