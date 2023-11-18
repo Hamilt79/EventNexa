@@ -11,13 +11,17 @@ const { Network } = require('./route-util/Network');
  * Called when post request is sent to /event/create
  */
 router.post('/', function(req, res) {
-    let goodLogin = Login.verifyLoginReq(req);
-    if (goodLogin === true) {
-        let Event = reqToEvent(req);
-        MongoConnection.get().insertData(event, MongoConnection.COLLECTION_E.Events);
-        Network.createResponse("True");
-    } else {
-        Network.createResponse("False");
+    try {
+        let goodLogin = Login.verifyLoginReq(req);
+        if (goodLogin === true) {
+            let Event = reqToEvent(req);
+            MongoConnection.get().insertData(event, MongoConnection.COLLECTION_E.Events);
+            Network.createResponse("True");
+        } else {
+            Network.createResponse("False");
+        }
+    } catch(ex) {
+        console.log(ex);
     }
 });
 
