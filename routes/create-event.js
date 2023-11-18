@@ -4,7 +4,7 @@ const { MongoConnection } = require('./mongodb/mongodb');
 const { Event } = require('./route-util/Event');
 const { EventCap } = require('./route-util/EventCap');
 const { Address } = require('./route-util/Address');
-const { Login } = require('./login');
+const { LoginUtils } = require('./route-util/LoginUtils');
 const { Network } = require('./route-util/Network');
 
 /**
@@ -12,7 +12,7 @@ const { Network } = require('./route-util/Network');
  */
 router.post('/', async function(req, res) {
     try {
-        let goodLogin = await Login.verifyLoginReq(req);
+        let goodLogin = await LoginUtils.verifyLoginReq(req);
         if (goodLogin === true) {
             let Event = reqToEvent(req);
             MongoConnection.get().insertData(event, MongoConnection.COLLECTION_E.Events);
