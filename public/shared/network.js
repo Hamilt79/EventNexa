@@ -63,11 +63,8 @@ class Network {
 				{	
 					'username': username, 
 					'password': password,
-                    'event' : event
-				},
-            body: {
-                event
-            }
+                    'event' : JSON.stringify(event)
+				}
 		}
 	).then(function(response) { return response.text(); }).then(function(data) { callback(JSON.parse(data)) });
     }

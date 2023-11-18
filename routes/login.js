@@ -61,5 +61,6 @@ class Login {
 	}
 }
 
-module.exports = router;
 exports.Login = Login;
+module.exports = router;
+

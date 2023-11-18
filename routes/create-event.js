@@ -10,9 +10,9 @@ const { Network } = require('./route-util/Network');
 /**
  * Called when post request is sent to /event/create
  */
-router.post('/', function(req, res) {
+router.post('/', async function(req, res) {
     try {
-        let goodLogin = Login.verifyLoginReq(req);
+        let goodLogin = await Login.verifyLoginReq(req);
         if (goodLogin === true) {
             let Event = reqToEvent(req);
             MongoConnection.get().insertData(event, MongoConnection.COLLECTION_E.Events);
