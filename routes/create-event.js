@@ -14,7 +14,7 @@ router.post('/', async function(req, res) {
     try {
         let goodLogin = await LoginUtils.verifyLoginReq(req);
         if (goodLogin === true) {
-            let Event = reqToEvent(req);
+            let event = reqToEvent(req);
             MongoConnection.get().insertData(event, MongoConnection.COLLECTION_E.Events);
             res.send(Network.createResponse("True"));
         } else {
