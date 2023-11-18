@@ -45,6 +45,7 @@ function reqToEvent(req) {
     // ToDo: Need to fill out Address.
     //let eventAddress = new Address();
     //let eventCap = new EventCap(capJoined, capMax);
+    eventHeader = JSON.parse(eventHeader);
     let event = new Event(eventHeader.title, eventHeader.description, eventHeader.author, eventHeader.eventCap, eventHeader.eventDate, eventHeader.address);
     return event;
 }
