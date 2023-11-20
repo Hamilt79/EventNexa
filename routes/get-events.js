@@ -7,7 +7,7 @@ const { Address } = require('./route-util/Address');
 const { Network } = require('./route-util/Network');
 
 /**
- * Called when post request is sent to /event/join
+ * Called when post request is sent to /getevents
  */
 router.post('/', function(req, res) {
     

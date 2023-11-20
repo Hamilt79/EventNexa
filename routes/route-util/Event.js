@@ -17,6 +17,16 @@ class Event {
         this.eventDate = eventDate;
         this.address = address;
     }
+
+    /**
+     * Checks if an event exists by its id
+     * 
+     * @param {*} eventId id of event
+     */
+    static async exists(eventId) {
+        const eventExists = await MongoConnection.get().queryExists({ '_id': eventId }, MongoConnection.COLLECTION_E.Events);
+        return eventExists;
+    }
 }
 
 exports.Event = Event;
