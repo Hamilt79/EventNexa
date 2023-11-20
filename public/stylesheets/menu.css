@@ -52,8 +52,9 @@ body {
 	left: 0;
 	top: 0;	
 	line-height: clamp(300%, 600%, 900%);
+	font-size: auto;
 	/* height: clamp(75px, 25%, 150px); */
-	width: 100%;
+	width: 99%;
 	
 }
 
