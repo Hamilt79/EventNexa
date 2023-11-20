@@ -25,6 +25,7 @@ router.post('/', async function(req, res) {
                 } else {
                     joinedEvents.push(eventId);
                 }
+                await user.setEventsInDB();
                 res.send(Network.createResponse("Joined"));
             } else {
                 res.send(Network.createResponse("Event Does Not Exists."));
@@ -32,8 +33,7 @@ router.post('/', async function(req, res) {
         } else {
             res.send(Network.createResponse("Bad Login."));
         }
-
-    }catch(ex) {
+    } catch(ex) {
         res.send(Network.createResponse("Server Error"));
         console.log(ex);
     }
