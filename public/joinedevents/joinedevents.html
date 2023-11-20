@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>EventNexa</title>
-    <link rel="stylesheet" href="stylesheets/index.css">
-	<link rel="stylesheet" href="stylesheets/menu.css">
-	<link rel="stylesheet" href="stylesheets/event.css">
-	<link rel="icon" href="Icon.png" type="image/png">
+    <link rel="stylesheet" href="../stylesheets/index.css">
+	<link rel="stylesheet" href="../stylesheets/menu.css">
+	<link rel="stylesheet" href="../stylesheets/event.css">
+	<link rel="icon" href="../Icon.png" type="image/png">
 </head>
 <body style="background-color: #2f2f2f;">
 
@@ -17,15 +17,17 @@
 	
     <div class="side-menu">
 		<a class="hover-menu"></a>
-        <a class="hover-menu" href="#">Home</a>
-		<a class="hover-menu" href="./login/login.html">Login</a>
-        <a class="hover-menu" href="./postevent/post.html">Post Event</a>
-		<a class="hover-menu" href="./joinedevents/joinedevents.html">Joined Events</a>
-		<a class="hover-menu" href="./createdevents/createdevents.html">Created Events</a>
-        <a class="hover-menu" href="./about/about.html">About</a>
+        <a class="hover-menu" href="../../">Home</a>
+		<a class="hover-menu" href="../../login/login.html">Login</a>
+        <a class="hover-menu" href="../../postevent/post.html">Post Event</a>
+		<a class="hover-menu" href="../../joinedevents/joinedevents.html">Joined Events</a>
+		<a class="hover-menu" href="../../createdevents/createdevents.html">Created Events</a>
+        <a class="hover-menu" href="../../about/about.html">About</a>
     </div>
 
-	<div class="events-div">
+    <h1 style="text-align: center; color: white; padding: 0 100px 0 0;">Joined Events</h1>
+
+	<div style="top: 100px;" class="events-div">
 		<div id="event-clone" class="event" style="display: none;">
 			<h1 id="event-title">Title</h1>
 			<h2 style="display: inline-block;">Author: </h2>
@@ -51,23 +53,19 @@
 			<h3 id="event-address" style="display: inline-block; margin: 0;">5562 Scary Street, Columbus, Ohio 45616</h3>
 			<br>
 			<div class="event-buttons">
-				<button disabled class="disabled" id="join-event" onclick="EventCloner.makeEvent()">Join Waitlist</button>
-				<button class="enabled" id="join-event" onclick="EventCloner.makeEvent()">Join Event</button>
+				<button class="enabled" id="leave-event" onclick="EventCloner.makeEvent()">Leave Event</button>
 			</div>
 		</div>
 	</div>
 	
-	
-
-    <script src="index.js"></script>
-	<script src="shared/network.js"></script>
-	<script src="shared/cookies.js"></script>
-	<script src="shared/event/event-cloner.js"></script>
-	<script src="shared/nav-menu.js"></script>
-	<script src="shared/event/nexa-event.js"></script>
-	<script src="shared/event/nexa-address.js"></script>
-	<script src="shared/event/event-cap.js"></script>
-	<script src="shared/user-utils.js"></script>
+    <script src="../shared/network.js"></script>
+	<script src="../shared/cookies.js"></script>
+	<script src="../shared/event/event-cloner.js"></script>
+	<script src="../shared/nav-menu.js"></script>
+	<script src="../shared/event/nexa-event.js"></script>
+	<script src="../shared/event/nexa-address.js"></script>
+	<script src="../shared/event/event-cap.js"></script>
+	<script src="../shared/user-utils.js"></script>
 
 </body>
 </html>
