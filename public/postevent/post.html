@@ -3,30 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <title>EventNexa</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" href="../Icon.png" type="image/png">
+    <link rel="stylesheet" href="../stylesheets/index.css">
+	<link rel="stylesheet" href="../stylesheets/menu.css">
+	<link rel="stylesheet" href="../stylesheets/event.css">
+	<link rel="icon" href="../Icon.png" type="image/png">
 </head>
-<body>
+<body style="background-color: #2f2f2f;">
 
-
-
-    <div class="center-registration">
-        <h1 style="color: white; text-align: center;">Post Event</h1>
-        <label>Event Name: </label>
-        <input id="eventName" type="text">
-        <div class="break"></div>
-        <label>Event Type: </label>
-        <input id="eventType" type="text">
-        <div class="break"></div>
-        <label>Event Location: </label>
-        <input id="eventLocation" type="text">
-        <div class="break"></div>
-        <label>Event Time: </label>
-        <input id="eventTime" type="text">
-        <div class="break"></div>
-        <button onclick="postEvent()">Post Event</button>
+	<div class="top-menu">
+		<h1>EventNexa</h1>
+		<button class="logout-button" onclick="NavMenu.logout()">Logout</button>
+	</div>
+	
+    <div class="side-menu">
+		<a class="hover-menu"></a>
+        <a class="hover-menu" href="../../">Home</a>
+		<a class="hover-menu" href="../../login/login.html">Login</a>
+        <a class="hover-menu" href="../../postevent/post.html">Post Event</a>
+		<a class="hover-menu" href="../../joinedevents/joinedevents.html">Joined Events</a>
+		<a class="hover-menu" href="../../createdevents/createdevents.html">Created Events</a>
+        <a class="hover-menu" href="../../about/about.html">About</a>
     </div>
 
-    <script src="script.js"></script>
+    <h1 style="text-align: center; color: white; padding: 0 100px 0 0;">Create An Event!</h1>
+
+	<div style="top: 100px;" class="events-div">
+		<div id="event-clone" class="event" style="display: none;">
+			<h1 id="event-title">Title</h1>
+            <input style="margin: 0 0 0 50%; transform: translate(-50%, 0);" type="text">
+            <br>
+			<h2>Description:</h2>
+			<textarea style="resize: none; width: 99%; height: 100px"></textarea>
+            <br>
+			<h3 style="display: inline-block; margin: 0;">Event Time: </h3>
+            <input id="event-time" type="datetime-local"> 
+			<br>
+			<h3 style="display: inline-block; margin: 0;">Event Cap: </h3>
+            <input id="event-cap" type="number" style="width: 50px; margin: 0;">
+			<br>
+			<h3 style="margin: 0;">Location: </h3>
+            <h4 style="padding: 0 0 0 50px; color: black; margin: 0; display: inline-block;">Street Address (ex. "5562 Scary Street"): </h4>
+            <input style="display: inline-block; width: 200px" type="text">
+            <br>
+            <h4 style="padding: 0 0 0 50px; color: black; margin: 0; display: inline-block;">City (ex. "Columbus"): </h4>
+            <input style="display: inline-block; width: 200px" type="text">
+            <br>
+            <h4 style="padding: 0 0 0 50px; color: black; margin: 0; display: inline-block;">State (ex. "Ohio"): </h4>
+            <input style="display: inline-block; width: 200px" type="">
+            <br>
+            <h4 style="padding: 0 0 0 50px; color: black; margin: 0; display: inline-block;">Zip Code (ex. "45626"): </h4>
+            <input style="margin: 0 0 10px 0;display: inline-block; width: 200px" type="number">
+            <br>
+			<div class="event-buttons">
+				<button class="enabled" id="post-event" onclick="">Post Event</button>
+			</div>
+		</div>
+	</div>
+	
+    <script src="../shared/network.js"></script>
+	<script src="../shared/cookies.js"></script>
+	<script src="../shared/event/event-cloner.js"></script>
+	<script src="../shared/nav-menu.js"></script>
+	<script src="../shared/event/nexa-event.js"></script>
+	<script src="../shared/event/nexa-address.js"></script>
+	<script src="../shared/event/event-cap.js"></script>
+	<script src="../shared/user-utils.js"></script>
+
 </body>
 </html>

@@ -79,3 +79,36 @@
 .enabled:active {
 	background-color: rgb(148, 148, 148);
 }
+
+.create-event {
+	background-color: #b1b1b1;
+	position: relative;
+	transform: translate(-50%, 0);
+	left: 50%;
+	width: 80%;
+	height: auto;
+	margin: 10px 0 10px 0;
+	padding: 5px;
+	border-color: black;
+	border-style: solid;
+	border-width: 5px;
+	border-radius: 25px/25px;
+	overflow: auto;
+	
+}
+
+.make-events-div {
+	background-color: #474747;
+	position: fixed;
+	width: clamp(50%, 1200px, 80%);
+	height: 100% - 60px;
+	left: 50%;
+	bottom: 0px;
+	top: 60px;
+	transform: translate(-50%, 0);
+	margin: 0 0 0 0;
+	padding: 0 0 0 0;
+	justify-content: center;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
