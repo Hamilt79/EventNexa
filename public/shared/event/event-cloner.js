@@ -17,7 +17,9 @@ class EventCloner {
         description.value = newEvent.description;
         author.textContent = newEvent.author;
         eventCap.textContent = newEvent.eventCap.joined + "/" + newEvent.eventCap.max;
-        eventTime.textContent = new Date(newEvent.eventDate).toLocaleDateString("YYYY-MM-DDTHH:mm.sssZ", { hour12: true })
+        //eventTime.textContent = new Date(newEvent.eventDate).toLocaleDateString("YYYY-MM-DDTHH:mm.sssZ", { hour12: true })
+        eventTime.textContent = new Date(newEvent.eventDate).toLocaleString([], { hour: '2-digit', hour12: true, minute: '2-digit', day: true })
+
         address.textContent = newEvent.address.streetAddress + " " + newEvent.address.city  + " " + newEvent.address.state + " " + newEvent.address.zip;
     }
 }
