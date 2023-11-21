@@ -15,9 +15,9 @@ class EventCloner {
 
         title.textContent = newEvent.title;
         description.value = newEvent.description;
-        author.textContent = newEvent.title;
+        author.textContent = newEvent.author;
         eventCap.textContent = newEvent.eventCap.joined + "/" + newEvent.eventCap.max;
-        eventTime.textContent = newEvent.eventTime;
-        address.textContent = newEvent.address;
+        eventTime.textContent = new Date(newEvent.eventDate);
+        address.textContent = newEvent.address.streetAddress + " " + newEvent.address.city  + " " + newEvent.address.state + " " + newEvent.address.zip;
     }
 }
