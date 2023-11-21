@@ -18,10 +18,9 @@ router.post('/', async function(req, res) {
         const filter = JSON.parse(req.headers['filter']);
         const sort = JSON.parse(req.headers['sort']);
         const events = await (await MongoConnection.get().queryCollectionMulti(filter, sort, 10, MongoConnection.COLLECTION_E.Events)).toArray();
-        
-        console.log(events);
+        res.send(events);
     } else {
-        Network.createResponse(Response.RESPONSE_E.BADLOGIN);
+        res.send(Network.createResponse(Response.RESPONSE_E.BADLOGIN));
     }
     } catch(ex) {
         console.log(ex);
