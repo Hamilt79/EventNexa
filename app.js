@@ -37,10 +37,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/registration/createaccount', registrationRouter);
 app.use('/login/loginrequest', loginRouter);
-app.use('/createevent', createEventRouter);
-app.use('/joinevent', joinEventRouter);
-app.use('/getevents', getEventRouter);
-app.use('/leaveevent', leaveEventRouter);
+app.use('/event/create', createEventRouter);
+app.use('/event/join', joinEventRouter);
+app.use('/event/get', getEventRouter);
+app.use('/event/leave', leaveEventRouter);
 
 // Starting MongoDB connection
 MongoConnection.init();

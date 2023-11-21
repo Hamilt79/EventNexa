@@ -28,12 +28,12 @@
     <h1 style="text-align: center; color: white; padding: 0 100px 0 0;">Create An Event!</h1>
 
 	<div style="top: 100px;" class="post-events-div">
-		<div id="event-clone" class="event" style="display: none;">
-			<h1 id="event-title">Title</h1>
-            <input style="margin: 0 0 0 50%; transform: translate(-50%, 0);" type="text">
+		<div id="event-clone" class="event">
+			<h1>Title</h1>
+            <input id='event-title' style="margin: 0 0 0 50%; transform: translate(-50%, 0);" type="text">
             <br>
 			<h2>Description:</h2>
-			<textarea style="resize: none; width: 99%; height: 100px"></textarea>
+			<textarea id="event-desc" style="resize: none; width: 99%; height: 100px"></textarea>
             <br>
 			<h3 style="display: inline-block; margin: 0;">Event Time: </h3>
             <input id="event-time" type="datetime-local"> 
@@ -43,19 +43,19 @@
 			<br>
 			<h3 style="margin: 0;">Location: </h3>
             <h4 style="padding: 0 0 0 50px; color: black; margin: 0; display: inline-block;">Street Address (ex. "5562 Scary Street"): </h4>
-            <input style="display: inline-block; width: 200px" type="text">
+            <input id="event-street" style="display: inline-block; width: 200px" type="text">
             <br>
             <h4 style="padding: 0 0 0 50px; color: black; margin: 0; display: inline-block;">City (ex. "Columbus"): </h4>
-            <input style="display: inline-block; width: 200px" type="text">
+            <input id="event-city" style="display: inline-block; width: 200px" type="text">
             <br>
             <h4 style="padding: 0 0 0 50px; color: black; margin: 0; display: inline-block;">State (ex. "Ohio"): </h4>
-            <input style="display: inline-block; width: 200px" type="">
+            <input id="event-state" style="display: inline-block; width: 200px" type="">
             <br>
             <h4 style="padding: 0 0 0 50px; color: black; margin: 0; display: inline-block;">Zip Code (ex. "45626"): </h4>
-            <input style="margin: 0 0 10px 0;display: inline-block; width: 200px" type="number">
+            <input id="event-zip" style="margin: 0 0 10px 0;display: inline-block; width: 200px" type="number">
             <br>
 			<div class="event-buttons">
-				<button class="enabled" id="post-event" onclick="">Post Event</button>
+				<button class="enabled" id="post-event" onclick="sendCreateEventReq()">Post Event</button>
 			</div>
 		</div>
 	</div>

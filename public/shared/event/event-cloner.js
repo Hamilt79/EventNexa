@@ -20,5 +20,5 @@ class EventCloner {
 
 
 window.onload = function() {
-    EventCloner.makeEvent();
+    //EventCloner.makeEvent();
 };
