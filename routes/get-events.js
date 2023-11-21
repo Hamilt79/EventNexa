@@ -16,7 +16,7 @@ router.post('/', async function(req, res) {
     if (verifyLogin) {
         const filter = JSON.parse(req.headers['filter']);
         const sort = JSON.parse(req.headers['sort']);
-        const events = await MongoConnection.get().queryCollectionMulti( filter, MongoConnection.COLLECTION_E.Events).sort(sort).limit(10);
+        const events = await MongoConnection.get().queryCollectionMulti(filter, sort, 10, MongoConnection.COLLECTION_E.Events);
         
         console.log(events);
     } else {
