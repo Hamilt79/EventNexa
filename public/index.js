@@ -15,7 +15,7 @@ function fetchEvents() {
 }
 
 function onRecieveEvents(data) {
-    const events = JSON.parse(data);
+    const events = data;
     for (let i = 0; i < events.length; i++) {
         EventCloner.makeEvent(events[i]);
     }
