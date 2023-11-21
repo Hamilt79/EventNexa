@@ -14,8 +14,7 @@ router.post('/', async function(req, res) {
         if (goodLogin === true) {
             let event = reqToEvent(req);
             MongoConnection.get().insertData(event, MongoConnection.COLLECTION_E.Events);
-            res.send(Network.createResponse("True"));
-            console.log(event);
+            res.send(Network.createResponse("True"))
         } else {
             res.send(Network.createResponse("False"));
         }
@@ -33,8 +32,6 @@ router.post('/', async function(req, res) {
  */
 function reqToEvent(req) {
     const eventHeader = JSON.parse(req.headers['event']);
-    console.log(eventHeader);
-    console.log(eventHeader.title);
 
     let event = new Event(eventHeader['title'], eventHeader['description'], eventHeader['author'], eventHeader['eventCap'], eventHeader['eventDate'], eventHeader['address']);
     return event;
