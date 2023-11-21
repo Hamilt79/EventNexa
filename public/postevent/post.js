@@ -1,3 +1,5 @@
+
+
 function postEvent() {
     const eventName = document.getElementById('eventName').value;
     const eventType = document.getElementById('eventType').value;
@@ -40,5 +42,6 @@ function sendCreateEventReq() {
 }
 
 function createEventResponse(data) {
+    Network.goToCreatedEvents();
     console.log(data);
 }

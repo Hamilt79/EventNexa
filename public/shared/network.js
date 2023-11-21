@@ -50,6 +50,13 @@ class Network {
     }
 
     /**
+     * Redirects the user to profile page
+     */
+    static goToCreatedEvents() {
+        Network.redirectLocal('createdevents/createdevents.html');
+    }
+
+    /**
      * 
      * @param {*} event event to send
      * @param {*} username username

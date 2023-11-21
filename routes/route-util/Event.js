@@ -7,9 +7,10 @@ class Event {
      * @param {String} author username of event creator
      * @param {EventCap} eventCap event cap
      * @param {DateTime} eventDate date event starts in UTC
+     * @param {Number} miliTime eventDate.getTime() value
      * @param {Address} address address of event
      */
-    constructor(title, description, author, eventCap, eventDate, address) {
+    constructor(title, description, author, eventCap, eventDate, miliTime, address) {
         this.title = title;
         this.description = description;
         this.author = author;
