@@ -16,7 +16,6 @@ router.post('/', async function(req, res) {
             MongoConnection.get().insertData(event, MongoConnection.COLLECTION_E.Events);
             res.send(Network.createResponse("True"));
             console.log(event);
-            console.log(req);
         } else {
             res.send(Network.createResponse("False"));
         }
