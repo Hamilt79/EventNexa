@@ -14,17 +14,17 @@ function postEvent() {
 function sendCreateEventReq() {
     const username = UserUtils.getUsername();
 	const password = UserUtils.getPassword();
-    const title = document.getElementById('event-title');
-    const description = document.getElementById('event-desc');
-    const eventTime = document.getElementById('event-time');
-    const eventCap = document.getElementById('event-cap');
-    const street = document.getElementById('event-street');
-    const city = document.getElementById('event-city');
-    const state = document.getElementById('event-state');
-    const zip = document.getElementById('event-zip');
+    const title = document.getElementById('event-title').value;
+    const description = document.getElementById('event-desc').value;
+    const eventTime = document.getElementById('event-time').value;
+    const eventCap = document.getElementById('event-cap').value;
+    const street = document.getElementById('event-street').value;
+    const city = document.getElementById('event-city').value;
+    const state = document.getElementById('event-state').value;
+    const zip = document.getElementById('event-zip').value;
     const address = new NexaAddress(city, state, zip, street);
     const capOb = new EventCap(0, eventCap);
-    const dateTime = new Date(eventTime.value).toUTCString();
+    const dateTime = new Date(eventTime).toUTCString();
     const event = new NexaEvent(title, description, username, capOb, dateTime, address);
 
 	fetch(Network.domainName + 'event/create', 
