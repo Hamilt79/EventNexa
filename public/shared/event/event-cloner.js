@@ -14,7 +14,7 @@ class EventCloner {
         let address = event.querySelector('#event-address')
 
         title.textContent = newEvent.title;
-        description.value = newEvent.description;
+        description.textContent = newEvent.description;
         author.textContent = newEvent.author;
         eventCap.textContent = newEvent.eventCap.joined + "/" + newEvent.eventCap.max;
         eventTime.textContent = new Date(newEvent.eventDate).toLocaleString([], { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' })
