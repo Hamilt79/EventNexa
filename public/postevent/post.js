@@ -33,7 +33,7 @@ function sendCreateEventReq() {
 				{	
 					'username': username, 
 					'password': password,
-                    'event': event
+                    'event': JSON.stringify(event)
 				} 
 		}
 	).then(function(response) { return response.text(); }).then(function(data) { createEventResponse(JSON.parse(data)) });
