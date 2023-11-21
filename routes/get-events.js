@@ -12,15 +12,20 @@ const { Response } = require('./route-util/Response');
  * Called when post request is sent to /event/get
  */
 router.post('/', async function(req, res) {
+    try {
     const verifyLogin = LoginUtils.verifyLoginReq(req);
     if (verifyLogin) {
         const filter = JSON.parse(req.headers['filter']);
         const sort = JSON.parse(req.headers['sort']);
-        const events = (await MongoConnection.get().queryCollectionMulti(filter, sort, 10, MongoConnection.COLLECTION_E.Events)).toArray();
+        const events = await (await MongoConnection.get().queryCollectionMulti(filter, sort, 10, MongoConnection.COLLECTION_E.Events)).toArray();
         
         console.log(events);
     } else {
         Network.createResponse(Response.RESPONSE_E.BADLOGIN);
+    }
+    } catch(ex) {
+        console.log(ex);
+        res.send(Network.createResponse(Response.RESPONSE_E.SERVERERROR));
     }
 });
 
