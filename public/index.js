@@ -11,7 +11,14 @@ function fetchEvents() {
                     'sort': JSON.stringify(sort) 
 				} 
 		}
-	).then(function(response) { return response.text(); }).then(function(data) { console.log(JSON.parse(data)) });
+	).then(function(response) { return response.text(); }).then(function(data) { onRecieveEvents(JSON.parse(data)) });
+}
+
+function onRecieveEvents(data) {
+    const events = JSON.parse(data);
+    for (let i = 0; i < events.length; i++) {
+        EventCloner.makeEvent(events[i]);
+    }
 }
 
 window.addEventListener('load', function() { fetchEvents(); });

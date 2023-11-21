@@ -1,20 +1,23 @@
 
 class EventCloner {
 
-    static makeEvent() {
+    static makeEvent(newEvent) {
         const eventToClone = document.getElementById('event-clone');
         let event = eventToClone.cloneNode(true);
         eventToClone.parentElement.appendChild(event);
         event.style = "";
-        const title = event.querySelector('#event-title')
-        const description = event.querySelector('#event-description')
-        const author = event.querySelector('#event-author')
-        const eventCap = event.querySelector('#event-cap')
-        const eventTime = event.querySelector('#event-time')
-        const address = event.querySelector('#event-address')
+        let title = event.querySelector('#event-title')
+        let description = event.querySelector('#event-description')
+        let author = event.querySelector('#event-author')
+        let eventCap = event.querySelector('#event-cap')
+        let eventTime = event.querySelector('#event-time')
+        let address = event.querySelector('#event-address')
+
+        title.textContent = newEvent.title;
+        description.value = newEvent.description;
+        author.textContent = newEvent.title;
+        eventCap.textContent = newEvent.eventCap.joined + "/" + newEvent.eventCap.max;
+        eventTime.textContent = newEvent.eventTime;
+        address.textContent = newEvent.address;
     }
 }
-
-window.onload = function() {
-    //EventCloner.makeEvent();
-};
