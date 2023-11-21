@@ -6,7 +6,7 @@ class MongoConnection {
 
   /**
    * 
-   * @returns mongoConnection
+   * @returns {MongoConnection} mongoConnection
    */
   static get() {
     return MongoConnection.mongoConnection;
@@ -76,6 +76,20 @@ class MongoConnection {
 
       const collectionData = this.#getCollection(collection);  
       return await collectionData.findOne(query);
+
+  }
+
+    /**
+   * Queries the collection and returns the results
+   * 
+   * @param {*} query query object
+   * @param {*} collection collection to query
+   * @returns query result
+   */
+    async queryCollectionMulti(query, collection) {
+
+      const collectionData = this.#getCollection(collection);  
+      return await collectionData.find(query);
 
   }
 

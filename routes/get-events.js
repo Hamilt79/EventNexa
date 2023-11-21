@@ -11,10 +11,14 @@ const { Response } = require('./route-util/Response');
 /**
  * Called when post request is sent to /event/get
  */
-router.post('/', function(req, res) {
+router.post('/', async function(req, res) {
     const verifyLogin = LoginUtils.verifyLoginReq(req);
     if (verifyLogin) {
-
+        const filter = JSON.parse(req.headers['filter']);
+        const sort = JSON.parse(req.headers['sort']);
+        const events = await MongoConnection.get().queryCollectionMulti( filter, MongoConnection.COLLECTION_E.Events).sort(sort).limit(10);
+        
+        console.log(events);
     } else {
         Network.createResponse(Response.RESPONSE_E.BADLOGIN);
     }

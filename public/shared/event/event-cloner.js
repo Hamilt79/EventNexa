@@ -1,7 +1,6 @@
 
 class EventCloner {
 
-    
     static makeEvent() {
         const eventToClone = document.getElementById('event-clone');
         let event = eventToClone.cloneNode(true);
@@ -13,11 +12,8 @@ class EventCloner {
         const eventCap = event.querySelector('#event-cap')
         const eventTime = event.querySelector('#event-time')
         const address = event.querySelector('#event-address')
-
-        
     }
 }
-
 
 window.onload = function() {
     //EventCloner.makeEvent();
