@@ -11,6 +11,7 @@ class Network {
         }
         return response;
     }
+
 }
 
 exports.Network = Network;

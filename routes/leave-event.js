@@ -6,6 +6,8 @@ const { EventCap } = require('./route-util/EventCap');
 const { Address } = require('./route-util/Address');
 const { Network } = require('./route-util/Network');
 const { User } = require('./route-util/User');
+const { Response } = require('./route-util/Response');
+
 /**
  * Called when post request is sent to /eventleave
  */
@@ -22,11 +24,11 @@ router.post('/', async function(req, res) {
             }
             res.send(Network.createResponse("Left"));
         } else {
-            res.send(Network.createResponse("Bad Login."));
+            res.send(Network.createResponse(Response.RESPONSE_E.BADLOGIN));
         }
 
     }catch(ex) {
-        res.send(Network.createResponse("Server Error"));
+        res.send(Network.createResponse(Response.RESPONSE_E.SERVERERROR));
         console.log(ex);
     }
 });

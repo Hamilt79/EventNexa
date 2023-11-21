@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const { Network } = require('./route-util/Network');
 const { LoginUtils } = require('./route-util/LoginUtils');
-
+const { Response } = require('./route-util/Response');
 
 /**
  * Gets posts requests directed at /login/loginrequest
@@ -24,11 +24,12 @@ async function handleLoginReq(req, res) {
 		let correctLogin = await LoginUtils.verifyLoginReq(req);
 
 		if (correctLogin) {
-			res.send(Network.createResponse("True"));
+			res.send(Network.createResponse(Response.RESPONSE_E.GOODLOGIN));
 		} else {
-			res.send(Network.createResponse("False"));
+			res.send(Network.createResponse(Response.RESPONSE_E.BADLOGIN));
 		}
 	} catch(ex) {
+		res.send(Network.createResponse(Response.RESPONSE_E.SERVERERROR));
 		console.log(ex);
 	}
 }

@@ -7,6 +7,7 @@ const { Address } = require('./route-util/Address');
 const { Network } = require('./route-util/Network');
 const { LoginUtils } = require('./route-util/LoginUtils');
 const { User } = require('./route-util/User');
+const { Response } = require('./route-util/Response');
 
 /**
  * Called when post request is sent to /event/join
@@ -26,15 +27,15 @@ router.post('/', async function(req, res) {
                     joinedEvents.push(eventId);
                 }
                 await user.setEventsInDB();
-                res.send(Network.createResponse("Joined"));
+                res.send(Network.createResponse(Response.RESPONSE_E.JOINEDEVENT));
             } else {
-                res.send(Network.createResponse("Event Does Not Exists."));
+                res.send(Network.createResponse(Response.RESPONSE_E.NOSUCHEVENT));
             }
         } else {
-            res.send(Network.createResponse("Bad Login."));
+            res.send(Network.createResponse(Response.RESPONSE_E.BADLOGIN));
         }
     } catch(ex) {
-        res.send(Network.createResponse("Server Error"));
+        res.send(Network.createResponse(Response.RESPONSE_E.BADLOGIN));
         console.log(ex);
     }
 });

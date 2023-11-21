@@ -4,6 +4,7 @@ const { MongoConnection } = require('./mongodb/mongodb');
 const { Event } = require('./route-util/Event');
 const { LoginUtils } = require('./route-util/LoginUtils');
 const { Network } = require('./route-util/Network');
+const { Response } = require('./route-util/Response');
 
 /**
  * Called when post request is sent to /event/create
@@ -14,13 +15,13 @@ router.post('/', async function(req, res) {
         if (goodLogin === true) {
             let event = reqToEvent(req);
             MongoConnection.get().insertData(event, MongoConnection.COLLECTION_E.Events);
-            res.send(Network.createResponse("True"))
+            res.send(Network.createResponse(Response.RESPONSE_E.EVENTCREATED))
         } else {
-            res.send(Network.createResponse("False"));
+            res.send(Network.createResponse(Response.RESPONSE_E.BADLOGIN));
         }
     } catch(ex) {
         console.log(ex);
-        res.send(Network.createResponse("Server Error"));
+        res.send(Network.createResponse(Response.RESPONSE_E.SERVERERROR));
     }
 });
 

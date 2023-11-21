@@ -2,6 +2,8 @@ const { User } = require('./route-util/User');
 const { MongoConnection } = require('./mongodb/mongodb');
 const { PasswordUtils } = require('./route-util/PasswordUtils');
 const { Network } = require('./route-util/Network');
+const { Response } = require('./route-util/Response');
+
 var express = require('express');
 var router = express.Router();
 
@@ -38,11 +40,11 @@ async function handleRegisterReq(req, res)
 
 		let user = new User(username, email, passwordHash);
 
-		let exists = await createUser(user);
-		if (exists) {
-			res.send(Network.createResponse("User Registered! Please Log In!"));
+		let created = await createUser(user);
+		if (created) {
+			res.send(Network.createResponse(Response.RESPONSE_E.USERREGISTERED));
 		} else {
-			res.send(Network.createResponse("Username already in use"));
+			res.send(Network.createResponse(Response.RESPONSE_E.TAKENUSERNAME));
 		}
 	} catch(ex) {
 		console.log(ex);
