@@ -14,4 +14,4 @@ function fetchEvents() {
 	).then(function(response) { return response.text(); }).then(function(data) { console.log(JSON.parse(data)) });
 }
 
-window.onload = fetchEvents();
+window.addEventListener('load', function() { fetchEvents(); });
