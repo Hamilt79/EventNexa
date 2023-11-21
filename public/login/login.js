@@ -21,16 +21,16 @@ function loginRequest() {
  * @param {*} response JSON formatted response from server
  */
 function loginResponse(response) {
-	if (response['Response'] == 'True') {
+	if (response['Response'] == NexaResponse.RESPONSE_E.GOODLOGIN) {
 		const username = document.getElementById('username').value;
 		const password = document.getElementById('password').value;
 		Cookies.setCookie(Cookies.COOKIE_NAME_E.username, username, 5);
 		Cookies.setCookie(Cookies.COOKIE_NAME_E.password, password, 5);
 		displayMessage("Green", "Logged In!");
 		Network.goHome();
-	} else if (response['Response'] == 'False') {
+	} else if (response['Response'] == NexaResponse.RESPONSE_E.BADLOGIN) {
 		displayMessage("Red", "Wrong password or username");
 	} else {
-		displayMessage("Red", "Unknown Server Error");
+		displayMessage("Red", response['Response']);
 	}
 }
