@@ -2,9 +2,9 @@ function makeHomeEvents() {
     const filter = { milliTime: { $gt: (new Date().getTime()) } };
     const sort = { _id: -1 };
     Network.fetchEvents(filter, sort, function(data) { 
-        for(let i = 0; i < arrayOfEvents.length; i++) {
-            EventCloner.makeEvent(arrayOfEvents[i]);
-            EventCloner.lastEventId = arrayOfEvents[i]._id;
+        for(let i = 0; i < data.length; i++) {
+            EventCloner.makeEvent(data[i]);
+            EventCloner.lastEventId = data[i]._id;
             console.log(EventCloner.lastEventId);
         }
     });
