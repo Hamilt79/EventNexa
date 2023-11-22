@@ -76,4 +76,18 @@ class Network {
 	).then(function(response) { return response.text(); }).then(function(data) { callback(JSON.parse(data)) });
     }
 
+    static fetchEvents(filter, sort, callback) {
+        fetch(Network.domainName + 'event/get',
+            { 	method: 'POST', 
+                headers: 
+                    {	
+                        'username': UserUtils.getUsername(), 
+                        'password': UserUtils.getPassword(),
+                        'filter': JSON.stringify(filter),
+                        'sort': JSON.stringify(sort) 
+                    } 
+            }
+        ).then(function(response) { return response.text(); }).then(function(data) { callback(JSON.parse(data)) });
+    }
+
 }

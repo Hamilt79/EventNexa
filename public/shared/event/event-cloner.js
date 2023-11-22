@@ -1,6 +1,11 @@
 
 class EventCloner {
 
+    /**
+     * Makes an event from an Event object
+     * 
+     * @param {*} newEvent event to create
+     */
     static makeEvent(newEvent) {
         const eventToClone = document.getElementById('event-clone');
         let event = eventToClone.cloneNode(true);
@@ -20,5 +25,16 @@ class EventCloner {
         eventTime.textContent = new Date(newEvent.eventDate).toLocaleString([], { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' })
 
         address.textContent = newEvent.address.streetAddress + " " + newEvent.address.city  + " " + newEvent.address.state + " " + newEvent.address.zip;
+    }
+
+    /**
+     * Makes events from an array of Event objects
+     * 
+     * @param {*} arrayOfEvents array of events to make
+     */
+    static makeEventsFromArr(arrayOfEvents) {
+        for(let i = 0; i < arrayOfEvents.length; i++) {
+            EventCloner.makeEvent(arrayOfEvents[i]);
+        }
     }
 }
