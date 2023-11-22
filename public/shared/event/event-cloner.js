@@ -1,6 +1,8 @@
 
 class EventCloner {
 
+    static lastEventId;
+
     /**
      * Makes an event from an Event object
      * 
