@@ -6,7 +6,7 @@ class EventCloner {
      * 
      * @param {*} newEvent event to create
      */
-    static makeEvent(newEvent) {
+    static makeEvent(newEvent, lowOpacity = false) {
         const eventToClone = document.getElementById('event-clone');
         let event = eventToClone.cloneNode(true);
         eventToClone.parentElement.appendChild(event);
@@ -18,12 +18,15 @@ class EventCloner {
         let eventTime = event.querySelector('#event-time')
         let address = event.querySelector('#event-address')
 
+        if (lowOpacity) {
+            event.style = 'opacity: 50%;';
+        } 
+
         title.textContent = newEvent.title;
         description.textContent = newEvent.description;
         author.textContent = newEvent.author;
         eventCap.textContent = newEvent.eventCap.joined + "/" + newEvent.eventCap.max;
         eventTime.textContent = new Date(newEvent.eventDate).toLocaleString([], { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' })
-
         address.textContent = newEvent.address.streetAddress + " " + newEvent.address.city  + " " + newEvent.address.state + " " + newEvent.address.zip;
     }
 
