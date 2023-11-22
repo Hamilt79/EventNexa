@@ -91,7 +91,7 @@ class Network {
     }
 
     static getResponse(data) {
-        return data['respnse'];
+        return data['Response'];
     }
 
 }
