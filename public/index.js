@@ -1,5 +1,5 @@
 function fetchEvents() {
-    const filter = {  };
+    const filter = { milliTime: { $gt: (new Date().getTime()) } };
     const sort = { _id: -1 };
     fetch(Network.domainName + 'event/get',
 		{ 	method: 'POST', 
