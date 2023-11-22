@@ -42,6 +42,13 @@ function sendCreateEventReq() {
 }
 
 function createEventResponse(data) {
-    Network.goToCreatedEvents();
+    const response = Network.getResponse(data);
+    if (response == NexaResponse.RESPONSE_E.BADLOGIN) {
+        Network.goToLogin();
+    } else if (response == NexaResponse.RESPONSE_E.EVENTCREATED) {
+        Network.goToCreatedEvents();
+    } else {
+        alert('Server Error, Please ensure everything is filled out');
+    }
     console.log(data);
 }

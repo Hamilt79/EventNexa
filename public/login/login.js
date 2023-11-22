@@ -21,14 +21,14 @@ function loginRequest() {
  * @param {*} response JSON formatted response from server
  */
 function loginResponse(response) {
-	if (response['Response'] == NexaResponse.RESPONSE_E.GOODLOGIN) {
+	if (Network.getResponse(response) == NexaResponse.RESPONSE_E.GOODLOGIN) {
 		const username = document.getElementById('username').value;
 		const password = document.getElementById('password').value;
 		Cookies.setCookie(Cookies.COOKIE_NAME_E.username, username, 5);
 		Cookies.setCookie(Cookies.COOKIE_NAME_E.password, password, 5);
 		displayMessage("Green", "Logged In!");
 		Network.goHome();
-	} else if (response['Response'] == NexaResponse.RESPONSE_E.BADLOGIN) {
+	} else if (Network.getResponse(response) == NexaResponse.RESPONSE_E.BADLOGIN) {
 		displayMessage("Red", "Wrong password or username");
 	} else {
 		displayMessage("Red", response['Response']);

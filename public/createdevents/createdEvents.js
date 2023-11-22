@@ -9,7 +9,15 @@ function getCreatedEvents() {
         filter = {creationTime: { $lt: EventCloner.lastCreationTime } };
     }
     const sort = { _id: -1 };
-    Network.fetchEvents(filter, sort, function(data) { makeCreatedEventsFromArr(data); });
+    Network.fetchEvents(filter, sort, function(data) { 
+        if (Network.getResponse(data) == NexaResponse.RESPONSE_E.BADLOGIN) {
+            Network.goToLogin();
+        } else if (Network.getResponse(data) == NexaResponse.RESPONSE_E.SERVERERROR) {
+            alert('Server Error');
+        }
+        makeCreatedEventsFromArr(data); 
+    
+    });
 }
 
 /**

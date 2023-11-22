@@ -90,4 +90,8 @@ class Network {
         ).then(function(response) { return response.text(); }).then(function(data) { callback(JSON.parse(data)) });
     }
 
+    static getResponse(data) {
+        return data['respnse'];
+    }
+
 }
