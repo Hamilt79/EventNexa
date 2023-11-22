@@ -10,8 +10,6 @@ function getCreatedEvents() {
     }
     const sort = { _id: -1 };
     Network.fetchEvents(filter, sort, function(data) { makeCreatedEventsFromArr(data); });
-
-
 }
 
 /**
@@ -50,5 +48,5 @@ function addScrollEvent(callback) {
 
 window.addEventListener('load', function() { 
     getCreatedEvents();
-    addScrollEvent(getCreatedEvents());
+    addScrollEvent(getCreatedEvents);
 });
