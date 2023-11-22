@@ -8,15 +8,17 @@ class Event {
      * @param {EventCap} eventCap event cap
      * @param {DateTime} eventDate date event starts in UTC
      * @param {Number} milliTime eventDate.getTime() value
+     * @param {Number} creationTime millisecond representation of when event was created
      * @param {Address} address address of event
      */
-    constructor(title, description, author, eventCap, eventDate, milliTime, address) {
+    constructor(title, description, author, eventCap, eventDate, milliTime, creationTime, address) {
         this.title = title;
         this.description = description;
         this.author = author;
         this.eventCap = eventCap;
         this.eventDate = eventDate;
         this.milliTime = milliTime;
+        this.creationTime = creationTime;
         this.address = address;
     }
 

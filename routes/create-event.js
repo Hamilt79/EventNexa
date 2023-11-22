@@ -34,7 +34,8 @@ router.post('/', async function(req, res) {
 function reqToEvent(req) {
     const eventHeader = JSON.parse(req.headers['event']);
     const eventMili = new Date(eventHeader['eventDate']).getTime();
-    let event = new Event(eventHeader['title'], eventHeader['description'], eventHeader['author'], eventHeader['eventCap'], eventHeader['eventDate'], eventMili, eventHeader['address']);
+    const creationTime = new Date().getTime();
+    let event = new Event(eventHeader['title'], eventHeader['description'], eventHeader['author'], eventHeader['eventCap'], eventHeader['eventDate'], eventMili, creationTime, eventHeader['address']);
     return event;
 }
 

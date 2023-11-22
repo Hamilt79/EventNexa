@@ -3,14 +3,14 @@ function makeHomeEvents() {
     if (EventCloner.lastEventId == null) {
         filter = { milliTime: { $gt: (new Date().getTime()) } };
     } else {
-        filter = { milliTime: { $gt: (new Date().getTime()) }, _id: { $lt: EventCloner.lastEventId } };
+        filter = { milliTime: { $gt: (new Date().getTime()) }, creationTime: { $gt: EventCloner.lastCreationTime } };
     }
     const sort = { _id: -1 };
     Network.fetchEvents(filter, sort, function(data) { 
         for(let i = 0; i < data.length; i++) {
             EventCloner.makeEvent(data[i]);
-            EventCloner.lastEventId = data[i]._id;
-            console.log(EventCloner.lastEventId);
+            EventCloner.lastCreationTime = data[i].creationTime;
+            console.log(EventCloner.lastCreationTime);
         }
     });
 }
