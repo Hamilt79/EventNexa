@@ -8,6 +8,8 @@ const { Network } = require('./route-util/Network');
 const { LoginUtils } = require('./route-util/LoginUtils');
 const { Response } = require('./route-util/Response');
 
+const eventLimit = 3;
+
 /**
  * Called when post request is sent to /event/get
  */
@@ -17,7 +19,7 @@ router.post('/', async function(req, res) {
     if (verifyLogin) {
         const filter = JSON.parse(req.headers['filter']);
         const sort = JSON.parse(req.headers['sort']);
-        const events = await (await MongoConnection.get().queryCollectionMulti(filter, sort, 10, MongoConnection.COLLECTION_E.Events)).toArray();
+        const events = await (await MongoConnection.get().queryCollectionMulti(filter, sort, eventLimit, MongoConnection.COLLECTION_E.Events)).toArray();
         res.send(events);
     } else {
         res.send(Network.createResponse(Response.RESPONSE_E.BADLOGIN));

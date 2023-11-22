@@ -1,5 +1,10 @@
 function makeHomeEvents() {
-    const filter = { milliTime: { $gt: (new Date().getTime()) } };
+    let filter;
+    if (EventCloner.lastEventId == null) {
+        filter = { milliTime: { $gt: (new Date().getTime()) } };
+    } else {
+        filter = { milliTime: { $gt: (new Date().getTime()) }, _id: { $gt: EventCloner.lastEventId } };
+    }
     const sort = { _id: -1 };
     Network.fetchEvents(filter, sort, function(data) { 
         for(let i = 0; i < data.length; i++) {
@@ -9,6 +14,8 @@ function makeHomeEvents() {
         }
     });
 }
+
+
 
 function joinEvent(eventButton) {
 
@@ -20,6 +27,7 @@ function addScrollEvent() {
 
         if (Math.abs(scrollHeight - clientHeight - scrollTop) < 1) {
             console.log('Scrolled to bottom');
+            makeHomeEvents();
         }
     });
 }
