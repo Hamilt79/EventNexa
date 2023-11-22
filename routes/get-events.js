@@ -8,7 +8,7 @@ const { Network } = require('./route-util/Network');
 const { LoginUtils } = require('./route-util/LoginUtils');
 const { Response } = require('./route-util/Response');
 
-const eventLimit = 5;
+const eventLimit = 10;
 
 /**
  * Called when post request is sent to /event/get
