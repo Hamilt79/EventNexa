@@ -15,7 +15,7 @@ const eventLimit = 5;
  */
 router.post('/', async function(req, res) {
     try {
-    const verifyLogin = LoginUtils.verifyLoginReq(req);
+    const verifyLogin = await LoginUtils.verifyLoginReq(req);
     if (verifyLogin) {
         const filter = JSON.parse(req.headers['filter']);
         const sort = JSON.parse(req.headers['sort']);
