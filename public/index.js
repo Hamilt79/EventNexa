@@ -3,7 +3,7 @@ function makeHomeEvents() {
     if (EventCloner.lastCreationTime == null) {
         filter = { milliTime: { $gt: (new Date().getTime()) } };
     } else {
-        filter = { milliTime: { $gt: (new Date().getTime()) }, creationTime: { $lt: EventCloner.lastCreationTime } };
+        filter = { milliTime: { $gt: (new Date().getTime()) }, creationTime: { $gt: EventCloner.lastCreationTime } };
     }
     const sort = { _id: -1 };
     Network.fetchEvents(filter, sort, function(data) { 
