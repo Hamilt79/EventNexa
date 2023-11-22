@@ -6,5 +6,21 @@ function makeHomeEvents() {
 
 }
 
+function joinEvent(eventButton) {
 
-window.addEventListener('load', function() { makeHomeEvents(); });
+}
+
+function addScrollEvent() {
+    document.getElementById('events-div').addEventListener('scroll', event => {
+        const {scrollHeight, scrollTop, clientHeight} = event.target;
+
+        if (Math.abs(scrollHeight - clientHeight - scrollTop) < 1) {
+            console.log('scrolled');
+        }
+    });
+}
+
+window.addEventListener('load', function() { 
+    makeHomeEvents();
+    addScrollEvent();
+});
