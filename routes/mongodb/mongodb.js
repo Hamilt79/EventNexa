@@ -104,7 +104,7 @@ class MongoConnection {
    */
   async queryExists(query, collection) {
     const result = await this.queryCollection(query, collection);
-    console.log(result);
+    //console.log(result);
     if (result == null || result == undefined) {
       return false;
     }
