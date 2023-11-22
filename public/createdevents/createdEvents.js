@@ -4,7 +4,7 @@
 function getCreatedEvents() {
     let filter;
     if (EventCloner.lastCreationTime == null) {
-        const filter = { author: UserUtils.getUsername() };
+        filter = { author: UserUtils.getUsername() };
     } else {
         filter = {creationTime: { $lt: EventCloner.lastCreationTime } };
     }
