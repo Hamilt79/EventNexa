@@ -80,7 +80,7 @@ class Event {
      */
     static async isFull(eventId) {
         const objId = new ObjectId(eventId);
-        const event = Event.getEventById(eventId);
+        const event = await Event.getEventById(eventId);
         if (event.eventCap.joined >= event.eventCap.max) {
             return true;
         } else {

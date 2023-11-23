@@ -8,7 +8,9 @@ class Response {
         USERREGISTERED: 'User Registered! Please Log In!',
         TAKENUSERNAME: 'Username Already Exists!',
         JOINEDEVENT: 'Joined Event',
-        LEFTEVENT: 'Left Event'
+        LEFTEVENT: 'Left Event',
+        EVENTFULL: 'Event Is Full',
+        INVALIDEVENT: 'Invalid Event. Please Verify You Have Filled Out Every Field'
     };
 }
 

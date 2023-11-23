@@ -18,9 +18,13 @@ router.post('/', async function(req, res) {
         if (goodLogin) {
             const eventId = req.headers['_id'];
             const eventExists = await Event.exists(eventId);
+            const isFull = await Event.isFull(eventId);
+            if (isFull) {
+                res.send(Network.createResponse(Response.RESPONSE_E.EVENTFULL));
+                return;
+            }
             if (eventExists) {
                 let event = await Event.getEventById(eventId);
-                console.log(event);
                 if (event.joinedUsers == null) {
                     event.joinedUsers = [ req.headers['username'] ];
                 } else {

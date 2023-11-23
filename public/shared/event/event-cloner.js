@@ -21,11 +21,21 @@ class EventCloner {
         let address = event.querySelector('#event-address')
         let id = event.querySelector('#event-id');
 
+        let joinButton = event.querySelector('#join-event');
+        let waitlistButton = event.querySelector('#join-waitlist');
+
         if (lowOpacity) {
             event.style = 'opacity: 50%;';
+            if (joinButton != null) {
+                joinButton.disabled = true;
+                joinButton.className = 'disabled';
+            }
+            if (waitlistButton != null) {
+                waitlistButton.disabled = true;
+                waitlistButton.className = 'disabled';
+            }
         } 
 
-        let joinButton = event.querySelector('#join-event');
         if (joinButton != null) {
             if (newEvent.joined != null && newEvent.joined == true) {
                 joinButton.textContent = 'Leave Event';

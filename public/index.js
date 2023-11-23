@@ -22,9 +22,9 @@ function joinEvent(eventButton) {
     const event = eventButton.parentElement.parentElement;
     const id = event.querySelector('#event-id').textContent;
     Network.joinEvent(id, function(data) { 
-        eventButton.textContent = 'Leave Event'; 
         alert(Network.getResponse(data));
         if (Network.getResponse(data) == NexaResponse.RESPONSE_E.JOINEDEVENT) {
+            eventButton.textContent = 'Leave Event'; 
             eventButton.onclick = function() { 
                 leaveEvent(eventButton); 
             }
@@ -36,11 +36,13 @@ function leaveEvent(eventButton) {
     const event = eventButton.parentElement.parentElement;
     const id = event.querySelector('#event-id').textContent;
     Network.leaveEvent(id, function(data) { 
-        eventButton.textContent = 'Join Event'; 
         alert(Network.getResponse(data));
-        eventButton.onclick = function() { 
-            joinEvent(eventButton); 
-        };
+        if (Network.getResponse(data) == NexaResponse.RESPONSE_E.LEFTEVENT) {
+            eventButton.textContent = 'Join Event'; 
+            eventButton.onclick = function() { 
+                joinEvent(eventButton); 
+            }
+        }
     });
 }
 

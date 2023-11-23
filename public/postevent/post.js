@@ -48,7 +48,7 @@ function createEventResponse(data) {
     } else if (response == NexaResponse.RESPONSE_E.EVENTCREATED) {
         Network.goToCreatedEvents();
     } else {
-        alert('Server Error, Please ensure everything is filled out');
+        alert(response);
     }
     console.log(data);
 }
