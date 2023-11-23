@@ -35,7 +35,7 @@ function reqToEvent(req) {
     const eventHeader = JSON.parse(req.headers['event']);
     const eventMili = new Date(eventHeader['eventDate']).getTime();
     const creationTime = new Date().getTime();
-    let event = new Event(eventHeader['title'], eventHeader['description'], eventHeader['author'], eventHeader['eventCap'], eventHeader['eventDate'], eventMili, creationTime, eventHeader['address']);
+    let event = new Event(eventHeader['title'], eventHeader['description'], eventHeader['author'], eventHeader['eventCap'], eventHeader['eventDate'], eventMili, creationTime, eventHeader['address'], null);
     return event;
 }
 

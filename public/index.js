@@ -7,18 +7,41 @@ function makeHomeEvents() {
     }
     const sort = { _id: -1 };
     Network.fetchEvents(filter, sort, function(data) { 
+        if (Network.getResponse(data) == NexaResponse.RESPONSE_E.BADLOGIN) {
+            Network.goToLogin();
+        }
         for(let i = 0; i < data.length; i++) {
             EventCloner.makeEvent(data[i]);
             EventCloner.lastCreationTime = data[i].creationTime;
-            console.log(EventCloner.lastCreationTime);
+            //console.log(EventCloner.lastCreationTime);
         }
     });
 }
 
-
-
 function joinEvent(eventButton) {
+    const event = eventButton.parentElement.parentElement;
+    const id = event.querySelector('#event-id').textContent;
+    Network.joinEvent(id, function(data) { 
+        eventButton.textContent = 'Leave Event'; 
+        alert(Network.getResponse(data));
+        if (Network.getResponse(data) == NexaResponse.RESPONSE_E.JOINEDEVENT) {
+            eventButton.onclick = function() { 
+                leaveEvent(eventButton); 
+            }
+        }
+    });
+}
 
+function leaveEvent(eventButton) {
+    const event = eventButton.parentElement.parentElement;
+    const id = event.querySelector('#event-id').textContent;
+    Network.leaveEvent(id, function(data) { 
+        eventButton.textContent = 'Join Event'; 
+        alert(Network.getResponse(data));
+        eventButton.onclick = function() { 
+            joinEvent(eventButton); 
+        };
+    });
 }
 
 function addScrollEvent() {

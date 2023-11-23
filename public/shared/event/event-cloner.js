@@ -19,10 +19,19 @@ class EventCloner {
         let eventCap = event.querySelector('#event-cap')
         let eventTime = event.querySelector('#event-time')
         let address = event.querySelector('#event-address')
+        let id = event.querySelector('#event-id');
 
         if (lowOpacity) {
             event.style = 'opacity: 50%;';
         } 
+
+        let joinButton = event.querySelector('#join-event');
+        if (joinButton != null) {
+            if (newEvent.joined != null && newEvent.joined == true) {
+                joinButton.textContent = 'Leave Event';
+                joinButton.onclick = function() { leaveEvent(joinButton); };
+            }
+        }
 
         title.textContent = newEvent.title;
         description.textContent = newEvent.description;
@@ -30,6 +39,7 @@ class EventCloner {
         eventCap.textContent = newEvent.eventCap.joined + "/" + newEvent.eventCap.max;
         eventTime.textContent = new Date(newEvent.eventDate).toLocaleString([], { year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit' })
         address.textContent = newEvent.address.streetAddress + " " + newEvent.address.city  + " " + newEvent.address.state + " " + newEvent.address.zip;
+        id.textContent = newEvent._id;
     }
 
     /**

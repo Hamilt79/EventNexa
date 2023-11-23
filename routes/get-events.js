@@ -15,15 +15,25 @@ const eventLimit = 10;
  */
 router.post('/', async function(req, res) {
     try {
-    const verifyLogin = await LoginUtils.verifyLoginReq(req);
-    if (verifyLogin) {
-        const filter = JSON.parse(req.headers['filter']);
-        const sort = JSON.parse(req.headers['sort']);
-        const events = await (await MongoConnection.get().queryCollectionMulti(filter, sort, eventLimit, MongoConnection.COLLECTION_E.Events)).toArray();
-        res.send(events);
-    } else {
-        res.send(Network.createResponse(Response.RESPONSE_E.BADLOGIN));
-    }
+        const verifyLogin = await LoginUtils.verifyLoginReq(req);
+        if (verifyLogin) {
+            const filter = JSON.parse(req.headers['filter']);
+            const sort = JSON.parse(req.headers['sort']);
+            const events = await (await MongoConnection.get().queryCollectionMulti(filter, sort, eventLimit, MongoConnection.COLLECTION_E.Events)).toArray();
+            for (let i = 0; i < events.length; i++) {
+                if (events[i].joinedUsers != null) {
+                    if (events[i].joinedUsers.includes(req.headers['username'])) {
+                        events[i].joined = true;
+                    } else {
+                        events[i].joined = false;
+                    }
+                    events[i].joinedUsers = null;
+                }
+            }
+            res.send(events);
+        } else {
+            res.send(Network.createResponse(Response.RESPONSE_E.BADLOGIN));
+        }
     } catch(ex) {
         console.log(ex);
         res.send(Network.createResponse(Response.RESPONSE_E.SERVERERROR));

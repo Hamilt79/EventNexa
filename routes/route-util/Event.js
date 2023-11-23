@@ -1,3 +1,6 @@
+const { ObjectId } = require('mongodb');
+const { MongoConnection } = require('../mongodb/mongodb'); 
+
 class Event {
     /**
      * Constructor for Event.
@@ -10,8 +13,9 @@ class Event {
      * @param {Number} milliTime eventDate.getTime() value
      * @param {Number} creationTime millisecond representation of when event was created
      * @param {Address} address address of event
+     * @param {*} joinedUsers usernames of those who have joined
      */
-    constructor(title, description, author, eventCap, eventDate, milliTime, creationTime, address) {
+    constructor(title, description, author, eventCap, eventDate, milliTime, creationTime, address, joinedUsers) {
         this.title = title;
         this.description = description;
         this.author = author;
@@ -20,6 +24,7 @@ class Event {
         this.milliTime = milliTime;
         this.creationTime = creationTime;
         this.address = address;
+        this.joinedUsers = joinedUsers;
     }
 
     /**
@@ -28,9 +33,26 @@ class Event {
      * @param {*} eventId id of event
      */
     static async exists(eventId) {
-        const eventExists = await MongoConnection.get().queryExists({ '_id': eventId }, MongoConnection.COLLECTION_E.Events);
+        const objId = new ObjectId(eventId);
+        const eventExists = await MongoConnection.get().queryExists({ '_id': objId }, MongoConnection.COLLECTION_E.Events);
         return eventExists;
     }
+
+    static async getEventById(eventId) {
+        const objID = new ObjectId(eventId);
+        return await MongoConnection.get().queryCollection({ '_id': objID }, MongoConnection.COLLECTION_E.Events);
+    }
+
+    static async updateJoined(eventId, joinedUsers) {
+        const objId = new ObjectId(eventId);
+        await MongoConnection.get().updateData({ '_id': objId }, { $set: { 'joinedUsers': joinedUsers }}, MongoConnection.COLLECTION_E.Events );
+    }
+
+    static async updateCap(eventId, eventCap) {
+        const objId = new ObjectId(eventId);
+        await MongoConnection.get().updateData({ '_id': objId }, { $set: { 'eventCap': eventCap } }, MongoConnection.COLLECTION_E.Events);
+    }
+
 }
 
 exports.Event = Event;

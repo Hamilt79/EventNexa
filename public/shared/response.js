@@ -7,6 +7,7 @@ class NexaResponse {
         NOSUCHEVENT: 'No Such Event',
         USERREGISTERED: 'User Registered! Please Log In!',
         TAKENUSERNAME: 'Username Already Exists!',
-        JOINEDEVENT: 'Joined Event'
+        JOINEDEVENT: 'Joined Event',
+        LEFTEVENT: 'Left Event'
     };
 }

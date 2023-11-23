@@ -1,6 +1,7 @@
 class Network {
-    static domainName = 'https://eventnexa.tech/';
-    //static domainName = 'http://192.168.65.26:3000/';
+    //static domainName = 'https://eventnexa.tech/';
+    static domainName = 'http://127.0.0.1:3000/';
+    
 
     /**
      * Redirects the user to a url
@@ -76,6 +77,13 @@ class Network {
 	).then(function(response) { return response.text(); }).then(function(data) { callback(JSON.parse(data)) });
     }
 
+    /**
+     * Fetches events that match a filter and sort
+     * 
+     * @param {*} filter mongodb filter object
+     * @param {*} sort mongodb sort object
+     * @param {*} callback method to call once a response is gotten
+     */
     static fetchEvents(filter, sort, callback) {
         fetch(Network.domainName + 'event/get',
             { 	method: 'POST', 
@@ -90,6 +98,62 @@ class Network {
         ).then(function(response) { return response.text(); }).then(function(data) { callback(JSON.parse(data)) });
     }
 
+    static fetchJoinedEvents() {
+        fetch(Network.domainName + 'event/join',
+        { 	method: 'POST', 
+            headers: 
+                {	
+                    'username': UserUtils.getUsername(), 
+                    'password': UserUtils.getPassword(),
+                    'type': 'joined'
+                } 
+        }
+        ).then(function(response) { return response.text(); }).then(function(data) { callback(JSON.parse(data)) });
+    }
+
+    /**
+     * Join and event by it's id
+     * 
+     * @param {*} id event _id to join
+     * @param {*} callback method called when server responds
+     */
+    static joinEvent(id, callback) {
+        fetch(Network.domainName + 'event/join',
+        { 	method: 'POST', 
+            headers: 
+                {	
+                    'username': UserUtils.getUsername(), 
+                    'password': UserUtils.getPassword(),
+                    '_id': id
+                } 
+        }
+        ).then(function(response) { return response.text(); }).then(function(data) { callback(JSON.parse(data)) });
+    }
+
+    /**
+     * 
+     * @param {*} id 
+     * @param {*} callback 
+     */
+    static leaveEvent(id, callback) {
+        fetch(Network.domainName + 'event/leave',
+        { 	method: 'POST', 
+            headers: 
+                {	
+                    'username': UserUtils.getUsername(), 
+                    'password': UserUtils.getPassword(),
+                    '_id': id
+                } 
+        }
+        ).then(function(response) { return response.text(); }).then(function(data) { callback(JSON.parse(data)) });
+    }
+
+    /**
+     * General method for getting the error response from server
+     * 
+     * @param {*} data data from server
+     * @returns response message
+     */
     static getResponse(data) {
         return data['Response'];
     }

@@ -17,16 +17,19 @@ router.post('/', async function(req, res) {
         const goodLogin = await LoginUtils.verifyLoginReq(req);
         if (goodLogin) {
             const eventId = req.headers['_id'];
-            const eventExists = Event.exists(eventId);
+            const eventExists = await Event.exists(eventId);
             if (eventExists) {
-                const user = await User.getUserFromDB(req.headers['username']);
-                const joinedEvents = user.joinedEvents;
-                if (joinedEvents == null) {
-                    joinedEvents = [ eventId ];
+                let event = await Event.getEventById(eventId);
+                console.log(event);
+                if (event.joinedUsers == null) {
+                    event.joinedUsers = [ req.headers['username'] ];
                 } else {
-                    joinedEvents.push(eventId);
+                    if (!event.joinedUsers.includes(req.headers['username'])) {
+                        event.joinedUsers.push(req.headers['username']);
+                    }
                 }
-                await user.setEventsInDB();
+                await Event.updateJoined(eventId, event.joinedUsers);
+                await Event.updateCap(eventId, new EventCap(event.joinedUsers.length, event.eventCap.max));
                 res.send(Network.createResponse(Response.RESPONSE_E.JOINEDEVENT));
             } else {
                 res.send(Network.createResponse(Response.RESPONSE_E.NOSUCHEVENT));
@@ -35,7 +38,7 @@ router.post('/', async function(req, res) {
             res.send(Network.createResponse(Response.RESPONSE_E.BADLOGIN));
         }
     } catch(ex) {
-        res.send(Network.createResponse(Response.RESPONSE_E.BADLOGIN));
+        res.send(Network.createResponse(Response.RESPONSE_E.SERVERERROR));
         console.log(ex);
     }
 });
