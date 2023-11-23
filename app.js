@@ -13,7 +13,8 @@ var createEventRouter = require('./routes/create-event');
 var joinEventRouter = require('./routes/join-event');
 var getEventRouter = require('./routes/get-events');
 var leaveEventRouter = require('./routes/leave-event');
-
+var joinWaitlist = require('./routes/join-waitlist');
+var leaveWaitlist = require('./routes/leave-waitlist');
 
 // Starting express app
 var app = express();
@@ -41,6 +42,8 @@ app.use('/event/create', createEventRouter);
 app.use('/event/join', joinEventRouter);
 app.use('/event/get', getEventRouter);
 app.use('/event/leave', leaveEventRouter);
+app.use('/event/waitlist/join', joinWaitlist);
+app.use('/event/waitlist/leave', leaveWaitlist);
 
 // Starting MongoDB connection
 MongoConnection.init();

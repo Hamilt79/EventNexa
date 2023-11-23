@@ -10,7 +10,7 @@ const { Response } = require('./route-util/Response');
 const { LoginUtils } = require('./route-util/LoginUtils');
 
 /**
- * Called when post request is sent to /eventleave
+ * Called when post request is sent to /event/leave
  */
 router.post('/', async function(req, res) {
     try {
