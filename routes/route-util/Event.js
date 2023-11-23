@@ -38,19 +38,54 @@ class Event {
         return eventExists;
     }
 
+    /**
+     * Get an event by it's id. 
+     * 
+     * @param {*} eventId id to retrieve
+     * @returns event object from mongodb
+     */
     static async getEventById(eventId) {
         const objID = new ObjectId(eventId);
         return await MongoConnection.get().queryCollection({ '_id': objID }, MongoConnection.COLLECTION_E.Events);
     }
 
+    /**
+     * Update event's joined users
+     * 
+     * @param {*} eventId event id of event to update
+     * @param {*} joinedUsers new joinedUsers object
+     */
     static async updateJoined(eventId, joinedUsers) {
         const objId = new ObjectId(eventId);
         await MongoConnection.get().updateData({ '_id': objId }, { $set: { 'joinedUsers': joinedUsers }}, MongoConnection.COLLECTION_E.Events );
     }
 
+
+    /**
+     * Updates event cap
+     * 
+     * @param {*} eventId id of event to update
+     * @param {*} eventCap new event cap
+     */
     static async updateCap(eventId, eventCap) {
         const objId = new ObjectId(eventId);
         await MongoConnection.get().updateData({ '_id': objId }, { $set: { 'eventCap': eventCap } }, MongoConnection.COLLECTION_E.Events);
+    }
+
+    /**
+     * Returns if an event is full
+     * 
+     * @param {*} eventId id of event to check
+     * @returns true if full, false otherwise
+     */
+    static async isFull(eventId) {
+        const objId = new ObjectId(eventId);
+        const event = Event.getEventById(eventId);
+        if (event.eventCap.joined >= event.eventCap.max) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
