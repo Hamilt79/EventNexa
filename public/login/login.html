@@ -30,10 +30,10 @@
 		<h1 style="color: white; text-align: center;">Login</h1>
 		<p id="usermessagedisplay" style="color: red; text-align: center;"></p>
 		<label>Username: </label>
-		<input id="username" type="text">
+		<input id="username" onkeypress="enterSubmit(event)" type="text">
 		<div class="break"></div>
 		<label>Password: </label>
-		<input id="password" type="password">
+		<input id="password" onkeypress="enterSubmit(event)" type="password">
 		<button onclick="Network.goToRegistration()">Register</button>
 		<button onclick="loginRequest()">Login</button>
 	</div>

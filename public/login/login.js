@@ -34,3 +34,9 @@ function loginResponse(response) {
 		displayMessage("Red", response['Response']);
 	}
 }
+
+function enterSubmit(event) {
+	if (event.key == 'Enter') {
+		loginRequest();
+	}
+}

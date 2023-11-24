@@ -30,9 +30,15 @@ function registerRequest() {
  */
 function onRecieveRequest(data) {
 	try {
-	const response = JSON.parse(data);
-	displayMessage("White", response['Response']);
+		const response = JSON.parse(data);
+		displayMessage("White", response['Response']);
 	} catch(ex) {
 		console.log(ex);
+	}
+}
+
+function enterSubmit(event) {
+	if (event.key == 'Enter') {
+		registerRequest();
 	}
 }

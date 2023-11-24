@@ -29,17 +29,20 @@
 	<div class="center-registration">
 		<h1 style="color: white; text-align: center;">Registration</h1>
 		<p id="usermessagedisplay"></p>
+		<p style="text-align: center; text-wrap: nowrap;">Note: The username is case-sensitive</p>
+		<p style="text-align: center; text-wrap: nowrap;">Please do not enter any sensitive information into these fields</p>
+		<p style="text-align: center; text-wrap: nowrap;">The email will be used to notify you an hour before the event occurs</p>
 		<label>Username: </label>
-		<input id="username" type="text">
+		<input id="username" onkeypress="enterSubmit(event)" type="text">
 		<div class="break"></div>
 		<label>Email: </label>
-		<input id="email" type="text">
+		<input id="email" onkeypress="enterSubmit(event)" type="text">
 		<div class="break"></div>
 		<label>Password: </label>
-		<input id="password" type="password">
+		<input id="password" onkeypress="enterSubmit(event)" type="password">
 		<div class="break"></div>
 		<label>Enter your password again: </label>
-		<input id="passwordverify" type="password">
+		<input id="passwordverify" onkeypress="enterSubmit(event)" type="password">
 		<button onclick="Network.goToLogin()">Login</button>
 		<button onclick="registerRequest(this)">Submit</button>
 	</div>
