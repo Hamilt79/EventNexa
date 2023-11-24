@@ -1,5 +1,7 @@
 const { ObjectId } = require('mongodb');
+const { EventCap } = require('./EventCap');
 const { MongoConnection } = require('../mongodb/mongodb'); 
+const { Response } = require('./Response');
 
 class Event {
     /**
@@ -14,8 +16,9 @@ class Event {
      * @param {Number} creationTime millisecond representation of when event was created
      * @param {Address} address address of event
      * @param {*} joinedUsers usernames of those who have joined
+     * @param {*} waitlistedUsers usernames of those who are on the waitlist
      */
-    constructor(title, description, author, eventCap, eventDate, milliTime, creationTime, address, joinedUsers) {
+    constructor(title, description, author, eventCap, eventDate, milliTime, creationTime, address, joinedUsers, waitlistedUsers) {
         this.title = title;
         this.description = description;
         this.author = author;
@@ -25,6 +28,7 @@ class Event {
         this.creationTime = creationTime;
         this.address = address;
         this.joinedUsers = joinedUsers;
+        this.waitlistedUsers = waitlistedUsers;  
     }
 
     /**
@@ -88,6 +92,57 @@ class Event {
         }
     }
 
+    /**
+     * Adds a user to an event
+     * 
+     * @param {*} username username of user to join to event 
+     * @param {*} eventId event id of event to add user to
+     * @returns response to send to client
+     */
+    static async joinEvent(username, eventId) {
+        const eventExists = await Event.exists(eventId);
+        const isFull = await Event.isFull(eventId);
+        if (isFull) {
+            return Response.RESPONSE_E.EVENTFULL;
+        }
+        if (eventExists) {
+            let event = await Event.getEventById(eventId);
+            if (event.joinedUsers == null) {
+                event.joinedUsers = [ username ];
+            } else {
+                if (!event.joinedUsers.includes(username)) {
+                    event.joinedUsers.push(username);
+                }
+            }
+            await Event.updateJoined(eventId, event.joinedUsers);
+            await Event.updateCap(eventId, new EventCap(event.joinedUsers.length, event.eventCap.max));
+            return Response.RESPONSE_E.JOINEDEVENT;
+        } else {
+            return Response.RESPONSE_E.NOSUCHEVENT;
+        }
+    }
+
+    /**
+     * Removed a user from an event
+     * 
+     * @param {*} username username of person to remove 
+     * @param {*} eventId id of event to remove from
+     * @returns server response
+     */
+    static async leaveEvent(username, eventId) {
+        const event = await Event.getEventById(eventId);
+        const eventExists = await Event.exists(eventId);
+        if (!eventExists) {
+            return Response.RESPONSE_E.NOSUCHEVENT;
+        }
+        if (event.joinedUsers != null) {
+            const filteredEvents = event.joinedUsers.filter(x => { return (x != username) });
+            event.joinedUsers = filteredEvents;
+            await Event.updateJoined(eventId, event.joinedUsers);
+            await Event.updateCap(eventId, new EventCap(event.joinedUsers.length, event.eventCap.max));
+        }
+        return Response.RESPONSE_E.LEFTEVENT;
+    }
 }
 
 exports.Event = Event;

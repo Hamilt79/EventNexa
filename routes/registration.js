@@ -35,6 +35,11 @@ async function handleRegisterReq(req, res)
 			res.send(Network.createResponse(errorMessage));
 			return;
 		}
+		const goodUsername = validateUsername(username);
+		if (goodUsername != '') {
+			res.send(Network.createResponse(goodUsername));
+			return;
+		} 
 
 		let passwordHash = PasswordUtils.createPasswordHash(password);
 
@@ -64,6 +69,28 @@ async function createUser(userObject) {
 	} else {
 		await MongoConnection.mongoConnection.insertData(userObject, MongoConnection.COLLECTION_E.Users);
 		return true;
+	}
+}
+/**
+ * Function to validate some aspects of username
+ * 
+ * @param {*} username username to check
+ * @returns error message
+ */
+function validateUsername(username) {
+	try {
+		if (username == '') {
+			return 'Username Cannot Be Empty';
+		} else if (username == null) {
+			return 'Username Cannot Be Null';
+		} else if (username == 'undefined') {
+			return 'Username Cannot Be Undefined';
+		} else if (username.includes(' ')) {
+			return 'Username Cannot Have Space';
+		}
+		return '';
+	} catch(ex) {
+		return 'Bad Username';
 	}
 }
 

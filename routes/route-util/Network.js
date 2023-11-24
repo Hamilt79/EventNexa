@@ -2,7 +2,7 @@ class Network {
     /**
      * A method to create a response object
      * 
-     * @param {string} message an error message to send to the user
+     * @param {string} message a message to send to the user
      * @returns a response object containing the message
      */
     static createResponse(message) {
