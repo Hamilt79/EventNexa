@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const { MongoConnection } = require('./routes/mongodb/mongodb');
+const { EmailNotif } = require('./routes/route-util/EmailNotif');
 
 // Pages to display
 var indexRouter = require('./routes/index');
@@ -47,6 +48,9 @@ app.use('/event/waitlist/leave', leaveWaitlist);
 
 // Starting MongoDB connection
 MongoConnection.init();
+
+// Starting email notif event setup
+EmailNotif.setUpEvents();
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

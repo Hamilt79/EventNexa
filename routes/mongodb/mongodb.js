@@ -83,14 +83,23 @@ class MongoConnection {
    * Queries the collection and returns the results
    * 
    * @param {*} query query object
-   * @param {*} sort way to sort the objects
-   * @param {*} limit limit of return objects
+   * @param {*} sort way to sort the objects. Set sort -1 to not sort
+   * @param {*} limit limit of return objects. Set limit of -1 for not limit
    * @param {*} collection collection to query
    * @returns query result
    */
     async queryCollectionMulti(query, sort, limit, collection) {
 
-      const collectionData = this.#getCollection(collection);  
+      const collectionData = this.#getCollection(collection); 
+      if (limit == -1 && sort == -1) {
+        return await collectionData.find(query);
+      }
+      if (limit != -1 && sort == -1) {
+        return await collectionData.find(query).limit(limit);
+      } 
+      if (limit == -1 && sort != -1) {
+        return await collectionData.find(query).sort(sort);
+      }
       return await collectionData.find(query).sort(sort).limit(limit);
 
   }
