@@ -13,7 +13,7 @@ function leaveEvent(eventButton) {
 function getJoinedEvents() {
     let filter;
     if (EventCloner.lastCreationTime == null) {
-        filter = { joinedUsers: UserUtils.getUsername() };
+        filter = { $or: [ { joinedUsers: UserUtils.getUsername() }, { waitlistedUsers: UserUtils.getUsername() }] };
     } else {
         filter = {creationTime: { $lt: EventCloner.lastCreationTime } };
     }
