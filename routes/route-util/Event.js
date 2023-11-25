@@ -170,15 +170,16 @@ class Event {
         if (eventExists) {
             let event = await Event.getEventById(eventId);
             let seatsLeft = event.eventCap.max - event.eventCap.joined;
-
+            console.log(seatsLeft);
             if (event.waitlistedUsers != null) {
                 let filledSeats = 0;
                 for (let i = 0; i < event.waitlistedUsers.length && i < seatsLeft; i++) {
                     event.joinedUsers.push(event.waitlistedUsers[i]);
                     filledSeats++;
                     EmailNotif.scheduleEventNotifTimer(event, event.waitlistedUsers[i]);
+                    console.log(event.waitlistedUsers);
                 }
-                event.waitlistedUsers.splice(seatsLeft);
+                event.waitlistedUsers.splice(filledSeats);
             }
             event.eventCap.joined = event.joinedUsers.length;
             await Event.updateJoined(eventId, event.joinedUsers);
