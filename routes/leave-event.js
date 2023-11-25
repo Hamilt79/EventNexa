@@ -18,6 +18,7 @@ router.post('/', async function(req, res) {
         if (goodLogin) {
             const eventId = req.headers['_id'];
             const leaveEvent = await Event.leaveEvent(req.headers['username'], eventId);
+            await Event.reorganizeWaitlist(eventId);
             res.send(Network.createResponse(leaveEvent));
         } else {
             res.send(Network.createResponse(Response.RESPONSE_E.BADLOGIN));

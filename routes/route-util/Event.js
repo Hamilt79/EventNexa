@@ -137,6 +137,13 @@ class Event {
         }
     }
 
+    /**
+     * Adds a user to the waitlist
+     * 
+     * @param {*} username username of user to add
+     * @param {*} eventId event id of event to add to
+     * @returns 
+     */
     static async joinWaitlist(username, eventId) {
         const eventExists = await Event.exists(eventId);
         if (eventExists) {
@@ -158,6 +165,27 @@ class Event {
         }
     }    
 
+    static async reorganizeWaitlist(eventId) {
+        const eventExists = await Event.exists(eventId);
+        if (eventExists) {
+            let event = await Event.getEventById(eventId);
+            let seatsLeft = event.eventCap.max - event.eventCap.joined;
+
+            if (event.waitlistedUsers != null) {
+                let filledSeats = 0;
+                for (let i = 0; i < event.waitlistedUsers.length && i < seatsLeft; i++) {
+                    event.joinedUsers.push(event.waitlistedUsers[i]);
+                    filledSeats++;
+                    EmailNotif.scheduleEventNotifTimer(event, event.waitlistedUsers[i]);
+                }
+                event.waitlistedUsers.splice(seatsLeft);
+            }
+            event.eventCap.joined = event.joinedUsers.length;
+            await Event.updateJoined(eventId, event.joinedUsers);
+            await Event.updateWaitlist(eventId, event.waitlistedUsers);
+            await Event.updateCap(eventId, event.eventCap);
+        }
+    }
 
     /**
      * Removed a user from an event
