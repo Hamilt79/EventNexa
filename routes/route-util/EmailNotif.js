@@ -21,7 +21,7 @@ class EmailNotif {
      */
     static async setUpEvents() {
         EmailNotif.timeOffset = (60 * 1000) * EmailNotif.timeBeforeEvent;
-        const futureDate = new Date().getTime() + timeOffset;
+        const futureDate = new Date().getTime() + EmailNotif.timeOffset;
         const eventsForTheFuture = 
             await (await MongoConnection.get().queryCollectionMulti({ milliTime: { $gt: futureDate } },
                          -1, -1, MongoConnection.COLLECTION_E.Events)).toArray();
