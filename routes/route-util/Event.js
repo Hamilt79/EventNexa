@@ -3,6 +3,7 @@ const { EventCap } = require('./EventCap');
 const { MongoConnection } = require('../mongodb/mongodb'); 
 const { Response } = require('./Response');
 const { EmailNotif } = require('./EmailNotif');
+const { use } = require('../leave-event');
 
 class Event {
     /**
@@ -207,6 +208,7 @@ class Event {
             event.joinedUsers = filteredEvents;
             await Event.updateJoined(eventId, event.joinedUsers);
             await Event.updateCap(eventId, new EventCap(event.joinedUsers.length, event.eventCap.max));
+            EmailNotif.cancelEventNotifTimer(eventId, username);
             return Response.RESPONSE_E.LEFTEVENT;
         } 
         if (event.waitlistedUsers != null && event.waitlistedUsers.includes(username)) {

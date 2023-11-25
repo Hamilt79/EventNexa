@@ -1,4 +1,4 @@
-const { scheduleJob } = require('node-schedule');
+const { scheduleJob, scheduledJobs } = require('node-schedule');
 const { MongoConnection } = require('../mongodb/mongodb');
 const { createTransport } = require('nodemailer');
 const { User } = require('./User');
@@ -43,7 +43,7 @@ class EmailNotif {
 
     static async scheduleEventNotifTimer(event, username) {
         const emailNotifDate = new Date(event.milliTime - EmailNotif.timeOffset);
-        scheduleJob(emailNotifDate, async function() { 
+        scheduleJob(event._id + ' ' + username, emailNotifDate, async function() { 
             try{
                 if (!(await EmailNotif.isUserInEvent(event, username))) {
                     return;
@@ -59,6 +59,14 @@ class EmailNotif {
             }
         });        
    
+    }
+
+    static cancelEventNotifTimer(eventId, username) {
+        try {
+            scheduledJobs[eventId + ' ' + username].cancel();
+        } catch(ex) {
+            console.log(ex);
+        }
     }
 
     static async isUserInEvent(event, username) {
