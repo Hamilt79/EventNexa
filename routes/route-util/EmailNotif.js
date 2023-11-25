@@ -2,6 +2,7 @@ const { scheduleJob, scheduledJobs } = require('node-schedule');
 const { MongoConnection } = require('../mongodb/mongodb');
 const { createTransport } = require('nodemailer');
 const { User } = require('./User');
+const { ObjectId } = require('mongodb');
 
 class EmailNotif {
 
@@ -70,7 +71,8 @@ class EmailNotif {
     }
 
     static async isUserInEvent(event, username) {
-        const dbEvent = await MongoConnection.get().queryCollection({ _id: event._id }, MongoConnection.COLLECTION_E.Events);
+        const objId = new ObjectId(event._id);
+        const dbEvent = await MongoConnection.get().queryCollection({ _id: objId }, MongoConnection.COLLECTION_E.Events);
         if (dbEvent.joinedUsers.includes(username)) {
             return true;
         } else {
