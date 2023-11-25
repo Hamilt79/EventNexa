@@ -12,7 +12,7 @@
     overflow-y: scroll;
 }
 
-.popup h1, h2, p {
+.popup>h1, .popup>h2, .popup>p {
     color: white;
     text-align: center;
 }
