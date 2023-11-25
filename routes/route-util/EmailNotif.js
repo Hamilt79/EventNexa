@@ -45,7 +45,7 @@ class EmailNotif {
                 if (!EmailNotif.isUserInEvent(event, username)) {
                     return;
                 }
-                const receiver = User.getEmailFromUsername(username);
+                const receiver = await User.getEmailFromUsername(username);
                 const eventTitle = event.title;
                 //console.log('Its Time For ' + eventTitle + '!');
                 console.log(receiver);
