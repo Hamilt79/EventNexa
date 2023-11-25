@@ -25,6 +25,8 @@ router.post('/', async function(req, res) {
                         events[i].joined = false;
                     }
                     events[i].joinedUsers = null;
+                } else {
+                    events[i].joined = false;
                 }
                 if (events[i].waitlistedUsers != null) {
                     if (events[i].waitlistedUsers.includes(req.headers['username'])) {
@@ -33,6 +35,8 @@ router.post('/', async function(req, res) {
                         events[i].waitlisted = false;
                     }
                     events[i].waitlistedUsers = null;
+                } else {
+                    events[i].waitlisted = false;
                 }
             }
             res.send(events);
