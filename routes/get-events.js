@@ -26,6 +26,14 @@ router.post('/', async function(req, res) {
                     }
                     events[i].joinedUsers = null;
                 }
+                if (events[i].waitlistedUsers != null) {
+                    if (events[i].waitlistedUsers.includes(req.headers['username'])) {
+                        events[i].waitlisted = true;
+                    } else {
+                        events[i].waitlisted = false;
+                    }
+                    events[i].waitlistedUsers = null;
+                }
             }
             res.send(events);
         } else {
