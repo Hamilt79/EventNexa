@@ -3,7 +3,6 @@ const { EventCap } = require('./EventCap');
 const { MongoConnection } = require('../mongodb/mongodb'); 
 const { Response } = require('./Response');
 const { EmailNotif } = require('./EmailNotif');
-const { use } = require('../leave-event');
 
 class Event {
     /**
