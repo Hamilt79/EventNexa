@@ -20,7 +20,7 @@ class EmailNotif {
      * Sets up scheduled email notif events when server starts up
      */
     static async setUpEvents() {
-        timeOffset = (60 * 1000) * EmailNotif.timeBeforeEvent;
+        EmailNotif.timeOffset = (60 * 1000) * EmailNotif.timeBeforeEvent;
         const futureDate = new Date().getTime() + timeOffset;
         const eventsForTheFuture = 
             await (await MongoConnection.get().queryCollectionMulti({ milliTime: { $gt: futureDate } },
@@ -39,7 +39,7 @@ class EmailNotif {
     }
 
     static async scheduleEventNotifTimer(event, username) {
-        const emailNotifDate = new Date(event.milliTime - timeOffset);
+        const emailNotifDate = new Date(event.milliTime - EmailNotif.timeOffset);
         scheduleJob(emailNotifDate, function() { 
             try{
                 if (!EmailNotif.isUserInEvent(event, username)) {
