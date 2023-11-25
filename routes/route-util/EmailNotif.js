@@ -13,14 +13,13 @@ class EmailNotif {
 
     static emailAddress = 'EventNexaServer@gmail.com';
 
-    static emailPass = 'hfykdwvbylsqcihw';
-  
-    static timeOffset = (60 * 1000) * EmailNotif.timeBeforeEvent;
+    static emailPass = 'hfykdwvbylsqcihw'; 
 
     /**
      * Sets up scheduled email notif events when server starts up
      */
     static async setUpEvents() {
+        const timeOffset = (60 * 1000) * EmailNotif.timeBeforeEvent;
         const futureDate = new Date().getTime() + timeOffset;
         const eventsForTheFuture = 
             await (await MongoConnection.get().queryCollectionMulti({ milliTime: { $gt: futureDate } },
