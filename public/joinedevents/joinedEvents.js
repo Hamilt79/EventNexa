@@ -15,7 +15,18 @@ function getJoinedEvents() {
     if (EventCloner.lastCreationTime == null) {
         filter = { $or: [ { joinedUsers: UserUtils.getUsername() }, { waitlistedUsers: UserUtils.getUsername() }] };
     } else {
-        filter = {creationTime: { $lt: EventCloner.lastCreationTime } };
+        filter = {$and: 
+            [ 
+                {creationTime: 
+                    { $lt: EventCloner.lastCreationTime }
+                }, 
+                { $or: 
+                    [ 
+                        { joinedUsers: UserUtils.getUsername() }, 
+                        { waitlistedUsers: UserUtils.getUsername() }
+                    ] 
+                } 
+            ]};
     }
     const sort = { _id: -1 };
     Network.fetchEvents(filter, sort, function(data) { 
