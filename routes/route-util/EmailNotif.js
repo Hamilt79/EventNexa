@@ -1,6 +1,6 @@
 const { scheduleJob } = require('node-schedule');
 const { MongoConnection } = require('../mongodb/mongodb');
-const { Collection } = require('mongodb');
+const { createTransport } = require('nodemailer');
 
 class EmailNotif {
 
@@ -8,6 +8,10 @@ class EmailNotif {
      * Time Before an event that an email gets sent in minutes.
      */
     static timeBeforeEvent = 1;
+
+    static emailAddress = 'EventNexaServer@gmail.com';
+
+    static emailPass = 'hfykdwvbylsqcihw';
    
     /**
      * Sets up scheduled email notif events when server starts up
@@ -24,15 +28,42 @@ class EmailNotif {
                 const emailNotifDate = new Date(eventsForTheFuture[i].milliTime - timeToAdd);
                 scheduleJob(emailNotifDate, function() { 
                     const eventTitle = eventsForTheFuture[i].title;
-
+                    
                     console.log('Its Time For ' + eventTitle + '!');
                 });        
             } catch(ex) {
                 console.log(ex);
             }
         }
-        //const date = new Date(new Date().getTime() + timeToAdd);
-        //scheduleJob(date, function() { console.log('Hello Thereeeee! Event Fired!') });
+    }
+
+    /**
+     * Sends email from server email
+     * 
+     * @param {*} receiver email address to send to 
+     * @param {*} subject subject of email
+     * @param {*} body email body
+     */
+    static sendEmail(receiver, subject, body) {
+        const transport = createTransport( {
+            service: 'gmail',
+            auth: {
+                user: EmailNotif.emailAddress,
+                pass: EmailNotif.emailPass
+            }
+         } );
+
+         const mailObtions = {
+            from: EmailNotif.emailAddress,
+            to: receiver,
+            subject: subject,
+            text: body
+         };
+
+         transport.sendMail(mailObtions, function(error, info) {
+            console.log(error);
+            console.log(info);
+         });
     }
 
 }

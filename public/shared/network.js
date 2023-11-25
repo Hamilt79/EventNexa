@@ -1,6 +1,6 @@
 class Network {
-    static domainName = 'https://eventnexa.tech/';
-    //static domainName = 'http://127.0.0.1:3000/';
+    //static domainName = 'https://eventnexa.tech/';
+    static domainName = 'http://127.0.0.1:3000/';
     
 
     /**
