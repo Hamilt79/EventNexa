@@ -120,6 +120,7 @@ class Event {
         }
         if (eventExists) {
             let event = await Event.getEventById(eventId);
+            
             if (event.joinedUsers == null) {
                 event.joinedUsers = [ username ];
             } else {

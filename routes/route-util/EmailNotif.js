@@ -8,7 +8,7 @@ class EmailNotif {
     /**
      * Time Before an event that an email gets sent in minutes.
      */
-    static timeBeforeEvent = 1;
+    static timeBeforeEvent = 60;
 
     static emailAddress = 'EventNexaServer@gmail.com';
 
