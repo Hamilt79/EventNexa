@@ -2,7 +2,6 @@ const { scheduleJob } = require('node-schedule');
 const { MongoConnection } = require('../mongodb/mongodb');
 const { createTransport } = require('nodemailer');
 const { User } = require('./User');
-const { Event } = require('./Event');
 
 class EmailNotif {
 
@@ -41,18 +40,29 @@ class EmailNotif {
         const emailNotifDate = new Date(event.milliTime - timeOffset);
         scheduleJob(emailNotifDate, function() { 
             try{
-                if (!Event.isUserInEvent(event, username)) {
+                if (!EmailNotif.isUserInEvent(event, username)) {
                     return;
                 }
                 const receiver = User.getEmailFromUsername(username);
                 const eventTitle = event.title;
                 //console.log('Its Time For ' + eventTitle + '!');
+                console.log(receiver);
+                console.log(eventTitle);
                 EmailNotif.sendEmail(receiver, 'Event Starting Soon!', eventTitle + ' is starting soon!');
             } catch(ex) {
                 console.log(ex);
             }
         });        
    
+    }
+
+    static async isUserInEvent(event, username) {
+        const dbEvent = await MongoConnection.get().queryCollection({ _id: event._id }, MongoConnection.COLLECTION_E.Events);
+        if (dbEvent.joinedUsers.includes(username)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
