@@ -10,7 +10,8 @@ class Response {
         JOINEDEVENT: 'Joined Event',
         LEFTEVENT: 'Left Event',
         EVENTFULL: 'Event Is Full',
-        INVALIDEVENT: 'Invalid Event. Please Verify You Have Filled Out Every Field'
+        INVALIDEVENT: 'Invalid Event. Please Verify You Have Filled Out Every Field',
+        JOINEDWAITLIST: 'Joined Waitlist'
     };
 }
 

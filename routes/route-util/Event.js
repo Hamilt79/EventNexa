@@ -65,6 +65,17 @@ class Event {
         await MongoConnection.get().updateData({ '_id': objId }, { $set: { 'joinedUsers': joinedUsers }}, MongoConnection.COLLECTION_E.Events );
     }
 
+    /**
+     * Updates event's waitlisted users
+     * 
+     * @param {*} eventId event id of event to update 
+     * @param {*} waitlistedUsers new waitlistedUsers object
+     */
+    static async updateWaitlist(eventId, waitlistedUsers) {
+        const objId = new ObjectId(eventId);
+        await MongoConnection.get().updateData({ '_id': objId }, { $set: { 'waitlistedUsers': waitlistedUsers } }, MongoConnection.COLLECTION_E.Events);
+    }
+
 
     /**
      * Updates event cap
@@ -123,6 +134,25 @@ class Event {
             return Response.RESPONSE_E.NOSUCHEVENT;
         }
     }
+
+    static async joinWaitlist(username, eventId) {
+        const eventExists = await Event.exists(eventId);
+        if (eventExists) {
+            let event = await Event.getEventById(eventId);
+            if (event.waitlistedUsers == null) {
+                event.waitlistedUsers = [ username ];
+            } else {
+                if (!event.waitlistedUsers.includes(username)) {
+                    event.waitlistedUsers.push(username);
+                }
+            }
+            await Event.updateWaitlist(eventId, event.joinedUsers);
+            res.send(Network.createResponse(Response.RESPONSE_E.JOINEDEVENT));
+        } else {
+            res.send(Network.createResponse(Response.RESPONSE_E.NOSUCHEVENT));
+        }
+    }    
+
 
     /**
      * Removed a user from an event

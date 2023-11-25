@@ -24,6 +24,22 @@ class EventCloner {
         let joinButton = event.querySelector('#join-event');
         let waitlistButton = event.querySelector('#join-waitlist');
 
+        if (joinButton != null) {
+            if (newEvent.joined != null && newEvent.joined == true) {
+                joinButton.textContent = 'Leave Event';
+                joinButton.onclick = function() { leaveEvent(joinButton); };
+            }
+        }
+
+        if (waitlistButton != null && joinButton != null) {
+           if (newEvent.eventCap.joined >= newEvent.eventCap.max) {
+                waitlistButton.disabled = false;
+                joinButton.disabled = true;
+                joinButton.className = 'disabled';
+                waitlistButton.className = 'enabled';
+           } 
+        }
+
         if (lowOpacity) {
             event.style = 'opacity: 50%;';
             if (joinButton != null) {
@@ -35,13 +51,6 @@ class EventCloner {
                 waitlistButton.className = 'disabled';
             }
         } 
-
-        if (joinButton != null) {
-            if (newEvent.joined != null && newEvent.joined == true) {
-                joinButton.textContent = 'Leave Event';
-                joinButton.onclick = function() { leaveEvent(joinButton); };
-            }
-        }
 
         title.textContent = newEvent.title;
         description.textContent = newEvent.description;

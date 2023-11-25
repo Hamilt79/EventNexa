@@ -18,6 +18,7 @@ router.post('/', async function(req, res) {
         if (goodLogin) {
             const eventId = req.headers['_id'];
             const joinEvent = await Event.joinEvent(req.headers['username'], eventId);
+            
             res.send(Network.createResponse(joinEvent)); 
         } else {
             res.send(Network.createResponse(Response.RESPONSE_E.BADLOGIN));

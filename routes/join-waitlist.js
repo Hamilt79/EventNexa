@@ -17,27 +17,8 @@ router.post('/', async function(req, res) {
         const goodLogin = await LoginUtils.verifyLoginReq(req);
         if (goodLogin) {
             const eventId = req.headers['_id'];
-            const eventExists = await Event.exists(eventId);
-            const isFull = await Event.isFull(eventId);
-            if (isFull) {
-                res.send(Network.createResponse(Response.RESPONSE_E.EVENTFULL));
-                return;
-            }
-            if (eventExists) {
-                let event = await Event.getEventById(eventId);
-                if (event.joinedUsers == null) {
-                    event.joinedUsers = [ req.headers['username'] ];
-                } else {
-                    if (!event.joinedUsers.includes(req.headers['username'])) {
-                        event.joinedUsers.push(req.headers['username']);
-                    }
-                }
-                await Event.updateJoined(eventId, event.joinedUsers);
-                await Event.updateCap(eventId, new EventCap(event.joinedUsers.length, event.eventCap.max));
-                res.send(Network.createResponse(Response.RESPONSE_E.JOINEDEVENT));
-            } else {
-                res.send(Network.createResponse(Response.RESPONSE_E.NOSUCHEVENT));
-            }
+            await Event.joinWaitlist(req.headers['username'], eventId);
+            res.send(Network.createResponse(Response.RESPONSE_E.JOINEDWAITLIST));
         } else {
             res.send(Network.createResponse(Response.RESPONSE_E.BADLOGIN));
         }
