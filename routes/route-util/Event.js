@@ -179,7 +179,7 @@ class Event {
                     EmailNotif.scheduleEventNotifTimer(event, event.waitlistedUsers[i]);
                     console.log(event.waitlistedUsers);
                 }
-                event.waitlistedUsers.splice(filledSeats);
+                event.waitlistedUsers = event.waitlistedUsers.splice(filledSeats);
             }
             event.eventCap.joined = event.joinedUsers.length;
             await Event.updateJoined(eventId, event.joinedUsers);
