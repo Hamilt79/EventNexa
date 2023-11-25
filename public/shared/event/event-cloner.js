@@ -32,7 +32,7 @@ class EventCloner {
         }
 
         if (waitlistButton != null && joinButton != null) {
-           if (newEvent.eventCap.joined >= newEvent.eventCap.max) {
+           if (newEvent.eventCap.joined >= newEvent.eventCap.max && newEvent.joined == false) {
                 waitlistButton.disabled = false;
                 joinButton.disabled = true;
                 joinButton.className = 'disabled';
