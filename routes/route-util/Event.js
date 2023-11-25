@@ -2,6 +2,7 @@ const { ObjectId } = require('mongodb');
 const { EventCap } = require('./EventCap');
 const { MongoConnection } = require('../mongodb/mongodb'); 
 const { Response } = require('./Response');
+const { EmailNotif } = require('./EmailNotif');
 
 class Event {
     /**
@@ -116,6 +117,7 @@ class Event {
             }
             await Event.updateJoined(eventId, event.joinedUsers);
             await Event.updateCap(eventId, new EventCap(event.joinedUsers.length, event.eventCap.max));
+            EmailNotif.scheduleEventNotifTimer(event, username); 
             return Response.RESPONSE_E.JOINEDEVENT;
         } else {
             return Response.RESPONSE_E.NOSUCHEVENT;
@@ -142,6 +144,15 @@ class Event {
             await Event.updateCap(eventId, new EventCap(event.joinedUsers.length, event.eventCap.max));
         }
         return Response.RESPONSE_E.LEFTEVENT;
+    }
+
+    static async isUserInEvent(event, username) {
+        const dbEvent = await MongoConnection.get().queryCollection({ _id: event._id }, MongoConnection.COLLECTION_E.Events);
+        if (dbEvent.joinedUsers.includes(username)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 

@@ -34,6 +34,10 @@ class User {
     //     const dbUser = await MongoConnection.get().queryCollection({ 'username': username }, MongoConnection.COLLECTION_E.Users);
     //     return new User(dbUser.username, dbUser.email, dbUser.passwordHash, dbUser.joinedEvents);
     // }
- }
+    static async getEmailFromUsername(username) {
+        const user = await MongoConnection.get().queryCollection({ username: username }, MongoConnection.COLLECTION_E.Users);
+        return user.email;
+    }
+}
 
 exports.User = User;

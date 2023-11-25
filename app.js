@@ -52,8 +52,6 @@ MongoConnection.init();
 // Starting email notif event setup
 EmailNotif.setUpEvents();
 
-EmailNotif.sendEmail('thegreataustin5@gmail.com', 'Test', 'This is an email sent from eventnexa');
-
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
