@@ -42,7 +42,7 @@ class EmailNotif {
         const emailNotifDate = new Date(event.milliTime - EmailNotif.timeOffset);
         scheduleJob(emailNotifDate, async function() { 
             try{
-                if (!EmailNotif.isUserInEvent(event, username)) {
+                if (!(await EmailNotif.isUserInEvent(event, username))) {
                     return;
                 }
                 const receiver = await User.getEmailFromUsername(username);
