@@ -11,7 +11,8 @@ class Response {
         LEFTEVENT: 'Left Event',
         EVENTFULL: 'Event Is Full',
         INVALIDEVENT: 'Invalid Event. Please Verify You Have Filled Out Every Field',
-        JOINEDWAITLIST: 'Joined Waitlist'
+        JOINEDWAITLIST: 'Joined Waitlist',
+        LEFTWAITLIST: 'Left Waitlist'
     };
 }
 

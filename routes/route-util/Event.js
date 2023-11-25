@@ -115,7 +115,8 @@ class Event {
         const eventExists = await Event.exists(eventId);
         const isFull = await Event.isFull(eventId);
         if (isFull) {
-            return Response.RESPONSE_E.EVENTFULL;
+            //return Response.RESPONSE_E.EVENTFULL;
+            return Event.joinWaitlist(username, eventId);
         }
         if (eventExists) {
             let event = await Event.getEventById(eventId);
@@ -146,8 +147,8 @@ class Event {
                     event.waitlistedUsers.push(username);
                 }
             }
-            await Event.updateWaitlist(eventId, event.joinedUsers);
-            res.send(Network.createResponse(Response.RESPONSE_E.JOINEDEVENT));
+            await Event.updateWaitlist(eventId, event.waitlistedUsers);
+            res.send(Network.createResponse(Response.RESPONSE_E.JOINEDWAITLIST));
         } else {
             res.send(Network.createResponse(Response.RESPONSE_E.NOSUCHEVENT));
         }
@@ -167,11 +168,19 @@ class Event {
         if (!eventExists) {
             return Response.RESPONSE_E.NOSUCHEVENT;
         }
-        if (event.joinedUsers != null) {
+        
+        if (event.joinedUsers != null && event.joinedUsers.includes(username)) {
             const filteredEvents = event.joinedUsers.filter(x => { return (x != username) });
             event.joinedUsers = filteredEvents;
             await Event.updateJoined(eventId, event.joinedUsers);
             await Event.updateCap(eventId, new EventCap(event.joinedUsers.length, event.eventCap.max));
+            return Response.RESPONSE_E.LEFTEVENT;
+        } 
+        if (event.waitlistedUsers != null && event.waitlistedUsers.includes(username)) {
+            const filteredEvents = event.waitlistedUsers.filter(x => { return (x != username) });
+            event.waitlistedUsers = filteredEvents;
+            await Event.updateWaitlist(eventId, event.waitlistedUsers);
+            return Response.RESPONSE_E.LEFTWAITLIST;
         }
         return Response.RESPONSE_E.LEFTEVENT;
     }

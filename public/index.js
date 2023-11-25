@@ -1,3 +1,5 @@
+const { Network } = require("../routes/route-util/Network");
+
 function makeHomeEvents() {
     let filter;
     if (EventCloner.lastCreationTime == null) {
@@ -22,13 +24,7 @@ function joinEvent(eventButton) {
     const event = eventButton.parentElement.parentElement;
     const id = event.querySelector('#event-id').textContent;
     Network.joinEvent(id, function(data) { 
-        alert(Network.getResponse(data));
-        if (Network.getResponse(data) == NexaResponse.RESPONSE_E.JOINEDEVENT) {
-            eventButton.textContent = 'Leave Event'; 
-            eventButton.onclick = function() { 
-                leaveEvent(eventButton); 
-            }
-        }
+        joinLeaveResponse(data, eventButton);
     });
 }
 
@@ -36,13 +32,7 @@ function leaveEvent(eventButton) {
     const event = eventButton.parentElement.parentElement;
     const id = event.querySelector('#event-id').textContent;
     Network.leaveEvent(id, function(data) { 
-        alert(Network.getResponse(data));
-        if (Network.getResponse(data) == NexaResponse.RESPONSE_E.LEFTEVENT) {
-            eventButton.textContent = 'Join Event'; 
-            eventButton.onclick = function() { 
-                joinEvent(eventButton); 
-            }
-        }
+        joinLeaveResponse(data, eventButton);
     });
 }
 
@@ -55,6 +45,34 @@ function addScrollEvent() {
             makeHomeEvents();
         }
     });
+}
+
+function joinLeaveResponse(data, eventButton) {
+    const response = Network.getResponse(data);
+    alert(response);
+
+    if (response == NexaResponse.RESPONSE_E.JOINEDEVENT) {
+        eventButton.textContent = 'Leave Event'; 
+        eventButton.onclick = function() { 
+            leaveEvent(eventButton); 
+        }
+    } else if (response == NexaResponse.RESPONSE_E.JOINEDWAITLIST) {
+        eventButton.textContent = 'Leave Waitlist';
+        eventButton.onclick = function() {
+            leaveEvent(eventButton);
+        }
+    } else if (response == NexaResponse.RESPONSE_E.LEFTEVENT) {
+        eventButton.textContent = 'Join Event';
+        eventButton.onclick = function() {
+            joinEvent(eventButton);
+        }
+    } else if (response == NexaResponse.RESPONSE_E.LEFTWAITLIST) {
+        eventButton.textContent = 'Join Event';
+        eventButton.onclick = function() {
+            joinEvent(eventButton);
+        }
+    }
+
 }
 
 window.addEventListener('load', function() { 

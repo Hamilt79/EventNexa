@@ -22,22 +22,20 @@ class EventCloner {
         let id = event.querySelector('#event-id');
 
         let joinButton = event.querySelector('#join-event');
-        let waitlistButton = event.querySelector('#join-waitlist');
 
-        if (joinButton != null) {
-            if (newEvent.joined != null && newEvent.joined == true) {
+        if (joinButton != null && newEvent.joined != null && newEvent.waitListed != null) {
+            if (newEvent.joined == true) {
                 joinButton.textContent = 'Leave Event';
                 joinButton.onclick = function() { leaveEvent(joinButton); };
             }
-        }
-
-        if (waitlistButton != null && joinButton != null) {
-           if (newEvent.eventCap.joined >= newEvent.eventCap.max && newEvent.joined == false) {
-                waitlistButton.disabled = false;
-                joinButton.disabled = true;
-                joinButton.className = 'disabled';
-                waitlistButton.className = 'enabled';
-           } 
+            if (newEvent.waitListed == true) {
+                joinButton.textContent = 'Leave Waitlist';
+                joinButton.onclick = function() { leaveEvent(joinButton) };
+            }
+            if (newEvent.eventCap.joined >= newEvent.eventCap.max && newEvent.joined == false && newEvent.waitListed == false) {
+                joinButton.textContent = 'Join Event';
+                joinButton.onclick = function() { joinEvent(joinButton) };
+            } 
         }
 
         if (lowOpacity) {
@@ -45,10 +43,6 @@ class EventCloner {
             if (joinButton != null) {
                 joinButton.disabled = true;
                 joinButton.className = 'disabled';
-            }
-            if (waitlistButton != null) {
-                waitlistButton.disabled = true;
-                waitlistButton.className = 'disabled';
             }
         } 
 

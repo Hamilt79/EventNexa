@@ -29,6 +29,9 @@ class EmailNotif {
         for (let i = 0; i < eventsForTheFuture.length; i++) {
             try {
                 const users = eventsForTheFuture[i].joinedUsers;
+                if (users == null) {
+                    continue;
+                } 
                 for (let k = 0; k < users.length; k++) {
                     EmailNotif.scheduleEventNotifTimer(eventsForTheFuture[i], users[k]);
                 }
