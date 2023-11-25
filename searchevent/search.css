@@ -1,0 +1,46 @@
+.center-registration {
+    background-color: #2f2f2f;
+    position: absolute;
+    width: 400px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 100px auto;
+    flex-wrap: wrap;
+    left: 0;
+    right: 0;
+    transform: translate(0, 0);
+    padding: 20px;
+    box-sizing: border-box;
+    flex-direction: column;
+}
+
+.center-registration label,
+.center-registration input {
+    margin-bottom: 10px;
+    width: 80%;
+}
+
+.center-registration button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+/* Style for search results container (you can modify as needed) */
+#searchResults {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #ddd;
+    width: 80%;
+    border-radius: 5px;
+}
+
