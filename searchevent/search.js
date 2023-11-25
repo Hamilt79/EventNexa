@@ -19,6 +19,7 @@ function displaySearchResults(location) {
 
     // Simulated search results (replace with actual data)
     const events = [
+        'Found events are: ',
         'Event 1 in ' + location,
         'Event 2 in ' + location,
         'Event 3 in ' + location,

@@ -1,3 +1,8 @@
+body {
+    background-color: #2f2f2f; /* Set the background color of the webpage */
+    color: white; /* Set text color to white */
+}
+
 .center-registration {
     background-color: #2f2f2f;
     position: absolute;
@@ -20,12 +25,13 @@
 .center-registration input {
     margin-bottom: 10px;
     width: 80%;
+    color: white; /* Set text color to white */
 }
 
 .center-registration button {
     background-color: #4CAF50;
     color: white;
-    border: none;
+    border: 1px solid black; /* Add a black border */
     padding: 10px 15px;
     text-align: center;
     text-decoration: none;
@@ -42,5 +48,7 @@
     background-color: #ddd;
     width: 80%;
     border-radius: 5px;
+    color: black; /* Adjust text color inside search results */
 }
+
 
