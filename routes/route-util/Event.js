@@ -116,7 +116,7 @@ class Event {
         const isFull = await Event.isFull(eventId);
         if (isFull) {
             //return Response.RESPONSE_E.EVENTFULL;
-            return Event.joinWaitlist(username, eventId);
+            return await Event.joinWaitlist(username, eventId);
         }
         if (eventExists) {
             let event = await Event.getEventById(eventId);
@@ -140,6 +140,9 @@ class Event {
         const eventExists = await Event.exists(eventId);
         if (eventExists) {
             let event = await Event.getEventById(eventId);
+            if (event.joinedUsers != null && event.joinedUsers.includes(username)) {
+                return Response.RESPONSE_E.ALREADYJOINED; 
+            }
             if (event.waitlistedUsers == null) {
                 event.waitlistedUsers = [ username ];
             } else {
@@ -148,9 +151,9 @@ class Event {
                 }
             }
             await Event.updateWaitlist(eventId, event.waitlistedUsers);
-            res.send(Network.createResponse(Response.RESPONSE_E.JOINEDWAITLIST));
+            return Response.RESPONSE_E.JOINEDWAITLIST;
         } else {
-            res.send(Network.createResponse(Response.RESPONSE_E.NOSUCHEVENT));
+            return Response.RESPONSE_E.NOSUCHEVENT;
         }
     }    
 

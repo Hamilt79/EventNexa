@@ -12,7 +12,8 @@ class Response {
         EVENTFULL: 'Event Is Full',
         INVALIDEVENT: 'Invalid Event. Please Verify You Have Filled Out Every Field',
         JOINEDWAITLIST: 'Joined Waitlist',
-        LEFTWAITLIST: 'Left Waitlist'
+        LEFTWAITLIST: 'Left Waitlist',
+        ALREADYJOINED: 'Already Joined Event'
     };
 }
 
