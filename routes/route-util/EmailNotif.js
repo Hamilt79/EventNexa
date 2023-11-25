@@ -46,6 +46,7 @@ class EmailNotif {
         const emailNotifDate = new Date(event.milliTime - EmailNotif.timeOffset);
         scheduleJob(event._id + ' ' + username, emailNotifDate, async function() { 
             try{
+                console.log(await EmailNotif.isUserInEvent(event, username));
                 if (!(await EmailNotif.isUserInEvent(event, username))) {
                     return;
                 }
