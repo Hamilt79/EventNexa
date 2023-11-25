@@ -23,16 +23,16 @@ class EventCloner {
 
         let joinButton = event.querySelector('#join-event');
 
-        if (joinButton != null && newEvent.joined != null && newEvent.waitListed != null) {
+        if (joinButton != null && newEvent.joined != null && newEvent.waitlisted != null) {
             if (newEvent.joined == true) {
                 joinButton.textContent = 'Leave Event';
                 joinButton.onclick = function() { leaveEvent(joinButton); };
             }
-            if (newEvent.waitListed == true) {
+            if (newEvent.waitlisted == true) {
                 joinButton.textContent = 'Leave Waitlist';
                 joinButton.onclick = function() { leaveEvent(joinButton) };
             }
-            if (newEvent.eventCap.joined >= newEvent.eventCap.max && newEvent.joined == false && newEvent.waitListed == false) {
+            if (newEvent.eventCap.joined >= newEvent.eventCap.max && newEvent.joined == false && newEvent.waitlisted == false) {
                 joinButton.textContent = 'Join Event';
                 joinButton.onclick = function() { joinEvent(joinButton) };
             } 
