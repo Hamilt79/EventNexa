@@ -1,4 +1,3 @@
-const { Network } = require("../routes/route-util/Network");
 
 function makeHomeEvents() {
     let filter;
