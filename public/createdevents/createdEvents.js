@@ -62,8 +62,9 @@ function showAnalytics(button) {
 
     Network.fetchEvents(filter, {  }, function(data) { 
         const event = data[0];
+        joined.textContent = '';
+        waitlisted.textContent = '';
         if (event.joinedUsers != null) {
-            joined.textContent = '';
             for (let i = 0; i < event.joinedUsers.length; i++) {
                 if (i == event.joinedUsers.length - 1) {
                     joined.textContent += event.joinedUsers[i];
@@ -73,7 +74,6 @@ function showAnalytics(button) {
             }
         }
         if (event.waitlistedUsers != null) {
-            waitlisted.textContent = '';
             for (let i = 0; i < event.waitlistedUsers.length; i++) {
                 if (i == event.waitlistedUsers.length - 1) {
                     waitlisted.textContent += event.waitlistedUsers[i];
