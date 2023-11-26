@@ -8,7 +8,8 @@ function registerRequest() {
 	const passwordVerify = document.getElementById('passwordverify').value;
 
 	if (password !== passwordVerify) {
-		displayMessage("red", "Passwords do not match.");
+		alert('Passwords do not match.');
+		//displayMessage("red", "Passwords do not match.");
 		return;
 	}
 
