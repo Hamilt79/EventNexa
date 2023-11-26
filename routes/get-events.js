@@ -4,6 +4,7 @@ const { MongoConnection } = require('./mongodb/mongodb');
 const { Network } = require('./route-util/Network');
 const { LoginUtils } = require('./route-util/LoginUtils');
 const { Response } = require('./route-util/Response');
+const { ObjectId } = require('mongodb');
 
 const eventLimit = 10;
 
@@ -15,6 +16,9 @@ router.post('/', async function(req, res) {
         const verifyLogin = await LoginUtils.verifyLoginReq(req);
         if (verifyLogin) {
             const filter = JSON.parse(req.headers['filter']);
+            if(filter._id != null && filter._id != undefined) {
+                filter._id = new ObjectId(filter._id);
+            }
             const sort = JSON.parse(req.headers['sort']);
             const events = await (await MongoConnection.get().queryCollectionMulti(filter, sort, eventLimit, MongoConnection.COLLECTION_E.Events)).toArray();
             for (let i = 0; i < events.length; i++) {
