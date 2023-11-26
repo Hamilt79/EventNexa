@@ -60,7 +60,37 @@ function showAnalytics(button) {
     let id = button.parentElement.parentElement.querySelector("#event-id").textContent;
     const filter = { _id: id };
 
-    Network.fetchEvents(filter, {  }, function(data) { console.log(); });
+    Network.fetchEvents(filter, {  }, function(data) { 
+        const event = data[0];
+        if (event.joinedUsers != null) {
+            for (let i = 0; i < event.joinedUsers.length; i++) {
+                if (i == event.joinedUsers.length - 1) {
+                    joined.textContent += event.joinedUsers[i];
+                } else {
+                    joined.textContent += event.joinedUsers[i] + ', ';
+                }
+            }
+        }
+        if (event.waitlistedUsers != null) {
+            for (let i = 0; i < event.waitlistedUsers.length; i++) {
+                if (i == event.waitlistedUsers.length - 1) {
+                    waitlisted.textContent += event.waitlistedUsers[i];
+                } else {
+                    waitlisted.textContent += event.waitlistedUsers[i] + ', ';
+                }
+            }
+        }
+        toggleAnalytics(true);
+    });
+}
+
+function toggleAnalytics(toggle) {
+    let analytics = document.getElementById('analytics');
+    if (toggle) {
+        analytics.style = '';
+    } else {
+        analytics.style = 'display: none';
+    }
 }
 
 window.addEventListener('load', function() { 
