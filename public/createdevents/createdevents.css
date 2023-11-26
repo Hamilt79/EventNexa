@@ -4,15 +4,31 @@
     margin: 0 0 0 0;
     left: 50%;
     transform: translate(-50%, 0);
-    width: 50%;
+    width: 30%;
     height: auto;
     padding: 0;
     z-index: 3;
-    border-radius: 5px;
-    overflow-y: scroll;
+    border-radius: 20px;
+    border-style: solid;
+    border-color: #6f0080;
+    overflow-y: auto;
 }
 
-.popup>h1, .popup>h2, .popup>p {
+.popup>h1 {
+    color: white;
+    text-align: center;
+    text-decoration: underline;
+    padding: 0;
+    margin: 0;
+}
+
+.popup>h2 {
+    color: white;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.popup>p {
     color: white;
     text-align: center;
 }
