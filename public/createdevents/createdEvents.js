@@ -54,6 +54,15 @@ function addScrollEvent(callback) {
     });
 }
 
+function showAnalytics(button) {
+    let joined = document.getElementById('analytics-joined');
+    let waitlisted = document.getElementById('analytics-waitlisted');
+    let id = button.parentElement.parentElement.querySelector("#event-id").textContent;
+    const filter = { _id: id };
+
+    Network.fetchEvents(filter, {  }, function(data) { console.log(); });
+}
+
 window.addEventListener('load', function() { 
     getCreatedEvents();
     addScrollEvent(getCreatedEvents);
