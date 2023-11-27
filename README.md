@@ -31,7 +31,7 @@ This project is our final project for CSE 201 at Miami University.
 
 Any version mismatch from the ones described are not guaranteed to be supported.
 
-NodeJS (Version 12.22.9)
+NodeJS (Version 20.10.0)
 MongoDB (Version 7.0)
 Ubuntu (Version 22.04)
 npm (10.1.0)
@@ -41,10 +41,29 @@ npm (10.1.0)
 ### Installation
 
 1. Install git if it's not already installed. This command is `sudo apt install git`
+   
      ![image](https://github.com/Hamilt79/EventNexa/assets/145792745/4a89561c-bf0f-4e24-933e-bdfde0f78e96)
-3. Use git to clone this repo. This command is `git clone https://github.com/Hamilt79/EventNexa.git`
+2. Use git to clone this repo. This command is `git clone https://github.com/Hamilt79/EventNexa.git`
+   
      ![image](https://github.com/Hamilt79/EventNexa/assets/145792745/5881c377-ad1c-47e4-98cb-d5e200636d87)
-5. 
+3. CD into the EventNexa directory. This command is `cd EventNexa`
+
+4. Install nvm. The command for this is `wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash`. Afterwards restart your terminal.
+
+    ![image](https://github.com/Hamilt79/EventNexa/assets/145792745/05f4bcf9-1f3f-4793-b31a-9afc00ba84a9)
+5. Install npm. The command for this is `sudo apt install npm`
+
+   ![image](https://github.com/Hamilt79/EventNexa/assets/145792745/96a314f2-96ef-455a-9f8e-6d5fb2868287)
+6. Install Nodejs. The command for this is `nvm install 20`
+
+   ![image](https://github.com/Hamilt79/EventNexa/assets/145792745/53923a24-4a4b-4cef-b7c6-fbf4207dc2ad)
+7. Update npm. The command for this is `npm install npm@10.1.0`
+
+   ![image](https://github.com/Hamilt79/EventNexa/assets/145792745/b8568826-b322-4bf0-96b6-9b2163a69351)
+   
+
+
+
 
 
 1. Clone the repository: `git clone https://github.com/Hamilt79/EventNexa.git`
