@@ -1,6 +1,6 @@
 # EventNexa
 
-EventNexa is website running NodeJs on the backend that allows users to create, modify, join, and be alerted to events in their area.
+EventNexa is website running NodeJs on the backend that allows users to create, join, and be alerted to events in their area.
 
 ## Table of Contents
 
@@ -17,19 +17,24 @@ EventNexa is website running NodeJs on the backend that allows users to create, 
 This project is our final project for CSE 201 at Miami University. 
 
 ## Features
-- Feature 1
-- Feature 2
-- Feature 3
+- User Posting
+- User Joining
+- Event Searching
+- Location Filtering
+- Waitlist
+- Event Attendee Cap
+- Email notification
+- Time Based Events 
+- Event Analytics
 
 ## Prerequisites
 
 Any version mismatch from the ones described are not guaranteed to be supported.
 
-NodeJS (Version v20.9.0)
+NodeJS (Version 12.22.9)
 MongoDB (Version 7.0)
-Ubuntu-Based system
+Ubuntu (Version 22.04)
 npm (10.1.0)
-mongod (v7.0.2) Installed from npm
 
 ## Getting Started
 
