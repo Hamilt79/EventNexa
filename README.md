@@ -40,6 +40,13 @@ npm (10.1.0)
 
 ### Installation
 
+1. Install git if it's not already installed. This command is `sudo apt install git`
+    ![image](https://github.com/Hamilt79/EventNexa/assets/145792745/4a89561c-bf0f-4e24-933e-bdfde0f78e96)
+2. Use git to clone this repo. This command is `git clone https://github.com/Hamilt79/EventNexa.git`
+    ![image](https://github.com/Hamilt79/EventNexa/assets/145792745/5881c377-ad1c-47e4-98cb-d5e200636d87)
+3. 
+
+
 1. Clone the repository: `git clone https://github.com/Hamilt79/EventNexa.git`
 2. Ensure you have the mongodb installed and configured 'https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/#std-label-install-mdb-community-ubuntu'
 3. Ensure you have installed Nodejs (v20.9.0) as well as npm (v10.1.0)
