@@ -40,7 +40,7 @@ npm (10.1.0)
 
 ### Installation
 
-1. Clone the repository: `git clone https://github.com/Hamilt79/ServerTest.git`
+1. Clone the repository: `git clone https://github.com/Hamilt79/EventNexa.git`
 2. Ensure you have the mongodb installed and configured 'https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/#std-label-install-mdb-community-ubuntu'
 3. Ensure you have installed Nodejs (v20.9.0) as well as npm (v10.1.0)
 4. Navigate to the project directory: `cd EventNexa`
