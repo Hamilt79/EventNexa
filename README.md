@@ -60,8 +60,8 @@ npm (10.1.0)
 7. Update npm. The command for this is `npm install npm@10.1.0`
 
    ![image](https://github.com/Hamilt79/EventNexa/assets/145792745/b8568826-b322-4bf0-96b6-9b2163a69351)
-   
-
+8. Install MongoDB 7.0 Community Edition. The instructions for this can be found at `https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/#std-label-install-mdb-community-ubuntu`
+9. 
 
 
 
