@@ -64,16 +64,6 @@ npm (10.1.0)
 
    ![image](https://github.com/Hamilt79/EventNexa/assets/145792745/b8568826-b322-4bf0-96b6-9b2163a69351)
 8. Install MongoDB 7.0 Community Edition. The instructions for this can be found at `https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/#std-label-install-mdb-community-ubuntu`
-9. 
-
-
-
-
-1. Clone the repository: `git clone https://github.com/Hamilt79/EventNexa.git`
-2. Ensure you have the mongodb installed and configured 'https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/#std-label-install-mdb-community-ubuntu'
-3. Ensure you have installed Nodejs (v20.9.0) as well as npm (v10.1.0)
-4. Navigate to the project directory: `cd EventNexa`
-5. Use npm to install mongod (v2.0.0) through npm install mongod
 
 ### Configuration
 
@@ -81,7 +71,20 @@ npm (10.1.0)
     This must be done due to many machines not being easily able to run NodeJs on those ports, and instead running on port 3000 by default.
     This redirection can either be done manually or by running the setiptables.sh script each restart. 
     This will allow http and https traffic to be accepted by the server. Otherwise the user will have to specify they wish to access port 3000 (ex. eventnexa.tech:3000/index.html)
+   
+    ![image](https://github.com/Hamilt79/EventNexa/assets/145792745/85f8cd0c-97c4-46d2-8c14-09bad7799b7f)
+
 2. Change the domainName static variable in public/shared/network.js to match your own domain name. (if testing you can set it to localhost or your ip address)
+
+    ![image](https://github.com/Hamilt79/EventNexa/assets/145792745/2fd6ac42-8f6c-4243-8a72-9076e8c4100b)
+3. Start the Mongod service. You can do this manually `sudo systemctl start mognod` or with the provided script by running `./startmongodb`
+
+    ![image](https://github.com/Hamilt79/EventNexa/assets/145792745/a0d841dd-3cd4-4bc3-8a7c-efe76a5e4ecb)
+4. Fill in the email and password of the email account you wish to use to email notify users. This field can be found in routes/route-util/EmailNotif.js
+
+   ![image](https://github.com/Hamilt79/EventNexa/assets/145792745/2e4c8531-1477-4344-9b27-8cc83bb2a0ca)
+5. Navigate to the base EventNexa folder and run `npm start` to start the server.
+
 
 ### Usage
 
