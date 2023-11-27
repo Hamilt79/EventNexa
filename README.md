@@ -32,8 +32,11 @@ This project is our final project for CSE 201 at Miami University.
 Any version mismatch from the ones described are not guaranteed to be supported.
 
 NodeJS (Version 20.10.0)
+
 MongoDB (Version 7.0)
-Ubuntu (Version 22.04)
+
+Ubuntu (Version 22.04) Note: Running this in a virtual machine does *not* seem to work correctly. I could not get the correct version of MongoDB to install due to some weird architecture incompatibility. There were some solutions I found but none of them worked with my setup, since it required disabling certain things such as Hyper-V. 
+
 npm (10.1.0)
 
 ## Getting Started
