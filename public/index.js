@@ -1,4 +1,43 @@
+class CheckBoxes {
+    static TYPE_E = {
+        City: 'city',
+        Description: 'description',
+        Zip: 'zip',
+        Street: 'street',
+        State: 'state',
+        Title: 'title'
+    }
 
+    static currentChecked = 'description';
+
+    static check(checkbox) {
+        CheckBoxes.currentChecked = checkbox.id;
+        document.getElementById(CheckBoxes.TYPE_E.City).checked = false;
+        document.getElementById(CheckBoxes.TYPE_E.Description).checked = false;
+        document.getElementById(CheckBoxes.TYPE_E.Zip).checked = false;
+        document.getElementById(CheckBoxes.TYPE_E.Street).checked = false;
+        document.getElementById(CheckBoxes.TYPE_E.State).checked = false;
+        document.getElementById(CheckBoxes.TYPE_E.Title).checked = false;
+
+        checkbox.checked = true;
+    }
+
+    static getChecked() {
+        return CheckBoxes.currentChecked;
+    }
+}
+
+function search()  {
+
+}
+
+function onClickCheckbox() {
+
+}
+
+/**
+ * Method to start the creation of all the home events
+ */
 function makeHomeEvents() {
     let filter;
     if (EventCloner.lastCreationTime == null) {
@@ -19,6 +58,11 @@ function makeHomeEvents() {
     });
 }
 
+/**
+ * Method to join an event
+ * 
+ * @param {*} eventButton button that executed join-event
+ */
 function joinEvent(eventButton) {
     const event = eventButton.parentElement.parentElement;
     const id = event.querySelector('#event-id').textContent;
@@ -27,6 +71,11 @@ function joinEvent(eventButton) {
     });
 }
 
+/**
+ * Method call to leave event
+ * 
+ * @param {*} eventButton button that user clicked
+ */
 function leaveEvent(eventButton) {
     const event = eventButton.parentElement.parentElement;
     const id = event.querySelector('#event-id').textContent;
@@ -46,6 +95,12 @@ function addScrollEvent() {
     });
 }
 
+/**
+ * Displays a response depending on server response
+ * 
+ * @param {*} data 
+ * @param {*} eventButton 
+ */
 function joinLeaveResponse(data, eventButton) {
     const response = Network.getResponse(data);
     alert(response);
