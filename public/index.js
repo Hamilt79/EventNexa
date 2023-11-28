@@ -9,6 +9,7 @@ class CheckBoxes {
     }
 
     static currentChecked = 'description';
+    static currentSearched = 'description';
 
     static check(checkbox) {
         CheckBoxes.currentChecked = checkbox.id;
@@ -18,20 +19,79 @@ class CheckBoxes {
         document.getElementById(CheckBoxes.TYPE_E.Street).checked = false;
         document.getElementById(CheckBoxes.TYPE_E.State).checked = false;
         document.getElementById(CheckBoxes.TYPE_E.Title).checked = false;
-
+        
         checkbox.checked = true;
     }
+
+    static searching = false;
 
     static getChecked() {
         return CheckBoxes.currentChecked;
     }
 }
 
-function search()  {
+function continuedSearch() {
+    let filter = { milliTime: { $gt: (new Date().getTime()) }, creationTime: { $lt: EventCloner.lastCreationTime } };
 
+    let searchStr = document.getElementById('search-str').value;
+    if (CheckBoxes.currentSearched == CheckBoxes.TYPE_E.City) {
+        filter = { milliTime: { $gt: (new Date().getTime())}, "address.city": { "$regex": searchStr, "$options": "i" }, creationTime: { $lt: EventCloner.lastCreationTime }};
+    } else if (CheckBoxes.currentSearched == CheckBoxes.TYPE_E.Description) {
+        filter = { milliTime: { $gt: (new Date().getTime())}, "description": { "$regex": searchStr, "$options": "i" }, creationTime: { $lt: EventCloner.lastCreationTime }};
+    } else if (CheckBoxes.currentSearched == CheckBoxes.TYPE_E.Zip) {
+        filter = { milliTime: { $gt: (new Date().getTime())}, "address.zip": { "$regex": searchStr, "$options": "i" }, creationTime: { $lt: EventCloner.lastCreationTime }};
+    } else if (CheckBoxes.currentSearched == CheckBoxes.TYPE_E.Street) {
+        filter = { milliTime: { $gt: (new Date().getTime())}, "address.streetAddress": { "$regex": searchStr, "$options": "i" }, creationTime: { $lt: EventCloner.lastCreationTime }};
+    } else if (CheckBoxes.currentSearched == CheckBoxes.TYPE_E.State) {
+        filter = { milliTime: { $gt: (new Date().getTime())}, "address.state": { "$regex": searchStr, "$options": "i" }, creationTime: { $lt: EventCloner.lastCreationTime }};
+    } else if (CheckBoxes.currentSearched == CheckBoxes.TYPE_E.Title) {
+        filter = { milliTime: { $gt: (new Date().getTime())}, "title": { "$regex": searchStr, "$options": "i" }, creationTime: { $lt: EventCloner.lastCreationTime }};
+    }
+
+    const sort = { _id: -1 };
+    Network.fetchEvents(filter, sort, function(data) { 
+        if (Network.getResponse(data) == NexaResponse.RESPONSE_E.BADLOGIN) {
+            Network.goToLogin();
+        }
+        for(let i = 0; i < data.length; i++) {
+            EventCloner.makeEvent(data[i]);
+            EventCloner.lastCreationTime = data[i].creationTime;
+            //console.log(EventCloner.lastCreationTime);
+        }
+    });
 }
 
-function onClickCheckbox() {
+function search()  {
+    let filter = null;
+    CheckBoxes.searching = true;
+    EventCloner.lastCreationTime == null;
+    CheckBoxes.currentSearched = CheckBoxes.getChecked();
+    EventCloner.deleteEvents();
+    let searchStr = document.getElementById('search-str').value;
+    if (CheckBoxes.getChecked() == CheckBoxes.TYPE_E.City) {
+        filter = { milliTime: { $gt: (new Date().getTime())}, "address.city": { "$regex": searchStr, "$options": "i" }};
+    } else if (CheckBoxes.getChecked() == CheckBoxes.TYPE_E.Description) {
+        filter = { milliTime: { $gt: (new Date().getTime())}, "description": { "$regex": searchStr, "$options": "i" }};
+    } else if (CheckBoxes.getChecked() == CheckBoxes.TYPE_E.Zip) {
+        filter = { milliTime: { $gt: (new Date().getTime())}, "address.zip": { "$regex": searchStr, "$options": "i" }};
+    } else if (CheckBoxes.getChecked() == CheckBoxes.TYPE_E.Street) {
+        filter = { milliTime: { $gt: (new Date().getTime())}, "address.streetAddress": { "$regex": searchStr, "$options": "i" }};
+    } else if (CheckBoxes.getChecked() == CheckBoxes.TYPE_E.State) {
+        filter = { milliTime: { $gt: (new Date().getTime())}, "address.state": { "$regex": searchStr, "$options": "i" }};
+    } else if (CheckBoxes.getChecked() == CheckBoxes.TYPE_E.Title) {
+        filter = { milliTime: { $gt: (new Date().getTime())}, "title": { "$regex": searchStr, "$options": "i" }};
+    }
+
+    const sort = { _id: -1 };
+    Network.fetchEvents(filter, sort, function(data) { 
+        if (Network.getResponse(data) == NexaResponse.RESPONSE_E.BADLOGIN) {
+            Network.goToLogin();
+        }
+        for(let i = 0; i < data.length; i++) {
+            EventCloner.makeEvent(data[i]);
+            EventCloner.lastCreationTime = data[i].creationTime;
+        }
+    });
 
 }
 
@@ -90,7 +150,11 @@ function addScrollEvent() {
 
         if (Math.abs(scrollHeight - clientHeight - scrollTop) < 1) {
             console.log('Scrolled to bottom');
-            makeHomeEvents();
+            if (CheckBoxes.searching) {
+
+            } else {
+                makeHomeEvents();
+            }
         }
     });
 }

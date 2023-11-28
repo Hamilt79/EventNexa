@@ -4,6 +4,13 @@ class EventCloner {
     static lastCreationTime = null;
 
     /**
+     * Removes all Events from screen
+     */
+    static deleteEvents() {
+        document.getElementById('events-div').innerHTML = '';
+    }
+
+    /**
      * Makes an event from an Event object
      * 
      * @param {*} newEvent event to create
