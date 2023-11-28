@@ -33,7 +33,9 @@ class Network {
      * Redirects user to login page
     */
     static goToLogin() {
-        Network.redirectLocal('login/login.html');
+        if (window.location.href.startsWith('file') == false) {
+            Network.redirectLocal('login/login.html');
+        }
     }
 
     /**

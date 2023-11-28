@@ -19,11 +19,20 @@
 }
 .center-registration {
     text-align: center;
-    margin-top: 120px; /* Adjust margin as needed */
+    margin-top: 0; /* Adjust margin as needed */
+}
+
+.search-options {
+    color: white;
+    margin: 2px;
+}
+
+.search-options>label {
+    margin: 5px;
 }
 
 #search-bar {
-    margin-bottom: 20px; /* Adjust spacing */
+	padding: 0;
 }
 
 #locationInput {

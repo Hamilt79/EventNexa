@@ -29,16 +29,42 @@
 <!-- add search -->
 <div class="center-registration">
     <div id="search-bar">
-        <label for="locationInput">Please enter a city for available events:</label>
-        <input type="text" id="locationInput" placeholder="Enter location">
+        <input type="text" id="locationInput" placeholder="Enter Search">
         <button id="searchButton" onclick="searchEvents()">Search</button>
+        <br>
+        <div class="search-options">
+            <label>
+                City:
+                <input type="checkbox" id="city">
+            </label>
+            <label>
+                ZIP:
+                <input type="checkbox" id="city">
+            </label>
+            <label>
+                Street:
+                <input type="checkbox" id="city">
+            </label>
+            <label>
+                State:
+                <input type="checkbox" id="city">
+            </label>
+            <label>
+                Title:
+                <input type="checkbox" id="city">
+            </label>
+            <label>
+                Description:
+                <input type="checkbox" id="city" checked>
+            </label>
+        </div>
     </div>
     <!-- Container to display search results -->
     <div id="searchResults"></div>
 </div>
 
 
-<div id="events-div" class="events-div">
+<div id="events-div" class="events-div" style="margin: 60px 0 0 0">
     <div id="event-clone" class="event" style="display: none;">
         <h1 id="event-title">Title</h1>
         <h2 style="display: inline-block;">Author: </h2>
