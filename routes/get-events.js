@@ -6,7 +6,7 @@ const { LoginUtils } = require('./route-util/LoginUtils');
 const { Response } = require('./route-util/Response');
 const { ObjectId } = require('mongodb');
 
-const eventLimit = 1;
+const eventLimit = 4;
 
 /**
  * Called when post request is sent to /event/get
