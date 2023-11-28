@@ -195,7 +195,7 @@ function joinLeaveResponse(data, eventButton) {
 
 function enterSubmit(event) {
 	if (event.key == 'Enter') {
-		registerRequest();
+		search();
 	}
 }
 
