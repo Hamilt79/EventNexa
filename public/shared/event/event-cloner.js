@@ -7,7 +7,10 @@ class EventCloner {
      * Removes all Events from screen
      */
     static deleteEvents() {
-        document.getElementById('events-div').innerHTML = '';
+        let eventsDiv = document.getElementById('events-div');
+        while(eventsDiv.children.length > 1) {
+            eventsDiv.removeChild(eventsDiv.children[1]);
+        }
     }
 
     /**
