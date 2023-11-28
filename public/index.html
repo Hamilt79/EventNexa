@@ -17,19 +17,22 @@
 
 <div class="side-menu">
     <a class="hover-menu"></a>
-    <a class="hover-menu" href="#">Home</a>
-    <a class="hover-menu" href="./login/login.html">Login</a>
-    <a class="hover-menu" href="./postevent/post.html">Post Event</a>
-    <a class="hover-menu" href="./joinedevents/joinedevents.html">Joined Events</a>
-    <a class="hover-menu" href="./createdevents/createdevents.html">Created Events</a>
-    <a class="hover-menu" href="./about/about.html">About</a>
+    <a class="hover-menu" href="../../">Home</a>
+    <a class="hover-menu" href="../../login/login.html">Login</a>
+    <a class="hover-menu" href="../../postevent/post.html">Post Event</a>
+    <a class="hover-menu" href="../../joinedevents/joinedevents.html">Joined Events</a>
+    <a class="hover-menu" href="../../createdevents/createdevents.html">Created Events</a>
+    <a class="hover-menu" href="../../about/about.html">About</a>
+    <a class="hover-menu" href="../../search/search.html">Search</a>
 </div>
 
 <!-- add search -->
 <div class="center-registration">
-    <label for="locationInput">Please enter a city for available events:</label>
-    <input type="text" id="locationInput" placeholder="Enter location">
-    <button id="searchButton" onclick="searchEvents()">Search</button>
+    <div id="search-bar">
+        <label for="locationInput">Please enter a city for available events:</label>
+        <input type="text" id="locationInput" placeholder="Enter location">
+        <button id="searchButton" onclick="searchEvents()">Search</button>
+    </div>
     <!-- Container to display search results -->
     <div id="searchResults"></div>
 </div>

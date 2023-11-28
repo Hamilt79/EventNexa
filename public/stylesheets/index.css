@@ -17,7 +17,33 @@
 	height: clamp(45px, 75px, 125px);
 	border-width:2px;
 }
+.center-registration {
+    text-align: center;
+    margin-top: 120px; /* Adjust margin as needed */
+}
 
-.main .reg-button:active {
-	background-color: #006513;
+#search-bar {
+    margin-bottom: 20px; /* Adjust spacing */
+}
+
+#locationInput {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    margin-right: 10px;
+    width: 200px;
+}
+
+#searchButton {
+    padding: 8px 16px;
+    border-radius: 4px;
+    background-color: green;
+    border: 1px solid green;
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+#searchButton:hover {
+    background-color: #006513;
 }
