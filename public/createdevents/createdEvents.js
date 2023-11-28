@@ -6,7 +6,7 @@ function getCreatedEvents() {
     if (EventCloner.lastCreationTime == null) {
         filter = { author: UserUtils.getUsername() };
     } else {
-        filter = {creationTime: { $lt: EventCloner.lastCreationTime } };
+        filter = {creationTime: { $lt: EventCloner.lastCreationTime }, author: UserUtils.getUsername() };
     }
     const sort = { _id: -1 };
     Network.fetchEvents(filter, sort, function(data) { 
