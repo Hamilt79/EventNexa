@@ -151,7 +151,7 @@ function addScrollEvent() {
         if (Math.abs(scrollHeight - clientHeight - scrollTop) < 1) {
             console.log('Scrolled to bottom');
             if (CheckBoxes.searching) {
-
+                continuedSearch();
             } else {
                 makeHomeEvents();
             }
