@@ -11,9 +11,9 @@ class EmailNotif {
      */
     static timeBeforeEvent = 60;
 
-    static emailAddress = 'EventNexaServer@gmail.com';
+    static emailAddress = '';
 
-    static emailPass = 'hfykdwvbylsqcihw';
+    static emailPass = '';
     
     static timeOffset = null;
 
