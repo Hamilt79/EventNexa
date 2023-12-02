@@ -181,7 +181,11 @@ class Event {
                 }
                 event.waitlistedUsers = event.waitlistedUsers.splice(filledSeats);
             }
-            event.eventCap.joined = event.joinedUsers.length;
+            try{
+                event.eventCap.joined = event.joinedUsers.length;
+            } catch(ex){
+                console.log(ex);
+            }
             await Event.updateJoined(eventId, event.joinedUsers);
             await Event.updateWaitlist(eventId, event.waitlistedUsers);
             await Event.updateCap(eventId, event.eventCap);
